@@ -1,0 +1,18 @@
+{
+  "name": "recruiterra",
+  "version": "1.0.0",
+  "description": "A very easy to use automated employee and employer matching platform",
+  "main": "index.js",
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.9.0"
+  },
+  "scripts": {
+    "start": "node injex.js"
+  },
+  "author": "CJ Moro",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
