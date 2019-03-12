@@ -28,9 +28,11 @@ passport.use(
           done(null, existingUser);
         } else {
           // no user, create new one
-          new User({ googleId: profile.id })
-            .save()
-            .then(user => done(null, user));
+          console.log("creating user");
+          new User({ googleId: profile.id }).save().then(user => {
+            console.log("creating user done");
+            done(null, user);
+          });
         }
       });
     }
