@@ -1,5 +1,11 @@
 # Dependency directories
 node_modules/
 
+# dotenv environment variables file
+.env
+
+#keys config file
+dev.js
+
 #VS code workspace
 .code-workspace
