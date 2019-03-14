@@ -10,6 +10,7 @@ header {
   grid-row: header;
   grid-column: left-gutter/right-gutter-end;
   background: var(--header-bg);
+  box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.4);
 }
 
 main {
