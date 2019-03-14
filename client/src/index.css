@@ -1,0 +1,13 @@
+ul {
+  margin: 0;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+html {
+  --header-bg: rgb(255, 122, 53);
+  --header-link-bg-hover: rgb(230, 77, 0);
+}
