@@ -9,5 +9,7 @@ a {
 
 html {
   --header-bg: rgb(255, 122, 53);
+  --nav-logo-color: rgb(255, 255, 255);
+  --nav-link-color: rgb(255, 255, 255);
   --header-link-bg-hover: rgb(230, 77, 0);
 }
