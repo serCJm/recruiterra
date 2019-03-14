@@ -1,0 +1,21 @@
+.layout {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: [header] auto [main] 1fr [footer] auto;
+  grid-template-columns: [left-gutter] 1fr [content] auto [right-gutter] 1fr;
+}
+
+header {
+  grid-row: header;
+  grid-column: left-gutter/right-gutter-end;
+}
+
+main {
+  grid-row: main;
+  grid-column: content/content-end;
+}
+
+footer {
+  grid-row: footer;
+  grid-column: left-gutter/right-gutter-end;
+}
