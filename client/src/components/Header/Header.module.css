@@ -1,0 +1,33 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.4);
+}
+
+.logo {
+  font-size: 2rem;
+  color: #fff;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.linkContainer {
+  margin: 0;
+}
+
+.link {
+  display: block;
+  padding: 1rem 1rem;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.link:hover {
+  background: var(--header-link-bg-hover);
+}
