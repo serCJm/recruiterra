@@ -3,11 +3,13 @@
   display: grid;
   grid-template-rows: [header] auto [main] 1fr [footer] auto;
   grid-template-columns: [left-gutter] 1fr [content] auto [right-gutter] 1fr;
+  grid-row-gap: 2rem;
 }
 
 header {
   grid-row: header;
   grid-column: left-gutter/right-gutter-end;
+  background: var(--header-bg);
 }
 
 main {
