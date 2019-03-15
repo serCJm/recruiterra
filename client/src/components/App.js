@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../store/actions";
 import classes from "./App.module.css";
 
 import Header from "./Header/Header";
@@ -8,7 +10,11 @@ const Dashboard = () => <h2>Dashboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;
 const Landing = () => <h2>Landing</h2>;
 
-const App = () => {
+const App = props => {
+  useEffect(() => {
+    props.fetchUser();
+  }, []);
+
   return (
     <div className={classes.layout}>
       <BrowserRouter>
@@ -30,4 +36,7 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect(
+  null,
+  actions
+)(App);
