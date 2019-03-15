@@ -1,7 +1,30 @@
 import React from "react";
 import classes from "./Header.module.css";
+import { connect } from "react-redux";
 
-const Header = () => {
+const Header = props => {
+  function renderContent() {
+    switch (props.auth) {
+      case null:
+        return;
+      case false:
+        return (
+          <li className={classes.linkContainer}>
+            <a href="/auth/google" className={classes.link}>
+              Login With Google
+            </a>
+          </li>
+        );
+      default:
+        return (
+          <li className={classes.linkContainer}>
+            <a href="#" className={classes.link}>
+              Logout
+            </a>
+          </li>
+        );
+    }
+  }
   return (
     <nav className={classes.navigation}>
       <a href="#" className={classes.logo}>
@@ -18,14 +41,20 @@ const Header = () => {
             Components
           </a>
         </li>
-        <li className={classes.linkContainer}>
-          <a href="#" className={classes.link}>
-            Login With Google
-          </a>
-        </li>
+
+        {renderContent()}
       </ul>
     </nav>
   );
 };
 
-export default Header;
+function mapStateToProps({ auth }) {
+  return {
+    auth
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(Header);
