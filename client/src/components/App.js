@@ -5,10 +5,10 @@ import * as actions from "../store/actions";
 import classes from "./App.module.css";
 
 import Header from "./Header/Header";
+import Landing from "./Landing/Landing";
 
 const Dashboard = () => <h2>Dashboard</h2>;
 const SurveyNew = () => <h2>SurveyNew</h2>;
-const Landing = () => <h2>Landing</h2>;
 
 const App = props => {
   useEffect(() => {
@@ -19,7 +19,7 @@ const App = props => {
     <div className={classes.layout}>
       <BrowserRouter>
         <>
-          <header>
+          <header className={classes.header}>
             <Header />
           </header>
           <main className={classes.main}>
