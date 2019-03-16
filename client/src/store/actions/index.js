@@ -6,3 +6,9 @@ export const fetchUser = () =>
     const res = await axios.get("/api/current_user");
     dispatch({ type: FETCH_USER, payload: res.data });
   };
+
+export const logoutUser = () =>
+  async function(dispatch) {
+    const res = await axios.get("/api/logout");
+    dispatch({ type: FETCH_USER, payload: res.data });
+  };
