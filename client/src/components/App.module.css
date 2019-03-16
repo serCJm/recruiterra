@@ -2,23 +2,24 @@
   height: 100vh;
   display: grid;
   grid-template-rows: [header] auto [main] 1fr [footer] auto;
-  grid-template-columns: [left-gutter] 1fr [content] auto [right-gutter] 1fr;
-  grid-row-gap: 2rem;
+  grid-template-columns: [left-gutter] 1fr [content] 90vw [right-gutter] 1fr;
 }
 
-header {
+.header {
   grid-row: header;
   grid-column: left-gutter/right-gutter-end;
   background: var(--header-bg);
   box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.4);
 }
 
-main {
+.main {
   grid-row: main;
-  grid-column: content/content-end;
+  grid-column: left-gutter/right-gutter-end;
+  display: inherit;
+  grid-template-columns: inherit;
 }
 
-footer {
+.footer {
   grid-row: footer;
   grid-column: left-gutter/right-gutter-end;
 }
