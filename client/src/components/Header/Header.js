@@ -3,6 +3,7 @@ import classes from "./Header.module.css";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = props => {
   function handleUserLogout() {
@@ -34,9 +35,9 @@ const Header = props => {
   }
   return (
     <nav className={classes.navigation}>
-      <a href="#" className={classes.logo}>
+      <Link to={props.auth ? "/job-postings" : "/"} className={classes.logo}>
         Recruiterra
-      </a>
+      </Link>
       <ul className={classes.links}>
         <li className={classes.linkContainer}>
           <a href="#" className={classes.link}>
