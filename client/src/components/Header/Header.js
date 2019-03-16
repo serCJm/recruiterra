@@ -1,8 +1,15 @@
 import React from "react";
 import classes from "./Header.module.css";
 import { connect } from "react-redux";
+import * as actions from "../../store/actions";
+import { withRouter } from "react-router-dom";
 
 const Header = props => {
+  function handleUserLogout() {
+    props.logoutUser();
+    props.history.push("/");
+  }
+
   function renderContent() {
     switch (props.auth) {
       case null:
@@ -18,9 +25,9 @@ const Header = props => {
       default:
         return (
           <li className={classes.linkContainer}>
-            <a href="#" className={classes.link}>
+            <button className={classes.link} onClick={handleUserLogout}>
               Logout
-            </a>
+            </button>
           </li>
         );
     }
@@ -56,5 +63,5 @@ function mapStateToProps({ auth }) {
 
 export default connect(
   mapStateToProps,
-  null
-)(Header);
+  actions
+)(withRouter(Header));
