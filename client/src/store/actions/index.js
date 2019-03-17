@@ -12,3 +12,9 @@ export const logoutUser = () =>
     const res = await axios.get("/api/logout");
     dispatch({ type: FETCH_USER, payload: res.data });
   };
+
+export const handleStripeToken = token =>
+  async function(dispatch) {
+    const res = await axios.post("/api/stripe", token);
+    dispatch({ type: FETCH_USER, payload: res.data });
+  };
