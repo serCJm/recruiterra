@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Payments from "../Payments/Payments";
 
 const Header = props => {
   function handleUserLogout() {
@@ -25,11 +26,16 @@ const Header = props => {
         );
       default:
         return (
-          <li className={classes.linkContainer}>
-            <button className={classes.link} onClick={handleUserLogout}>
-              Logout
-            </button>
-          </li>
+          <>
+            <li>
+              <Payments />
+            </li>
+            <li className={classes.linkContainer}>
+              <button className={classes.link} onClick={handleUserLogout}>
+                Logout
+              </button>
+            </li>
+          </>
         );
     }
   }
