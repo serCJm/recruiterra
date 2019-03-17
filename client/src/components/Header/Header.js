@@ -27,6 +27,7 @@ const Header = props => {
       default:
         return (
           <>
+            <li>Credits: {props.auth.credits}</li>
             <li>
               <Payments />
             </li>
