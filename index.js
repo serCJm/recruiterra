@@ -7,6 +7,7 @@ const keys = require("./config/keys");
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 require("./models/User");
+require("./models/Job");
 
 require("./services/passport");
 
