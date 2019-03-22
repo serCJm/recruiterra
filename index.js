@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
+// DEV DB DEBUG
+mongoose.set("debug", true);
 require("./models/User");
 require("./models/Job");
 
