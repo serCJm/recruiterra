@@ -20,8 +20,12 @@ class Mailer {
   }
 
   async send() {
-    const response = await sgMail.sendMultiple(this.message);
-    return response;
+    try {
+      const response = await sgMail.sendMultiple(this.message);
+      return response;
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
 
