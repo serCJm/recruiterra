@@ -14,4 +14,6 @@ a {
   --nav-link-color: rgb(255, 255, 255);
   --header-link-bg-hover: rgb(230, 77, 0);
   --hero-font-color: rgb(255, 255, 255);
+  --add-new-btn-bg: rgb(255, 122, 53);
+  --add-new-btn-cl: rgb(255, 255, 255);
 }
