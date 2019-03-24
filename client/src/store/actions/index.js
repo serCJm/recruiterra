@@ -18,3 +18,9 @@ export const handleStripeToken = token =>
     const res = await axios.post("/api/stripe", token);
     dispatch({ type: FETCH_USER, payload: res.data });
   };
+
+export const submitJobPost = values =>
+  async function(dispatch) {
+    const res = await axios.post("/api/job", values);
+    dispatch({ type: FETCH_USER, payload: res.data });
+  };
