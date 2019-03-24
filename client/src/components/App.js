@@ -7,7 +7,7 @@ import classes from "./App.module.css";
 import Header from "./Header/Header";
 import Landing from "./Landing/Landing";
 import Dashboard from "./Dashboard/Dashboard";
-const SurveyNew = () => <h2>SurveyNew</h2>;
+import JobPostNew from "./JobPostings/JobPostNew/JobPostNew";
 
 const App = props => {
   useEffect(() => {
@@ -25,7 +25,7 @@ const App = props => {
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/job-postings" component={Dashboard} />
-              <Route path="/job-postings/new" component={SurveyNew} />
+              <Route path="/job-postings/new" component={JobPostNew} />
             </Switch>
           </main>
           <footer className={classes.footer}>footer</footer>
