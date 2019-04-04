@@ -9,8 +9,12 @@ module.exports = function jobPostTemplate(job) {
           <p>${job.description}</p>
           <div>
             <h3>Would You Like To Apply?</h3>
-            <a href="${keys.templateRedirectDomain}/api/jobs/thanks">Yes</a>
-            <a href="${keys.templateRedirectDomain}/api/jobs/thanks">No</a>
+            <a href="${keys.templateRedirectDomain}/api/jobs/${
+    job.id
+  }/apply">Yes</a>
+            <a href="${keys.templateRedirectDomain}/api/jobs/${
+    job.id
+  }/skip">No</a>
           </div>
         <div>
       <body>
