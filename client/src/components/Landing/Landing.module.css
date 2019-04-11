@@ -1,12 +1,1 @@
-.hero {
-  grid-column: left-gutter/right-gutter-end;
-  /* Photo by @anniespratt on Unsplash */
-  background: url("../../images/hero-bg-employees.jpg") center;
-  background-size: cover;
-  padding: 4rem 2rem;
-  max-height: 60vh;
-  color: var(--hero-font-color);
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
+

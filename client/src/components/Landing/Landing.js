@@ -1,13 +1,8 @@
 import React from "react";
-import classes from "./Landing.module.css";
+import Hero from "./Hero/Hero";
 
 const Landing = () => {
-  return (
-    <section className={classes.hero}>
-      <h1>Post Jobs And Apply For Positions Easily With Recruiterra</h1>
-      <button>Get Started</button>
-    </section>
-  );
+  return <Hero />;
 };
 
 export default Landing;
