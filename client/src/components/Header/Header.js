@@ -1,75 +1,40 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./Header.module.css";
-import { connect } from "react-redux";
-import * as actions from "../../store/actions";
-import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
-import Payments from "../Payments/Payments";
+import Navigation from "./Navigation/Navigation";
 
-const Header = props => {
-  function handleUserLogout() {
-    props.logoutUser();
-    props.history.push("/");
-  }
-
-  function renderContent() {
-    switch (props.auth) {
-      case null:
-        return;
-      case false:
-        return (
-          <li className={classes.linkContainer}>
-            <a href="/auth/google" className={classes.link}>
-              Login With Google
-            </a>
-          </li>
-        );
-      default:
-        return (
-          <>
-            <li>Credits: {props.auth.credits}</li>
-            <li>
-              <Payments />
-            </li>
-            <li className={classes.linkContainer}>
-              <button className={classes.link} onClick={handleUserLogout}>
-                Logout
-              </button>
-            </li>
-          </>
-        );
+const Header = () => {
+  useEffect(() => {
+    if (
+      "IntersectionObserver" in window &&
+      "IntersectionObserverEntry" in window &&
+      "intersectionRatio" in window.IntersectionObserverEntry.prototype
+    ) {
+      let observer = new IntersectionObserver(entries => {
+        console.log(entries);
+        if (entries[0].boundingClientRect.y < 0) {
+          console.log("hi");
+          // document
+          //   .querySelector(`.${classes.header}`)
+          //   .classList.add(`.${classes.headerPrimary}`);
+        } else {
+          console.log("back");
+        }
+      });
+      console.log(document.querySelector(`.${classes.topOfSitePixelAnchor}`));
+      observer.observe(
+        document.querySelector(`.${classes.topOfSitePixelAnchor}`)
+      );
     }
-  }
-  return (
-    <nav className={classes.navigation}>
-      <Link to={props.auth ? "/job-postings" : "/"} className={classes.logo}>
-        Recruiterra
-      </Link>
-      <ul className={classes.links}>
-        <li className={classes.linkContainer}>
-          <a href="#" className={classes.link}>
-            Sass
-          </a>
-        </li>
-        <li className={classes.linkContainer}>
-          <a href="#" className={classes.link}>
-            Components
-          </a>
-        </li>
+  }, []);
 
-        {renderContent()}
-      </ul>
-    </nav>
+  return (
+    <>
+      <header className={classes.header}>
+        <Navigation />
+      </header>
+      <div className={classes.topOfSitePixelAnchor} />
+    </>
   );
 };
 
-function mapStateToProps({ auth }) {
-  return {
-    auth
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  actions
-)(withRouter(Header));
+export default Header;

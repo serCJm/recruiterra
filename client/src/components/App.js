@@ -18,9 +18,7 @@ const App = props => {
     <div className={classes.layout}>
       <BrowserRouter>
         <>
-          <header className={classes.header}>
-            <Header />
-          </header>
+          <Header />
           <main className={classes.main}>
             <Switch>
               <Route exact path="/" component={Landing} />

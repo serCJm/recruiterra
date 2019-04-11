@@ -1,25 +1,19 @@
 .layout {
-  height: 100vh;
+  height: 150vh;
   display: grid;
   grid-template-rows: [header] auto [main] 1fr [footer] auto;
-  grid-template-columns: [left-gutter] 1fr [content] 90vw [right-gutter] 1fr;
-}
-
-.header {
-  grid-row: header;
-  grid-column: left-gutter/right-gutter-end;
-  background: var(--header-bg);
-  box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.4);
+  grid-template-columns: [left-gutter] 1fr [content] 90vw [right-gutter] 1fr [end];
 }
 
 .main {
   grid-row: main;
-  grid-column: left-gutter/right-gutter-end;
+  grid-column: left-gutter/end;
+  /* ALL DIRECT CONTENT INSIDE MAIN NEEDS TO DEFINE ITS GRID POSITION */
   display: inherit;
   grid-template-columns: inherit;
 }
 
 .footer {
   grid-row: footer;
-  grid-column: left-gutter/right-gutter-end;
+  grid-column: left-gutter/end;
 }

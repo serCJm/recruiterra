@@ -1,0 +1,33 @@
+.navigation {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.logo {
+  font-size: 2rem;
+  color: var(--nav-logo-color);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.linkContainer {
+  margin: 0;
+}
+
+.link {
+  display: block;
+  padding: 1rem 1rem;
+  color: var(--nav-link-color);
+  transition: all 0.3s;
+}
+
+.link:hover {
+  background: var(--header-link-bg-hover);
+}
