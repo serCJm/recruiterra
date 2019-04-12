@@ -1,40 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
+import { useIntersectObserver } from "../../utils/hooks";
 import classes from "./Header.module.css";
 import Navigation from "./Navigation/Navigation";
 
-const Header = () => {
-  useEffect(() => {
-    if (
-      "IntersectionObserver" in window &&
-      "IntersectionObserverEntry" in window &&
-      "intersectionRatio" in window.IntersectionObserverEntry.prototype
-    ) {
-      let observer = new IntersectionObserver(entries => {
-        console.log(entries);
-        if (entries[0].boundingClientRect.y < 0) {
-          console.log("hi");
-          // document
-          //   .querySelector(`.${classes.header}`)
-          //   .classList.add(`.${classes.headerPrimary}`);
-        } else {
-          console.log("back");
-        }
-      });
-      console.log(document.querySelector(`.${classes.topOfSitePixelAnchor}`));
-      observer.observe(
-        document.querySelector(`.${classes.topOfSitePixelAnchor}`)
-      );
-    }
-  }, []);
+const Header = props => {
+  const [setPixelRef, observedEl] = useIntersectObserver();
+  const [isLanding, setLanding] = useState(false);
+
+  let headerStyle = classes.header;
+  if (props.location.pathname === "/" && observedEl.isIntersecting) {
+    headerStyle = classes.headerLanding;
+    setLanding(true);
+  }
 
   return (
     <>
-      <header className={classes.header}>
-        <Navigation />
+      <header className={headerStyle}>
+        <Navigation isLanding={isLanding} />
       </header>
-      <div className={classes.topOfSitePixelAnchor} />
+      <div ref={setPixelRef} className={classes.topOfSitePixelAnchor} />
     </>
   );
 };
 
-export default Header;
+export default withRouter(Header);
