@@ -28,6 +28,15 @@
   transition: all 0.3s;
 }
 
+.linkLanding {
+  composes: link;
+}
+
 .link:hover {
   background: var(--header-link-bg-hover);
+}
+
+.linkLanding:hover {
+  color: var(--header-link-bg-hover);
+  background: transparent;
 }

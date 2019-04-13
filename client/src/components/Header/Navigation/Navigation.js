@@ -12,6 +12,9 @@ const Navigation = props => {
     props.history.push("/");
   }
 
+  let linkStyle = classes.link;
+  if (props.isLanding) linkStyle = classes.linkLanding;
+
   function renderContent() {
     switch (props.auth) {
       case null:
@@ -20,12 +23,22 @@ const Navigation = props => {
         return (
           <>
             <li className={classes.linkContainer}>
-              <a href="/auth/google" className={classes.link}>
+              <a href="#" className={linkStyle}>
+                Sass
+              </a>
+            </li>
+            <li className={classes.linkContainer}>
+              <a href="#" className={linkStyle}>
+                Components
+              </a>
+            </li>
+            <li className={classes.linkContainer}>
+              <a href="/auth/google" className={linkStyle}>
                 Signup
               </a>
             </li>
             <li className={classes.linkContainer}>
-              <a href="/auth/google" className={classes.link}>
+              <a href="/auth/google" className={linkStyle}>
                 Login
               </a>
             </li>
@@ -52,19 +65,7 @@ const Navigation = props => {
       <Link to={props.auth ? "/job-postings" : "/"} className={classes.logo}>
         Recruiterra
       </Link>
-      <ul className={classes.links}>
-        <li className={classes.linkContainer}>
-          <a href="#" className={classes.link}>
-            Sass
-          </a>
-        </li>
-        <li className={classes.linkContainer}>
-          <a href="#" className={classes.link}>
-            Components
-          </a>
-        </li>
-        {renderContent()}
-      </ul>
+      <ul className={classes.links}>{renderContent()}</ul>
     </nav>
   );
 };
