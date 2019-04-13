@@ -14,6 +14,7 @@
   composes: header;
   background: var(--header-landing-bg);
   height: 4rem;
+  box-shadow: none;
 }
 
 .topOfSitePixelAnchor {
