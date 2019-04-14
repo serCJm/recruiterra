@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./Navigation.module.css";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Payments from "../../Payments/Payments";
+import LandingNav from "./LandingNav/LandingNav";
+import DrawerToggle from "./DrawerToggle/DrawerToggle";
 
 const Navigation = props => {
+  const [isMobileOpen, setMobileOpen] = useState(false);
+
+  function handleMobileMenu() {
+    setMobileOpen(isMobileOpen => !isMobileOpen);
+  }
+
   function handleUserLogout() {
     props.logoutUser();
     props.history.push("/");
@@ -21,28 +29,10 @@ const Navigation = props => {
         return;
       case false:
         return (
-          <>
-            <li className={classes.linkContainer}>
-              <a href="#" className={linkStyle}>
-                Sass
-              </a>
-            </li>
-            <li className={classes.linkContainer}>
-              <a href="#" className={linkStyle}>
-                Components
-              </a>
-            </li>
-            <li className={classes.linkContainer}>
-              <a href="/auth/google" className={linkStyle}>
-                Signup
-              </a>
-            </li>
-            <li className={classes.linkContainer}>
-              <a href="/auth/google" className={linkStyle}>
-                Login
-              </a>
-            </li>
-          </>
+          <LandingNav
+            containerClass={classes.linkContainer}
+            linkClass={linkStyle}
+          />
         );
       default:
         return (
@@ -65,7 +55,19 @@ const Navigation = props => {
       <Link to={props.auth ? "/job-postings" : "/"} className={classes.logo}>
         Recruiterra
       </Link>
-      <ul className={classes.links}>{renderContent()}</ul>
+      <div className={classes.mobileOnly}>
+        <DrawerToggle onClick={handleMobileMenu} isOpen={isMobileOpen} />
+        <ul
+          className={
+            isMobileOpen ? classes.mobileMenuOpen : classes.mobileMenuClose
+          }
+        >
+          {renderContent()}
+        </ul>
+      </div>
+      <div className={classes.desktopOnly}>
+        <ul className={classes.desktopLinks}>{renderContent()}</ul>
+      </div>
     </nav>
   );
 };
