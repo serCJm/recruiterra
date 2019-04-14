@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Payments from "../../Payments/Payments";
 import LandingNav from "./LandingNav/LandingNav";
 import DrawerToggle from "./DrawerToggle/DrawerToggle";
+import Backdrop from "../../UI/Backdrop/Backdrop";
 
 const Navigation = props => {
   const [isMobileOpen, setMobileOpen] = useState(false);
@@ -64,6 +65,7 @@ const Navigation = props => {
         >
           {renderContent()}
         </ul>
+        <Backdrop onClick={handleMobileMenu} isOpen={isMobileOpen} />
       </div>
       <div className={classes.desktopOnly}>
         <ul className={classes.desktopLinks}>{renderContent()}</ul>
