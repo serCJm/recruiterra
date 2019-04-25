@@ -15,12 +15,15 @@ a {
   --nav-link-color: rgb(255, 255, 255);
   --header-link-bg-hover: rgb(230, 77, 0);
   --mobile-link-bg: rgb(221, 164, 72);
+  /* LANDING PAGE */
   --hero-desc-color: rgb(255, 255, 255);
   --hero-btn-border: rgb(255, 255, 255);
   --hero-btn-border-hover: rgb(255, 122, 53);
   --hero-btn-bg: transparent;
   --hero-btn-bg-hover: rgb(255, 122, 53);
   --hero-btn-color: rgb(255, 255, 255);
+  --features-icon-color: rgb(230, 77, 0);
+  /* DASHBOARD PAGE */
   --add-new-btn-bg: rgb(255, 122, 53);
   --add-new-btn-cl: rgb(255, 255, 255);
 }
