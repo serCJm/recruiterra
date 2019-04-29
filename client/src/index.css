@@ -23,6 +23,10 @@ a {
   --hero-btn-bg-hover: rgb(255, 122, 53);
   --hero-btn-color: rgb(255, 255, 255);
   --features-icon-color: rgb(230, 77, 0);
+  --how-hero-bg1: rgb(255, 50, 50);
+  --how-hero-bg2: rgb(255, 122, 53);
+  --how-hero-color: rgb(255, 255, 255);
+  --how-step-bg: rgb(230, 77, 0);
   /* DASHBOARD PAGE */
   --add-new-btn-bg: rgb(255, 122, 53);
   --add-new-btn-cl: rgb(255, 255, 255);
