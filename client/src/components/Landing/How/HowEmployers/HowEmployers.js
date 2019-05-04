@@ -52,8 +52,8 @@ const contents = [
   }
 ];
 
-const HowEmployers = () => {
-  return <HowSteps contents={contents} />;
+const HowEmployers = ({ exitAnimation }) => {
+  return <HowSteps contents={contents} exitAnimation={exitAnimation} />;
 };
 
 export default HowEmployers;
