@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import workspaceSmall from "../../../../images/workspace-small.png";
 import workspaceBig from "../../../../images/workspace-big.png";
 import interviewSmall from "../../../../images/interview-small.png";
@@ -54,6 +55,10 @@ const contents = [
 
 const HowEmployers = ({ exitAnimation }) => {
   return <HowSteps contents={contents} exitAnimation={exitAnimation} />;
+};
+
+HowEmployers.propTypes = {
+  exitAnimation: PropTypes.bool
 };
 
 export default HowEmployers;

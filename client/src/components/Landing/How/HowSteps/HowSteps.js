@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classes from "./HowSteps.module.css";
 
 const HowSteps = ({ contents, exitAnimation }) => {
@@ -21,6 +22,11 @@ const HowSteps = ({ contents, exitAnimation }) => {
       ))}
     </>
   );
+};
+
+HowSteps.propTypes = {
+  exitAnimation: PropTypes.bool,
+  contents: PropTypes.array
 };
 
 export default HowSteps;
