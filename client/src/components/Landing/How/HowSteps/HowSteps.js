@@ -1,11 +1,14 @@
 import React from "react";
 import classes from "./HowSteps.module.css";
 
-const HowSteps = ({ contents }) => {
+const HowSteps = ({ contents, exitAnimation }) => {
   return (
-    <section className={classes.container}>
+    <>
       {contents.map((item, i) => (
-        <div key={item.title} className={classes.wrapper}>
+        <div
+          key={item.title}
+          className={exitAnimation ? classes.wrapperExit : classes.wrapperIn}
+        >
           <div className={classes.text}>
             <h3>
               <span className={classes.step}>{i + 1}</span>
@@ -16,7 +19,7 @@ const HowSteps = ({ contents }) => {
           {item.image}
         </div>
       ))}
-    </section>
+    </>
   );
 };
 
