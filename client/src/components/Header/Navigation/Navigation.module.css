@@ -8,7 +8,7 @@
 
 .logo {
   font-size: 2rem;
-  color: var(--nav-logo-color);
+  color: var(--text-light);
 }
 
 .linkContainer {
@@ -18,7 +18,7 @@
 .link {
   display: block;
   padding: 1rem 1rem;
-  color: var(--nav-link-color);
+  color: var(--text-light);
   transition: all 0.3s;
 }
 
@@ -37,7 +37,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: var(--mobile-link-bg);
+    background: var(--light-color);
     clip-path: polygon(100% 0, 100% 13%, 70% 100%, 0 100%, 0 0);
     transition: all 0.4s;
   }
@@ -77,11 +77,11 @@
   }
 
   .link:hover {
-    background: var(--header-link-bg-hover);
+    background: var(--primary-color-darken);
   }
 
   .linkLanding:hover {
-    color: var(--header-link-bg-hover);
+    color: var(--primary-color);
     background: transparent;
   }
 }

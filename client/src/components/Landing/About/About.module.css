@@ -31,6 +31,6 @@
 }
 
 .icon {
-  color: var(--features-icon-color);
+  color: var(--primary-color-darken);
   font-size: 2rem;
 }

@@ -26,7 +26,7 @@ const Header = props => {
   return (
     <>
       <header className={headerStyle}>
-        <Navigation  isLanding={isLanding}/>
+        <Navigation isLanding={isLanding} />
       </header>
       <div ref={setPixelRef} className={classes.topOfSitePixelAnchor} />
     </>

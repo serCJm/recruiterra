@@ -1,16 +1,17 @@
 .howHero {
-    grid-column: left-gutter/end;
-    background: linear-gradient(
-        to top right, 
-        var(--how-hero-bg1), var(--how-hero-bg2)
-      );
-    padding: 2rem 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--how-hero-color);
+  grid-column: left-gutter/end;
+  background: linear-gradient(
+    to top right,
+    var(--primary-color-darken),
+    var(--primary-color)
+  );
+  padding: 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-light);
 }
 
 .howHeroTitle {
-    margin: 0;
+  margin: 0;
 }
