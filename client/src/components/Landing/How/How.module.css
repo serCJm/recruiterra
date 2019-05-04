@@ -18,6 +18,7 @@
 
 .container {
   grid-column: content;
+  padding: 0 1rem;
 }
 
 .tabsContainer {

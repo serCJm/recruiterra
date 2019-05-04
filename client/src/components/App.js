@@ -8,6 +8,7 @@ import Header from "./Header/Header";
 import Landing from "./Landing/Landing";
 import Dashboard from "./Dashboard/Dashboard";
 import JobPostNew from "./JobPostings/JobPostNew/JobPostNew";
+import Footer from "./Footer/Footer";
 
 const App = props => {
   useEffect(() => {
@@ -26,7 +27,7 @@ const App = props => {
               <Route path="/job-postings/new" component={JobPostNew} />
             </Switch>
           </main>
-          <footer className={classes.footer}>footer</footer>
+          <footer className={classes.footer}>{/* <Footer /> */}</footer>
         </>
       </BrowserRouter>
     </div>

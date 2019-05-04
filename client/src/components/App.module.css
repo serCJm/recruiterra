@@ -2,7 +2,12 @@
   height: 150vh;
   display: grid;
   grid-template-rows: [header] auto [main] 1fr [footer] auto;
-  grid-template-columns: [left-gutter] 1fr [content] 90vw [right-gutter] 1fr [end];
+  grid-template-columns:
+    [left-gutter] 1fr [content] minmax(
+      var(--container-min-width),
+      var(--container-max-width)
+    )
+    [right-gutter] 1fr [end];
 }
 
 .main {
