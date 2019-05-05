@@ -19,12 +19,13 @@
 .container {
   grid-column: content;
   padding: 0 1rem;
+  margin: 3rem 0;
 }
 
 .tabsContainer {
   display: flex;
   justify-content: center;
-  margin: 3rem 0;
+  margin-bottom: 2rem;
 }
 
 .tab {
