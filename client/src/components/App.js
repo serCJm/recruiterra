@@ -27,7 +27,9 @@ const App = props => {
               <Route path="/job-postings/new" component={JobPostNew} />
             </Switch>
           </main>
-          <footer className={classes.footer}>{/* <Footer /> */}</footer>
+          <footer className={classes.footer}>
+            <Footer />
+          </footer>
         </>
       </BrowserRouter>
     </div>

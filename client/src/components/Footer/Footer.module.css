@@ -1,0 +1,42 @@
+.location {
+  grid-column: left-gutter/end;
+  background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.6) 50%,
+      rgba(0, 0, 0, 0.6) 100%
+    ),
+    url("../../images/vancouver.jpg") center;
+  background-size: cover;
+  background-position: 50%;
+  display: flex;
+  padding: 0.5rem 0;
+  color: var(--text-light);
+}
+
+.address {
+  margin: auto;
+  text-align: center;
+  font-weight: 600;
+}
+
+.footer {
+  grid-column: left-gutter/end;
+  height: 3.5rem;
+  background: var(--primary-color);
+  color: var(--text-light);
+  padding: 0 2rem;
+}
+
+.footerContainer {
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: var(--container-max-width);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footerContainer p {
+  margin-bottom: 0;
+}
