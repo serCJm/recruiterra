@@ -1,10 +1,11 @@
 import React from "react";
 import classes from "./Footer.module.css";
+import SectionWithInterOb from "../UI/SectionWithInterOb/SectionWithInterOb";
 
 const Footer = () => {
   return (
     <>
-      <section className={classes.location}>
+      <SectionWithInterOb id="contact" className={classes.location}>
         <address className={classes.address}>
           Recruiterra
           <br />
@@ -16,7 +17,7 @@ const Footer = () => {
           <br />
           Canada
         </address>
-      </section>
+      </SectionWithInterOb>
       <section className={classes.footer}>
         <div className={classes.footerContainer}>
           <p>Copyright © 2019 by Recruiterra.</p>
