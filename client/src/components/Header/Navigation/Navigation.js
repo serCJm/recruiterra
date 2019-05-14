@@ -33,6 +33,7 @@ const Navigation = props => {
           <LandingNav
             containerClass={classes.linkContainer}
             linkClass={linkStyle}
+            isLanding={props.isLanding}
           />
         );
       default:
