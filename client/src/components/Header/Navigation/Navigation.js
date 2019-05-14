@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import classes from "./Navigation.module.css";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions";
@@ -80,6 +81,12 @@ function mapStateToProps({ auth }) {
     auth
   };
 }
+
+Navigation.propTypes = {
+  auth: PropTypes.bool,
+  isLanding: PropTypes.bool,
+  logoutUser: PropTypes.func
+};
 
 export default connect(
   mapStateToProps,
