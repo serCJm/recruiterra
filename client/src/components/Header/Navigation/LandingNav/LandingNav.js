@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import PropTypes from "prop-types";
 import classes from "./LandingNav.module.css";
 import { ActiveNavLink } from "../../../context";
 
@@ -30,6 +31,12 @@ const LandingNav = ({ containerClass, linkClass, isLanding }) => {
       ))}
     </>
   );
+};
+
+LandingNav.propTypes = {
+  containerClass: PropTypes.string,
+  linkClass: PropTypes.string,
+  isLanding: PropTypes.bool
 };
 
 export default LandingNav;
