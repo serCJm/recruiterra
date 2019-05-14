@@ -15,13 +15,13 @@ const Header = props => {
     if (props.location.pathname === "/") {
       if (observedEl.target && !observedEl.isIntersecting) {
         setHeaderStyle(classes.header);
-        setLanding(isLanding => !isLanding);
+        setLanding(false);
       } else {
         setHeaderStyle(classes.headerLanding);
-        setLanding(isLanding => !isLanding);
+        setLanding(true);
       }
     }
-  }, [props.location, observedEl]);
+  }, [props.location, observedEl.isIntersecting, observedEl.target]);
 
   return (
     <>
