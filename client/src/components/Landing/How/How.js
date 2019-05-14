@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classes from "./How.module.css";
 import HowEmployers from "./HowEmployers/HowEmployers";
 import HowJobSeekers from "./HowJobSeekers/HowJobSeekers";
+import SectionWithInterOb from "../../UI/SectionWithInterOb/SectionWithInterOb";
 
 const childAnimationTime = 500;
 
@@ -20,11 +21,11 @@ const How = () => {
   }
   return (
     <>
-      <section className={classes.howHero}>
+      <SectionWithInterOb id="how" className={classes.howHero}>
         <h2 className={classes.howHeroTitle}>
           How Recruiterra Makes Job Process Easy
         </h2>
-      </section>
+      </SectionWithInterOb>
       <section className={classes.container}>
         <div className={classes.tabsContainer}>
           <button

@@ -6,6 +6,7 @@ import {
   faHandHoldingUsd,
   faClock
 } from "@fortawesome/free-solid-svg-icons";
+import SectionWithInterOb from "../../UI/SectionWithInterOb/SectionWithInterOb";
 
 const content = {
   title: "Recruiterra Allows You To Simplify Hiring Process Like Never Before",
@@ -37,7 +38,7 @@ const content = {
 
 const About = () => {
   return (
-    <section id="about" className={classes.about}>
+    <SectionWithInterOb id="about" className={classes.about}>
       <h2>{content.title}</h2>
       <div className={classes.descriptionContainer}>
         <p>{content.description1}</p>
@@ -52,7 +53,7 @@ const About = () => {
           </div>
         ))}
       </div>
-    </section>
+    </SectionWithInterOb>
   );
 };
 
