@@ -1,33 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
+import classes from "./LandingNav.module.css";
+import { ActiveNavLink } from "../../../context";
 
-const LandingNav = ({ containerClass, linkClass }) => {
+const contents = [
+  { href: "#about", text: "About" },
+  { href: "#how", text: "How" },
+  { href: "#contact", text: "Contact" },
+  { href: "/auth/google", text: "Signup" },
+  { href: "/auth/google", text: "Login" }
+];
+
+const LandingNav = ({ containerClass, linkClass, isLanding }) => {
+  const selected = useContext(ActiveNavLink);
   return (
     <>
-      <li className={containerClass}>
-        <a href="#about" className={linkClass}>
-          About
-        </a>
-      </li>
-      <li className={containerClass}>
-        <a href="#how" className={linkClass}>
-          How
-        </a>
-      </li>
-      <li className={containerClass}>
-        <a href="#contact" className={linkClass}>
-          Contact
-        </a>
-      </li>
-      <li className={containerClass}>
-        <a href="/auth/google" className={linkClass}>
-          Signup
-        </a>
-      </li>
-      <li className={containerClass}>
-        <a href="/auth/google" className={linkClass}>
-          Login
-        </a>
-      </li>
+      {contents.map(item => (
+        <li key={item.text} className={containerClass}>
+          <a
+            href={item.href}
+            className={
+              !isLanding && selected.id === item.text.toLocaleLowerCase()
+                ? `${linkClass} ${classes.selected}`
+                : linkClass
+            }
+          >
+            {item.text}
+          </a>
+        </li>
+      ))}
     </>
   );
 };
