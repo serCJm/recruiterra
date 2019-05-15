@@ -2,11 +2,12 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import classes from "./LandingNav.module.css";
 import { ActiveNavLink } from "../../../context";
+import { smoothScroll } from "../../../../utils/helpers";
 
 const contents = [
-  { href: "#about", text: "About" },
-  { href: "#how", text: "How" },
-  { href: "#contact", text: "Contact" },
+  { href: "#about", text: "About", onClick: el => smoothScroll(el) },
+  { href: "#how", text: "How", onClick: el => smoothScroll(el) },
+  { href: "#contact", text: "Contact", onClick: el => smoothScroll(el) },
   { href: "/auth/google", text: "Signup" },
   { href: "/auth/google", text: "Login" }
 ];
@@ -24,6 +25,7 @@ const LandingNav = ({ containerClass, linkClass, isLanding }) => {
                 ? `${linkClass} ${classes.selected}`
                 : linkClass
             }
+            onClick={item.onClick}
           >
             {item.text}
           </a>
