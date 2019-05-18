@@ -1,3 +1,9 @@
+.howSection {
+  grid-column: left-gutter/end;
+  display: inherit;
+  grid-template-columns: inherit;
+}
+
 .howHero {
   grid-column: left-gutter/end;
   background: linear-gradient(

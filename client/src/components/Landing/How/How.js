@@ -20,12 +20,12 @@ const How = () => {
     }, childAnimationTime);
   }
   return (
-    <>
-      <SectionWithInterOb id="how" className={classes.howHero}>
+    <SectionWithInterOb id="how" className={classes.howSection}>
+      <section className={classes.howHero}>
         <h2 className={classes.howHeroTitle}>
           How Recruiterra Makes Job Process Easy
         </h2>
-      </SectionWithInterOb>
+      </section>
       <section className={classes.container}>
         <div className={classes.tabsContainer}>
           <button
@@ -47,7 +47,7 @@ const How = () => {
           <HowJobSeekers exitAnimation={exitAnimation} />
         )}
       </section>
-    </>
+    </SectionWithInterOb>
   );
 };
 
