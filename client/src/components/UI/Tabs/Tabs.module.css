@@ -9,6 +9,7 @@
   padding: 0;
   background: var(--how-tabs-bg);
   border: 2px solid var(--light-color);
+  text-transform: capitalize;
 }
 
 .tab:first-child {
