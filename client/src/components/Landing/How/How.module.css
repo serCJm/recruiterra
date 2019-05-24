@@ -27,34 +27,3 @@
   padding: 0 1rem;
   margin: 3rem 0;
 }
-
-.tabsContainer {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.tab {
-  width: 7rem;
-  padding: 0;
-  background: var(--how-tabs-bg);
-  border: 2px solid var(--light-color);
-}
-
-.tab:first-child {
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
-}
-
-.tab:last-child {
-  border-left: none;
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-}
-
-.activeTab {
-  composes: tab;
-  background: var(--primary-color);
-  color: var(--text-light);
-  border-color: var(--primary-color);
-}

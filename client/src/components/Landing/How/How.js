@@ -3,19 +3,22 @@ import classes from "./How.module.css";
 import HowEmployers from "./HowEmployers/HowEmployers";
 import HowJobSeekers from "./HowJobSeekers/HowJobSeekers";
 import SectionWithInterOb from "../../UI/SectionWithInterOb/SectionWithInterOb";
+import Tabs from "../../UI/Tabs/Tabs";
 
 const childAnimationTime = 500;
 
+const tabs = ["employers", "job seekers"];
+
 const How = () => {
-  const [activeTab, setActiveTab] = useState(0);
-  const [activeContent, setActiveContent] = useState(0);
+  const [activeTab, setActiveTab] = useState("employers");
+  const [activeContent, setActiveContent] = useState("employers");
   const [exitAnimation, setExitAnimation] = useState(false);
 
-  function handleTabSwitch(tabIndex) {
-    setActiveTab(tabIndex);
+  function handleTabSwitch(tabName) {
+    setActiveTab(tabName);
     setExitAnimation(true);
     setTimeout(() => {
-      setActiveContent(tabIndex);
+      setActiveContent(tabName);
       setExitAnimation(false);
     }, childAnimationTime);
   }
@@ -27,21 +30,12 @@ const How = () => {
         </h2>
       </section>
       <section className={classes.container}>
-        <div className={classes.tabsContainer}>
-          <button
-            className={activeTab === 0 ? classes.activeTab : classes.tab}
-            onClick={() => handleTabSwitch(0)}
-          >
-            Employers
-          </button>
-          <button
-            className={activeTab === 1 ? classes.activeTab : classes.tab}
-            onClick={() => handleTabSwitch(1)}
-          >
-            Job Seekers
-          </button>
-        </div>
-        {activeContent === 0 ? (
+        <Tabs
+          tabContent={tabs}
+          activeTab={activeTab}
+          onClick={handleTabSwitch}
+        />
+        {activeContent === "employers" ? (
           <HowEmployers exitAnimation={exitAnimation} />
         ) : (
           <HowJobSeekers exitAnimation={exitAnimation} />
