@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import classes from "./LandingNav.module.css";
 import { ActiveNavLink } from "../../../context";
 import { smoothScroll } from "../../../../utils/helpers";
@@ -8,16 +9,27 @@ const contents = [
   { href: "#about", text: "About", onClick: el => smoothScroll(el) },
   { href: "#how", text: "How", onClick: el => smoothScroll(el) },
   { href: "#contact", text: "Contact", onClick: el => smoothScroll(el) },
-  { href: "/auth/google", text: "Signup" },
-  { href: "/auth/google", text: "Login" }
+  { href: "/sign-up", text: "Sign Up" },
+  { href: "/auth/google", text: "Log In" }
 ];
 
 const LandingNav = ({ containerClass, linkClass, isLanding }) => {
   const selected = useContext(ActiveNavLink);
-  return (
-    <>
-      {contents.map(item => (
-        <li key={item.text} className={containerClass}>
+  function renderContent(item) {
+    switch (item.text) {
+      case "Sign Up":
+        return (
+          <Link
+            to={item.href}
+            className={
+              !isLanding ? `${linkClass} ${classes.selected}` : linkClass
+            }
+          >
+            {item.text}
+          </Link>
+        );
+      default:
+        return (
           <a
             href={item.href}
             className={
@@ -29,6 +41,14 @@ const LandingNav = ({ containerClass, linkClass, isLanding }) => {
           >
             {item.text}
           </a>
+        );
+    }
+  }
+  return (
+    <>
+      {contents.map(item => (
+        <li key={item.text} className={containerClass}>
+          {renderContent(item)}
         </li>
       ))}
     </>
