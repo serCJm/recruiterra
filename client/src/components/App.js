@@ -11,6 +11,7 @@ import Landing from "./Landing/Landing";
 import Dashboard from "./Dashboard/Dashboard";
 import JobPostNew from "./JobPostings/JobPostNew/JobPostNew";
 import Footer from "./Footer/Footer";
+import SignUp from "./SignUp/SignUp";
 
 const App = props => {
   const [activeLink, setActiveLink] = useState({ id: null, ratio: 0 });
@@ -40,27 +41,27 @@ const App = props => {
               <Header />
             </LandingLinkRatios.Provider>
           </ActiveNavLink.Provider>
-
           <main className={classes.main}>
             <Switch>
-              <ActiveNavLink.Provider value={activeNavLinkVal}>
-                <LandingLinkRatios.Provider
-                  value={{ ...ratios, setActiveRatio }}
-                >
-                  <Route exact path="/" component={Landing} />
-                </LandingLinkRatios.Provider>
-              </ActiveNavLink.Provider>
+              <Route exact path="/">
+                <ActiveNavLink.Provider value={activeNavLinkVal}>
+                  <LandingLinkRatios.Provider
+                    value={{ ...ratios, setActiveRatio }}
+                  >
+                    <Landing />
+                  </LandingLinkRatios.Provider>
+                </ActiveNavLink.Provider>
+              </Route>
+              <Route exact path="/sign-up" component={SignUp} />
               <Route exact path="/job-postings" component={Dashboard} />
               <Route path="/job-postings/new" component={JobPostNew} />
             </Switch>
           </main>
-          <footer className={classes.footer}>
-            <ActiveNavLink.Provider value={activeNavLinkVal}>
-              <LandingLinkRatios.Provider value={{ ...ratios, setActiveRatio }}>
-                <Footer />
-              </LandingLinkRatios.Provider>
-            </ActiveNavLink.Provider>
-          </footer>
+          <ActiveNavLink.Provider value={activeNavLinkVal}>
+            <LandingLinkRatios.Provider value={{ ...ratios, setActiveRatio }}>
+              <Footer style={classes.footer} />
+            </LandingLinkRatios.Provider>
+          </ActiveNavLink.Provider>
         </>
       </BrowserRouter>
     </div>
