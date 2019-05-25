@@ -75,7 +75,8 @@ const LandingNav = ({ containerClass, linkClass, isLanding, transparent }) => {
 LandingNav.propTypes = {
   containerClass: PropTypes.string,
   linkClass: PropTypes.string,
-  isLanding: PropTypes.bool
+  isLanding: PropTypes.bool,
+  transparent: PropTypes.bool
 };
 
 export default LandingNav;
