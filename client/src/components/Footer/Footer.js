@@ -7,7 +7,7 @@ import SectionWithInterOb from "../UI/SectionWithInterOb/SectionWithInterOb";
 const Footer = ({ style, location }) => {
   return (
     <>
-      {location === "/" ? (
+      {location.pathname === "/" ? (
         <footer className={style}>
           <SectionWithInterOb id="contact" className={classes.location}>
             <address className={classes.address}>
