@@ -1,5 +1,5 @@
 .layout {
-  height: 150vh;
+  min-height: 100vh;
   display: grid;
   grid-template-rows: [header] auto [main] 1fr [footer] auto;
   grid-template-columns:
