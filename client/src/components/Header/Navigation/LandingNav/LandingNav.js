@@ -6,14 +6,29 @@ import { ActiveNavLink } from "../../../context";
 import { smoothScroll } from "../../../../utils/helpers";
 
 const contents = [
-  { href: "#about", text: "About", onClick: el => smoothScroll(el) },
-  { href: "#how", text: "How", onClick: el => smoothScroll(el) },
-  { href: "#contact", text: "Contact", onClick: el => smoothScroll(el) },
+  {
+    href: "#about",
+    altHref: "/#about",
+    text: "About",
+    onClick: el => smoothScroll(el)
+  },
+  {
+    href: "#how",
+    altHref: "/#how",
+    text: "How",
+    onClick: el => smoothScroll(el)
+  },
+  {
+    href: "#contact",
+    altHref: "/#contact",
+    text: "Contact",
+    onClick: el => smoothScroll(el)
+  },
   { href: "/sign-up", text: "Sign Up" },
   { href: "/auth/google", text: "Log In" }
 ];
 
-const LandingNav = ({ containerClass, linkClass, isLanding }) => {
+const LandingNav = ({ containerClass, linkClass, isLanding, transparent }) => {
   const selected = useContext(ActiveNavLink);
   function renderContent(item) {
     switch (item.text) {
@@ -31,9 +46,11 @@ const LandingNav = ({ containerClass, linkClass, isLanding }) => {
       default:
         return (
           <a
-            href={item.href}
+            href={isLanding ? item.href : item.altHref}
             className={
-              !isLanding && selected.id === item.text.toLocaleLowerCase()
+              !transparent &&
+              isLanding &&
+              selected.id === item.text.toLocaleLowerCase()
                 ? `${linkClass} ${classes.selected}`
                 : linkClass
             }

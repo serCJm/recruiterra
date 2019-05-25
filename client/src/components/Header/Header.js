@@ -6,27 +6,28 @@ import Navigation from "./Navigation/Navigation";
 
 const Header = props => {
   const [setPixelRef, observedEl] = useIntersectObserver();
-  const [headerStyle, setHeaderStyle] = useState(
-    props.location.pathname === "/" ? classes.headerLanding : classes.header
-  );
+
   const [isLanding, setLanding] = useState(props.location.pathname === "/");
+  const [transparent, setTransparent] = useState(true);
 
   useEffect(() => {
     if (props.location.pathname === "/") {
+      setLanding(true);
       if (observedEl.target && !observedEl.isIntersecting) {
-        setHeaderStyle(classes.header);
-        setLanding(false);
+        setTransparent(false);
       } else {
-        setHeaderStyle(classes.headerLanding);
-        setLanding(true);
+        setTransparent(true);
       }
+    } else {
+      setTransparent(false);
+      setLanding(false);
     }
   }, [props.location, observedEl.isIntersecting, observedEl.target]);
 
   return (
     <>
-      <header className={headerStyle}>
-        <Navigation isLanding={isLanding} />
+      <header className={transparent ? classes.headerLanding : classes.header}>
+        <Navigation isLanding={isLanding} transparent={transparent} />
       </header>
       <div ref={setPixelRef} className={classes.topOfSitePixelAnchor} />
     </>

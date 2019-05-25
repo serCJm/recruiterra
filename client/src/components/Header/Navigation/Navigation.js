@@ -23,7 +23,7 @@ const Navigation = props => {
   }
 
   let linkStyle = classes.link;
-  if (props.isLanding) linkStyle = classes.linkLanding;
+  if (props.transparent) linkStyle = classes.linkLanding;
 
   function renderContent() {
     switch (props.auth) {
@@ -35,6 +35,7 @@ const Navigation = props => {
             containerClass={classes.linkContainer}
             linkClass={linkStyle}
             isLanding={props.isLanding}
+            transparent={props.transparent}
           />
         );
       default:
