@@ -1,16 +1,32 @@
 const passport = require("passport");
+const qs = require("querystring");
 
 module.exports = function authRoutes(app) {
-  app.get(
-    "/auth/google",
+  app.get("/auth/google", function(req, res, next) {
     passport.authenticate("google", {
-      scope: ["profile", "email"]
-    })
-  );
+      scope: ["profile", "email"],
+      state: req.query.type
+    })(req, res, next);
+  });
 
   app.get(
     "/auth/google/callback",
-    passport.authenticate("google"),
+    passport.authenticate("google", {
+      failureRedirect: `/sign-up?${qs.stringify({
+        err: "something went wrong please try again"
+      })}`
+    }),
+    function(err, req, res, next) {
+      console.log(err);
+      if (err) {
+        const encodedErr = qs.stringify({
+          err: "please provide your user type"
+        });
+
+        return res.status(400).redirect(`/sign-up?${encodedErr}`);
+      }
+      return next();
+    },
     (req, res) => {
       res.redirect("/job-postings");
     }
