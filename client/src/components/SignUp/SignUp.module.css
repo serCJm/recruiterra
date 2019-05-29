@@ -1,0 +1,5 @@
+.container {
+  grid-column: content;
+  justify-self: center;
+  align-self: center;
+}
