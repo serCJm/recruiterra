@@ -2,8 +2,19 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
+  usertype: {
+    type: String,
+    required: true,
+    lowercase: true,
+    enum: ["employer", "job seeker"]
+  },
   googleId: String,
-  credits: { type: Number, default: 0 }
+  credits: {
+    type: Number,
+    default: function() {
+      return this.usertype === "employer" ? 0 : undefined;
+    }
+  }
 });
 
 mongoose.model("users", userSchema);
