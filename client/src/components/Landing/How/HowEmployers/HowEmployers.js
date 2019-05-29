@@ -18,6 +18,7 @@ const contents = [
         src={workspaceSmall}
         srcSet={`${workspaceSmall} 1x,
         ${workspaceBig} 2x`}
+        alt="workspace"
         // sizes='(min-width: 960px) 960px,
         //        100vw'
       />
@@ -32,6 +33,7 @@ const contents = [
         src={interviewSmall}
         srcSet={`${interviewSmall} 1x,
         ${interviewBig} 2x`}
+        alt="inverview"
         // sizes='(min-width: 960px) 960px,
         //        100vw'
       />
@@ -46,6 +48,7 @@ const contents = [
         src={hireSmall}
         srcSet={`${hireSmall} 1x,
         ${hireBig} 2x`}
+        alt="hire"
         // sizes='(min-width: 960px) 960px,
         //        100vw'
       />
