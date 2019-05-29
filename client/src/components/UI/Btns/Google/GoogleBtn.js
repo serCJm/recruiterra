@@ -3,7 +3,11 @@ import classes from "./GoogleBtn.module.css";
 
 const GoogleBtn = props => {
   return (
-    <a href={`/auth/google?type=${props.type}`} className={classes.btn}>
+    <a
+      href={`/auth/google?type=${props.type}`}
+      className={classes.btn}
+      onClick={props.onClick}
+    >
       <span className={classes.iconContainer}>
         <svg
           version="1.1"
