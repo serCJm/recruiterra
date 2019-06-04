@@ -25,7 +25,7 @@ const SignUp = props => {
 
   let content = (
     <section className={classes.container}>
-      <DangerMsg duration={3000000} onAnimDurationEnd={true}>
+      <DangerMsg duration={3000} onAnimDurationEnd={true}>
         {error}
       </DangerMsg>
       <h3>Choose Your Account Type:</h3>
