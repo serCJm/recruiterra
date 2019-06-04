@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./GoogleBtn.module.css";
+import PropTypes from "prop-types";
 
 const GoogleBtn = props => {
   return (
@@ -40,6 +41,12 @@ const GoogleBtn = props => {
       <span className={classes.btnText}>{props.children}</span>
     </a>
   );
+};
+
+GoogleBtn.propTypes = {
+  type: PropTypes.string,
+  onClick: PropTypes.func,
+  children: PropTypes.node
 };
 
 export default GoogleBtn;
