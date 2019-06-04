@@ -1,16 +1,23 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from "react";
 import classes from "./SignUp.module.css";
-import * as actions from "../../store/actions";
 import Tabs from "../UI/Tabs/Tabs";
 import GoogleBtn from "../UI/Btns/Google/GoogleBtn";
 import Spinner from "../UI/Spinner/Spinner";
+import DangerMsg from "../UI/DangerMsg/DangerMsg";
 
 const tabs = ["employer", "job seeker"];
 
-const SignUp = () => {
+const SignUp = props => {
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [spinner, setSpinner] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    console.log("location");
+    const qs = props.location.search;
+    const params = new URLSearchParams(qs);
+    setError(params.get("err"));
+  }, [props.location]);
 
   function handleBtnClick() {
     setSpinner(prevState => !prevState);
@@ -18,6 +25,9 @@ const SignUp = () => {
 
   let content = (
     <section className={classes.container}>
+      <DangerMsg duration={3000000} onAnimDurationEnd={true}>
+        {error}
+      </DangerMsg>
       <h3>Choose Your Account Type:</h3>
       <Tabs tabContent={tabs} activeTab={activeTab} onClick={setActiveTab} />
       <GoogleBtn type={activeTab} onClick={handleBtnClick}>
