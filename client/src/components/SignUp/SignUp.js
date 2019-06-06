@@ -13,7 +13,6 @@ const SignUp = props => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("location");
     const qs = props.location.search;
     const params = new URLSearchParams(qs);
     setError(params.get("err"));

@@ -25,7 +25,7 @@ const contents = [
     onClick: el => smoothScroll(el)
   },
   { href: "/sign-up", text: "Sign Up" },
-  { href: "/auth/google", text: "Log In" }
+  { href: "/log-in", text: "Log In" }
 ];
 
 const LandingNav = ({ containerClass, linkClass, isLanding, transparent }) => {
@@ -33,6 +33,17 @@ const LandingNav = ({ containerClass, linkClass, isLanding, transparent }) => {
   function renderContent(item) {
     switch (item.text) {
       case "Sign Up":
+        return (
+          <Link
+            to={item.href}
+            className={
+              !isLanding ? `${linkClass} ${classes.selected}` : linkClass
+            }
+          >
+            {item.text}
+          </Link>
+        );
+      case "Log In":
         return (
           <Link
             to={item.href}
