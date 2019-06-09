@@ -6,27 +6,33 @@ const DangerMsg = ({ duration, onAnimDurationEnd, children }) => {
   const [isVisible, setVisible] = useState(false);
   const [sectionClass, setSectionClass] = useState(classes.container);
 
+  let timer1;
+  let timer2;
+
   useEffect(() => {
     if (children) {
       setVisible(true);
     }
+    if (duration) {
+      timer1 = setTimeout(() => {
+        animate();
+      }, duration);
+    }
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, [children]);
 
   function animate() {
     if (onAnimDurationEnd) {
-      setSectionClass(classes.containerAnimated);
+      timer2 = setSectionClass(classes.containerAnimated);
       setTimeout(() => {
         setVisible(false);
       }, 300);
     } else {
       setVisible(false);
     }
-  }
-
-  if (duration) {
-    setTimeout(() => {
-      animate();
-    }, duration);
   }
 
   return (
