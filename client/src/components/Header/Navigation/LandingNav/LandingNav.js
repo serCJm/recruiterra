@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import classes from "./LandingNav.module.css";
 import { ActiveNavLink } from "../../../context";
 import { smoothScroll } from "../../../../utils/helpers";
@@ -30,48 +30,37 @@ const contents = [
 
 const LandingNav = ({ containerClass, linkClass, isLanding, transparent }) => {
   const selected = useContext(ActiveNavLink);
+
   function renderContent(item) {
-    switch (item.text) {
-      case "Sign Up":
-        return (
-          <Link
-            to={item.href}
-            className={
-              !isLanding ? `${linkClass} ${classes.selected}` : linkClass
-            }
-          >
-            {item.text}
-          </Link>
-        );
-      case "Log In":
-        return (
-          <Link
-            to={item.href}
-            className={
-              !isLanding ? `${linkClass} ${classes.selected}` : linkClass
-            }
-          >
-            {item.text}
-          </Link>
-        );
-      default:
-        return (
-          <a
-            href={isLanding ? item.href : item.altHref}
-            className={
-              !transparent &&
-              isLanding &&
-              selected.id === item.text.toLocaleLowerCase()
-                ? `${linkClass} ${classes.selected}`
-                : linkClass
-            }
-            onClick={item.onClick}
-          >
-            {item.text}
-          </a>
-        );
+    if (item.text === "Sign Up" || item.text === "Log In") {
+      return (
+        <NavLink
+          to={item.href}
+          className={linkClass}
+          activeClassName={classes.active}
+        >
+          {item.text}
+        </NavLink>
+      );
+    } else {
+      return (
+        <a
+          href={isLanding ? item.href : item.altHref}
+          className={
+            !transparent &&
+            isLanding &&
+            selected.id === item.text.toLocaleLowerCase()
+              ? `${linkClass} ${classes.active}`
+              : linkClass
+          }
+          onClick={item.onClick}
+        >
+          {item.text}
+        </a>
+      );
     }
   }
+
   return (
     <>
       {contents.map(item => (
