@@ -89,7 +89,9 @@ Navigation.propTypes = {
   logoutUser: PropTypes.func
 };
 
-export default connect(
-  mapStateToProps,
-  actions
-)(withRouter(Navigation));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    actions
+  )(Navigation)
+);
