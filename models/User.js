@@ -12,7 +12,7 @@ const userSchema = new Schema({
   credits: {
     type: Number,
     default: function() {
-      return this.usertype === "employer" ? 0 : undefined;
+      return this.usertype === "employer" ? 3 : undefined;
     }
   }
 });
