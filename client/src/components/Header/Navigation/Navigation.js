@@ -84,7 +84,7 @@ function mapStateToProps({ auth }) {
 }
 
 Navigation.propTypes = {
-  auth: PropTypes.object,
+  auth: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   isLanding: PropTypes.bool,
   logoutUser: PropTypes.func
 };
