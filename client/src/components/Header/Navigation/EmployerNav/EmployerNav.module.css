@@ -1,0 +1,33 @@
+.navItemContainer {
+  margin: 0 1rem;
+  color: var(--text-light);
+}
+
+.creditsContainer {
+  composes: navItemContainer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.credits {
+  margin-left: 0.5rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.creditsSuccess {
+  composes: credits;
+  color: var(--success-color);
+}
+
+.creditsDanger {
+  composes: credits;
+  color: red;
+}
+
+.linkBtn {
+  composes: link from "../Navigation.module.css";
+  border: none;
+  background: transparent;
+}
