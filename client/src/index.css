@@ -7,6 +7,10 @@ a {
   text-decoration: none;
 }
 
+button:focus {
+  outline: 0 !important;
+}
+
 :root {
   --primary-color: rgb(255, 122, 53);
   --primary-color-darken: rgb(230, 77, 0);
