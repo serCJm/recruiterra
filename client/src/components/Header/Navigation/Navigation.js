@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import classes from "./Navigation.module.css";
 import { connect } from "react-redux";
-import * as actions from "../../../store/actions";
+import { logoutUser } from "../../../store/actions";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Payments from "../../Payments/Payments";
 import LandingNav from "./LandingNav/LandingNav";
 import DrawerToggle from "./DrawerToggle/DrawerToggle";
 import Backdrop from "../../UI/Backdrop/Backdrop";
+import EmployerNav from "./EmployerNav/EmployerNav";
 
 const Navigation = props => {
   const [isMobileOpen, setMobileOpen] = useState(false);
@@ -40,17 +40,10 @@ const Navigation = props => {
         );
       default:
         return (
-          <>
-            <li>Credits: {props.auth.credits}</li>
-            <li>
-              <Payments />
-            </li>
-            <li className={classes.linkContainer}>
-              <button className={classes.link} onClick={handleUserLogout}>
-                Logout
-              </button>
-            </li>
-          </>
+          <EmployerNav
+            credits={props.auth.credits}
+            handleUserLogout={handleUserLogout}
+          />
         );
     }
   }
@@ -92,6 +85,6 @@ Navigation.propTypes = {
 export default withRouter(
   connect(
     mapStateToProps,
-    actions
+    { logoutUser }
   )(Navigation)
 );
