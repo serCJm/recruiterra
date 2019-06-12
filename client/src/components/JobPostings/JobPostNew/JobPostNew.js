@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import classes from "./JobPostNew.module.css";
 import { reduxForm } from "redux-form";
 import { withRouter } from "react-router-dom";
 import JobPostForm from "../JobPostForm/JobPostForm";
@@ -26,7 +27,7 @@ const JobPostNew = () => {
     );
   }
 
-  return <div>{renderContent()}</div>;
+  return <section className={classes.formContainer}>{renderContent()}</section>;
 };
 
 export default withRouter(reduxForm({ form: "jobForm" })(JobPostNew));
