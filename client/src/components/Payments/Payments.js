@@ -1,8 +1,8 @@
 import React from "react";
-import classes from "./Payments.module.css";
 import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
+import RegBtn from "../UI/Btns/RegBtn/RegBtn";
 
 const Payments = props => {
   return (
@@ -13,7 +13,7 @@ const Payments = props => {
       token={token => props.handleStripeToken(token)}
       stripeKey={process.env.REACT_APP_STRIPE_KEY}
     >
-      <button className={classes.paymentBtn}>Add Credits</button>
+      <RegBtn>Add Credits</RegBtn>
     </StripeCheckout>
   );
 };
