@@ -1,9 +1,11 @@
 import React from "react";
+import classes from "./JobPostForm.module.css";
 import { reduxForm, Field } from "redux-form";
 import JobField from "../JobField/JobField";
 import { Link } from "react-router-dom";
-import validateEmails from "../../../utils/validateEmails";
+//import validateEmails from "../../../utils/validateEmails";
 import formFields from "../formFields";
+import RegBtn from "../../UI/Btns/RegBtn/RegBtn";
 
 const JobPostForm = props => {
   function renderFields() {
@@ -18,11 +20,22 @@ const JobPostForm = props => {
     ));
   }
   return (
-    <form onSubmit={props.handleSubmit(props.onJobPostSubmit)}>
-      {renderFields()}
-      <Link to="/job-postings">Cancel</Link>
-      <button type="submit">Next</button>
-    </form>
+    <>
+      <h2 className={classes.title}>
+        Please Enter Your Job Post Information Below
+      </h2>
+      <form onSubmit={props.handleSubmit(props.onJobPostSubmit)}>
+        {renderFields()}
+        <div className={classes.btnContainer}>
+          <Link to="/job-postings">
+            <RegBtn btnStyle="danger">Cancel</RegBtn>
+          </Link>
+          <RegBtn btnStyle="success" type="submit">
+            Next
+          </RegBtn>
+        </div>
+      </form>
+    </>
   );
 };
 
@@ -31,7 +44,7 @@ function validate(values) {
 
   formFields.forEach(({ name }) => {
     if (!values[name]) {
-      errors[name] = `You must provide a ${name}`;
+      errors[name] = `You must provide a ${name.replace(/s+$/, "")}`;
     }
   });
 
