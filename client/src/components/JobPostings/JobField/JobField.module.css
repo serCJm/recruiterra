@@ -1,0 +1,64 @@
+.inputContainer {
+  position: relative;
+  padding: 1.4rem 0;
+  margin-bottom: 0;
+}
+
+.input {
+  width: 100%;
+  height: 3rem;
+  padding: 0 1rem;
+  border: 0 solid transparent;
+  border-bottom: 4px solid var(--primary-color);
+  border-radius: 4px;
+  transition: all 0.5s;
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.75rem;
+}
+
+.label {
+  position: absolute;
+  top: 0rem;
+  left: 0;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.2s ease-out;
+}
+
+.input:placeholder-shown + .label {
+  opacity: 0;
+  transform: translateY(-1rem);
+}
+
+.input:hover {
+  outline: none;
+  background-color: var(--light-color);
+}
+
+.input:focus {
+  outline: none;
+  background-color: var(--light-color);
+}
+
+.input::placeholder {
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.textarea {
+  composes: input;
+  height: 10rem;
+  padding-top: 1rem;
+}
+
+textarea:required {
+  box-shadow: none;
+}
+
+.error {
+  color: var(--danger-color);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

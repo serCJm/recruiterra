@@ -1,11 +1,14 @@
 import React from "react";
+import classes from "./JobField.module.css";
 
 const JobField = ({ input, label, meta: { error, touched } }) => {
   return (
     <>
-      <label>{label}</label>
-      <input {...input} />
-      <div>{touched && error}</div>
+      <p className={classes.inputContainer}>
+        <input {...input} className={classes.input} placeholder={label} />
+        <label className={classes.label}>{label}</label>
+        <div className={classes.error}>{touched && error}</div>
+      </p>
     </>
   );
 };
