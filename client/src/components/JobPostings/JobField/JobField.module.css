@@ -52,10 +52,6 @@
   padding-top: 1rem;
 }
 
-textarea:required {
-  box-shadow: none;
-}
-
 .error {
   color: var(--danger-color);
   position: absolute;
