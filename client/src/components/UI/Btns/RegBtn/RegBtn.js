@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./RegBtn.module.css";
 
-const RegBtn = ({ children, type, btnStyle: style }) => {
+const RegBtn = ({ children, type, btnStyle: style, onClick }) => {
   let btnStyle;
   if (style === "success") {
     btnStyle = classes.BtnSuccess;
@@ -11,7 +11,7 @@ const RegBtn = ({ children, type, btnStyle: style }) => {
     btnStyle = classes.BtnDark;
   }
   return (
-    <button type={type || null} className={btnStyle}>
+    <button type={type || null} className={btnStyle} onClick={onClick || null}>
       {children}
     </button>
   );
