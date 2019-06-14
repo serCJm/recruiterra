@@ -11,19 +11,27 @@ const JobPostNew = () => {
   function renderContent() {
     if (showJobPostReview) {
       return (
-        <JobPostReview
-          onCancel={() =>
-            setJobPostReview(prevShowJobPostReview => !prevShowJobPostReview)
-          }
-        />
+        <>
+          <h2 className={classes.title}>Please review your job post</h2>
+          <JobPostReview
+            onCancel={() =>
+              setJobPostReview(prevShowJobPostReview => !prevShowJobPostReview)
+            }
+          />
+        </>
       );
     }
     return (
-      <JobPostForm
-        onJobPostSubmit={() =>
-          setJobPostReview(prevShowJobPostReview => !prevShowJobPostReview)
-        }
-      />
+      <>
+        <h2 className={classes.title}>
+          Please Enter Your Job Post Information Below
+        </h2>
+        <JobPostForm
+          onJobPostSubmit={() =>
+            setJobPostReview(prevShowJobPostReview => !prevShowJobPostReview)
+          }
+        />
+      </>
     );
   }
 
