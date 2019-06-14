@@ -21,9 +21,6 @@ const JobPostForm = props => {
   }
   return (
     <>
-      <h2 className={classes.title}>
-        Please Enter Your Job Post Information Below
-      </h2>
       <form onSubmit={props.handleSubmit(props.onJobPostSubmit)}>
         {renderFields()}
         <div className={classes.btnContainer}>
