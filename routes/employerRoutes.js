@@ -59,30 +59,36 @@ module.exports = function employerRoutes(app) {
     res.send({});
   });
 
-  app.post("/api/job", requireLogin, requireCredits, async (req, res) => {
-    const { name, title, description, skills, tags } = req.body;
+  app.post(
+    "/api/job",
+    requireLogin,
+    requireEmployerRole,
+    requireCredits,
+    async (req, res) => {
+      const { name, title, description, skills, tags } = req.body;
 
-    const job = new Job({
-      name,
-      subject: title,
-      description,
-      skills: skills.split(",").map(skill => skill.trim()),
-      tags: tags.split(",").map(tag => tag.trim()),
-      applicants: [{ email: "nassdropp@gmail.com", responded: false }],
-      _user: req.user.id,
-      lastUpdated: Date.now()
-    });
-    const applicants = [{ email: "nassdropp@gmail.com", responded: false }];
-    const mailer = new Mailer(job, applicants, jobPostTemplate(job));
-    try {
-      await mailer.send();
-      await job.save();
-      req.user.credits -= 1;
-      const user = await req.user.save();
+      const job = new Job({
+        name,
+        subject: title,
+        description,
+        skills: skills.split(",").map(skill => skill.trim()),
+        tags: tags.split(",").map(tag => tag.trim()),
+        applicants: [{ email: "nassdropp@gmail.com", responded: false }],
+        _user: req.user.id,
+        lastUpdated: Date.now()
+      });
+      const applicants = [{ email: "nassdropp@gmail.com", responded: false }];
+      const mailer = new Mailer(job, applicants, jobPostTemplate(job));
+      try {
+        await mailer.send();
+        await job.save();
+        req.user.credits -= 1;
+        const user = await req.user.save();
 
-      res.send(user);
-    } catch (err) {
-      res.status(422).send(err);
+        res.send(user);
+      } catch (err) {
+        res.status(422).send(err);
+      }
     }
-  });
+  );
 };
