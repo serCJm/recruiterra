@@ -8,7 +8,7 @@ import { ActiveNavLink, LandingLinkRatios } from "./context";
 
 import Header from "./Header/Header";
 import Landing from "./Landing/Landing";
-import Dashboard from "./Dashboard/Dashboard";
+import Dashboard from "./Dashboard/Employer/Dashboard";
 import JobPostNew from "./JobPostings/JobPostNew/JobPostNew";
 import Footer from "./Footer/Footer";
 import SignUp from "./SignUp/SignUp";
