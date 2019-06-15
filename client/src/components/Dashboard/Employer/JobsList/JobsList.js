@@ -3,6 +3,7 @@ import classes from "./JobList.module.css";
 import { connect } from "react-redux";
 import { fetchJobs } from "../../../../store/actions";
 import Spinner from "../../../UI/Spinner/Spinner";
+import Card from "../../../UI/Card/Card";
 
 const JobsList = props => {
   console.log(props);
@@ -22,12 +23,12 @@ const JobsList = props => {
       );
     }
     return props.jobs.reverse().map(job => (
-      <div key={job._id}>
+      <Card key={job._id}>
         <h2>{job.name}</h2>
         <p>{job.subject}</p>
         <p>{job.description}</p>
         <p>Posted on: {new Date(job.lastUpdated).toLocaleDateString()}</p>
-      </div>
+      </Card>
     ));
   }
   return <section className={classes.container}>{renderJobList()}</section>;
