@@ -1,7 +1,7 @@
 .layout {
   min-height: 100vh;
   display: grid;
-  grid-template-rows: [header] auto [main] 1fr [footer] auto;
+  grid-template-rows: [header] 4rem [main] 1fr [footer] auto;
   grid-template-columns:
     [left-gutter] 1fr [content] minmax(
       var(--container-min-width),
