@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_USER, FETCH_JOBS } from "./types";
+import { FETCH_USER, FETCH_JOBS_START, FETCH_JOBS } from "./types";
 
 export const fetchUser = () =>
   async function(dispatch) {
@@ -25,8 +25,15 @@ export const submitJobPost = values =>
     dispatch({ type: FETCH_USER, payload: res.data });
   };
 
+const startFetchJobs = () => {
+  return {
+    type: FETCH_JOBS_START
+  };
+};
+
 export const fetchJobs = () =>
   async function(dispatch) {
+    dispatch(startFetchJobs());
     const res = await axios.get("/api/job-postings");
     dispatch({ type: FETCH_JOBS, payload: res.data });
   };
