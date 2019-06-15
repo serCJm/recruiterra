@@ -7,6 +7,7 @@ import {
   faClock
 } from "@fortawesome/free-solid-svg-icons";
 import SectionWithInterOb from "../../UI/SectionWithInterOb/SectionWithInterOb";
+import Card from "../../UI/Card/Card";
 
 const content = {
   title: "Recruiterra Allows You To Simplify Hiring Process Like Never Before",
@@ -46,11 +47,11 @@ const About = () => {
       </div>
       <div className={classes.featuresContainer}>
         {content.features.map(item => (
-          <div className={classes.featuresCard} key={item.title}>
+          <Card key={item.title}>
             <h3>{item.title}</h3>
             <span className={classes.icon}>{item.icon}</span>
             <p>{item.description}</p>
-          </div>
+          </Card>
         ))}
       </div>
     </SectionWithInterOb>
