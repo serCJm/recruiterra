@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { fetchJobs } from "../../../../store/actions";
 import Spinner from "../../../UI/Spinner/Spinner";
 import Card from "../../../UI/Card/Card";
+import ReadMoreLess from "../../../UI/ReadMoreLess/ReadMoreLess";
 
 const JobsList = props => {
-  console.log(props);
   let jobList;
   useEffect(() => {
     props.fetchJobs();
@@ -26,7 +26,7 @@ const JobsList = props => {
       <Card key={job._id}>
         <h2>{job.name}</h2>
         <p>{job.subject}</p>
-        <p>{job.description}</p>
+        <ReadMoreLess text={job.description} length={15} />
         <p>Posted on: {new Date(job.lastUpdated).toLocaleDateString()}</p>
       </Card>
     ));
