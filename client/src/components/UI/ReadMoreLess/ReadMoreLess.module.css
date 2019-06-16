@@ -1,0 +1,5 @@
+.moreLessText {
+  display: inline-block;
+  overflow-y: hidden;
+  transition: max-height 0.5s linear;
+}
