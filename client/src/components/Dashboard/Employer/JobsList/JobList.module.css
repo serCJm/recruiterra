@@ -8,6 +8,21 @@
   grid-template-rows: auto 1fr;
 }
 
-.container > div {
+.container > article {
   width: 100%;
+  position: relative;
+  overflow-y: hidden;
+}
+
+.emptyText {
+  color: #999;
+}
+
+.name {
+  color: var(--dark-color);
+}
+
+.subject {
+  color: var(--light-color);
+  font-weight: bold;
 }

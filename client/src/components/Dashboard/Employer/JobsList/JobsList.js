@@ -5,9 +5,9 @@ import { fetchJobs } from "../../../../store/actions";
 import Spinner from "../../../UI/Spinner/Spinner";
 import Card from "../../../UI/Card/Card";
 import ReadMoreLess from "../../../UI/ReadMoreLess/ReadMoreLess";
+import DotsBtn from "../../../UI/Btns/DotsBtn/DotsBtn";
 
 const JobsList = props => {
-  let jobList;
   useEffect(() => {
     props.fetchJobs();
   }, []);
@@ -16,7 +16,7 @@ const JobsList = props => {
       return <Spinner />;
     } else if (props.jobs.length === 0) {
       return (
-        <p>
+        <p className={classes.emptyText}>
           You don't have any job posts. Please create one by clicking on the add
           button.
         </p>
@@ -24,8 +24,9 @@ const JobsList = props => {
     }
     return props.jobs.reverse().map(job => (
       <Card key={job._id}>
-        <h2>{job.name}</h2>
-        <p>{job.subject}</p>
+        <DotsBtn />
+        <h2 className={classes.name}>{job.name}</h2>
+        <p className={classes.subject}>{job.subject}</p>
         <ReadMoreLess text={job.description} length={15} />
         <p>Posted on: {new Date(job.lastUpdated).toLocaleDateString()}</p>
       </Card>
