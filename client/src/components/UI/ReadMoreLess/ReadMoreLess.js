@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import classes from "./ReadMoreLess.module.css";
+import PropTypes from "prop-types";
 import RegBtn from "../Btns/RegBtn/RegBtn";
 
 const ReadMoreLess = ({ text, length = 10 }) => {
@@ -41,6 +42,11 @@ const ReadMoreLess = ({ text, length = 10 }) => {
     return text;
   }
   return <p className={classes.text}>{renderContent()}</p>;
+};
+
+ReadMoreLess.propTypes = {
+  text: PropTypes.string,
+  length: PropTypes.number
 };
 
 export default ReadMoreLess;
