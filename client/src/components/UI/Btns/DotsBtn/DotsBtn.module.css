@@ -1,0 +1,21 @@
+.btnOptins {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  margin: 2px;
+  background: var(--dark-color);
+}
