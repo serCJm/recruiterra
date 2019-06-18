@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./RegBtn.module.css";
+import PropTypes from "prop-types";
 
 const RegBtn = ({ children, type, btnStyle: style, onClick }) => {
   let btnStyle;
@@ -15,6 +16,12 @@ const RegBtn = ({ children, type, btnStyle: style, onClick }) => {
       {children}
     </button>
   );
+};
+
+RegBtn.propTypes = {
+  type: PropTypes.string,
+  style: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 export default RegBtn;
