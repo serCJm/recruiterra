@@ -3,14 +3,13 @@ import classes from "./JobList.module.css";
 import { connect } from "react-redux";
 import { fetchJobs } from "../../../../store/actions";
 import Spinner from "../../../UI/Spinner/Spinner";
-import Card from "../../../UI/Card/Card";
-import ReadMoreLess from "../../../UI/ReadMoreLess/ReadMoreLess";
-import DotsBtn from "../../../UI/Btns/DotsBtn/DotsBtn";
+import JobItem from "../JobItem/JobItem";
 
 const JobsList = props => {
   useEffect(() => {
     props.fetchJobs();
   }, []);
+
   function renderJobList() {
     if (props.loading) {
       return <Spinner />;
@@ -22,15 +21,7 @@ const JobsList = props => {
         </p>
       );
     }
-    return props.jobs.reverse().map(job => (
-      <Card key={job._id}>
-        <DotsBtn />
-        <h2 className={classes.name}>{job.name}</h2>
-        <p className={classes.subject}>{job.subject}</p>
-        <ReadMoreLess text={job.description} length={15} />
-        <p>Posted on: {new Date(job.lastUpdated).toLocaleDateString()}</p>
-      </Card>
-    ));
+    return props.jobs.reverse().map(job => <JobItem key={job._id} job={job} />);
   }
   return <section className={classes.container}>{renderJobList()}</section>;
 };

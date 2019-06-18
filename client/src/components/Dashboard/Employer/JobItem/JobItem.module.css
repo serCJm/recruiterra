@@ -1,0 +1,8 @@
+.name {
+  color: var(--dark-color);
+}
+
+.subject {
+  color: var(--light-color);
+  font-weight: bold;
+}
