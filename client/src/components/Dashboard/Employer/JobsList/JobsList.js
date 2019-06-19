@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import classes from "./JobList.module.css";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchJobs } from "../../../../store/actions";
 import Spinner from "../../../UI/Spinner/Spinner";
@@ -29,6 +30,12 @@ const JobsList = props => {
 function mapStateToProps({ jobs }) {
   return { jobs: jobs.jobsList, loading: jobs.loading };
 }
+
+JobsList.propTypes = {
+  fetchJobs: PropTypes.func,
+  loading: PropTypes.bool,
+  jobs: PropTypes.array
+};
 
 export default connect(
   mapStateToProps,
