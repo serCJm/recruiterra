@@ -20,7 +20,7 @@ const JobItem = ({ job }) => {
   return (
     <Card>
       <DotsBtn onClick={handleMenu} />
-      <OptionsMenu status={showMenu} />
+      <OptionsMenu status={showMenu} jobId={job._id} />
       <h2 className={classes.name}>{job.name}</h2>
       <p className={classes.subject}>{job.subject}</p>
       <ReadMoreLess text={job.description} length={15} />
