@@ -24,7 +24,7 @@ class Mailer {
       const response = await sgMail.sendMultiple(this.message);
       return response;
     } catch (e) {
-      console.log(e);
+      return console.log(e);
     }
   }
 }
