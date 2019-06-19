@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin");
 const requireCredits = require("../middlewares/requireCredits");
 const requireEmployerRole = require("../middlewares/requireEmployerRole");
+const requireJobOwner = require("../middlewares/requireJobOwner");
 const Mailer = require("../services/Mailer");
 const jobPostTemplate = require("../services/emailTemplates/jobPostTemplate");
 
@@ -89,6 +90,20 @@ module.exports = function employerRoutes(app) {
       } catch (err) {
         res.status(422).send(err);
       }
+    }
+  );
+
+  app.post(
+    "/api/delete-job",
+    requireLogin,
+    requireEmployerRole,
+    requireJobOwner,
+    async (req, res) => {
+      await Job.deleteOne({ _id: req.body.id });
+      const jobs = await Job.find({ _user: req.user.id }).select({
+        applicants: 0
+      });
+      res.send(jobs);
     }
   );
 };
