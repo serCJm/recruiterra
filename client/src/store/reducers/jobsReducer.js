@@ -1,4 +1,4 @@
-import { FETCH_JOBS_START, FETCH_JOBS } from "../actions/types";
+import { FETCH_JOBS_START, FETCH_JOBS, DELETE_JOB } from "../actions/types";
 
 const initialState = {
   jobsList: [],
@@ -13,6 +13,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: true
+      };
+    case DELETE_JOB:
+      return {
+        ...state,
+        jobsList: action.payload,
+        loading: false
       };
     default:
       return state;
