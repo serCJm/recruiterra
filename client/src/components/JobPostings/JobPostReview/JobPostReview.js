@@ -38,7 +38,6 @@ const JobPostReview = ({ onCancel, formValues, submitJobPost, history }) => {
 };
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     formValues: state.form.jobForm.values
   };
