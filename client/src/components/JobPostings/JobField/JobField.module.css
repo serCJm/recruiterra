@@ -48,7 +48,7 @@
 
 .textarea {
   composes: input;
-  height: 10rem;
+  height: 25rem;
   padding-top: 1rem;
 }
 
