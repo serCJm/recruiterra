@@ -2,16 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import RegBtn from "../Btns/RegBtn/RegBtn";
 import classes from "./OptionsMenu.module.css";
-import { deleteJobs, updateCurrentJobId } from "../../../store/actions";
+import { deleteJobs } from "../../../store/actions";
 import { withRouter } from "react-router-dom";
 
-const OptionsMenu = ({
-  status,
-  job,
-  deleteJobs,
-  history,
-  updateCurrentJobId
-}) => {
+const OptionsMenu = ({ status, job, deleteJobs, history }) => {
   function handleDelteJob(jobId) {
     if (
       window.confirm(
@@ -24,7 +18,18 @@ const OptionsMenu = ({
   }
 
   function handleUpdateJob(jobId) {
-    updateCurrentJobId(jobId);
+    console.log(job);
+    localStorage.setItem(
+      "jobValues",
+      JSON.stringify({
+        name: job.name,
+        title: job.title,
+        description: job.description,
+        skills: job.skills.join(", "),
+        tags: job.tags.join(", ")
+      })
+    );
+    localStorage.setItem("currentJobId", jobId);
     return history.push("/job-postings/update");
   }
   return (
@@ -50,6 +55,6 @@ const OptionsMenu = ({
 export default withRouter(
   connect(
     null,
-    { deleteJobs, updateCurrentJobId }
+    { deleteJobs }
   )(OptionsMenu)
 );
