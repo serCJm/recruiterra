@@ -75,6 +75,11 @@ const mapStateToProps = ({ jobs }) => {
   };
 };
 
+JobPostUpdate.propTypes = {
+  currentJobId: PropTypes.string,
+  updateJobPost: PropTypes.func
+};
+
 export default connect(
   mapStateToProps,
   { updateJobPost }
