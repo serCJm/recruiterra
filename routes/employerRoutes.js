@@ -70,7 +70,7 @@ module.exports = function employerRoutes(app) {
 
       const job = new Job({
         name,
-        subject: title,
+        title,
         description,
         skills: skills.split(",").map(skill => skill.trim()),
         tags: tags.split(",").map(tag => tag.trim()),
@@ -94,7 +94,7 @@ module.exports = function employerRoutes(app) {
   );
 
   app.post(
-    "/api/delete-job",
+    "/api/jobs/delete",
     requireLogin,
     requireEmployerRole,
     requireJobOwner,
@@ -104,6 +104,32 @@ module.exports = function employerRoutes(app) {
         applicants: 0
       });
       res.send(jobs);
+    }
+  );
+
+  app.post(
+    "/api/jobs/update",
+    requireLogin,
+    requireEmployerRole,
+    requireJobOwner,
+    async (req, res) => {
+      const { name, title, description, skills, tags } = req.body.values;
+      const updatedValues = {
+        name,
+        title,
+        description,
+        skills: skills.split(",").map(skill => skill.trim()),
+        tags: tags.split(",").map(tag => tag.trim()),
+        lastUpdated: Date.now()
+      };
+      try {
+        await Job.findOneAndUpdate({ _id: req.body.id }, updatedValues, {
+          new: true
+        });
+        res.send(req.user);
+      } catch (e) {
+        console.log(e);
+      }
     }
   );
 };
