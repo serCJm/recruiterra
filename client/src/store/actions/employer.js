@@ -1,11 +1,5 @@
 import axios from "axios";
-import {
-  FETCH_USER,
-  FETCH_JOBS_START,
-  FETCH_JOBS,
-  DELETE_JOB,
-  UPDATE_CURRENT_JOB_ID
-} from "./types";
+import { FETCH_USER, FETCH_JOBS_START, FETCH_JOBS, DELETE_JOB } from "./types";
 
 export const fetchUser = () =>
   async function(dispatch) {
@@ -57,11 +51,6 @@ export const deleteJobs = id =>
     } catch (e) {
       return console.log(e);
     }
-  };
-
-export const updateCurrentJobId = id =>
-  function(dispatch) {
-    return dispatch({ type: UPDATE_CURRENT_JOB_ID, payload: id });
   };
 
 export const updateJobPost = (values, id) =>

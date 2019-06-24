@@ -1,9 +1,4 @@
-import {
-  FETCH_JOBS_START,
-  FETCH_JOBS,
-  DELETE_JOB,
-  UPDATE_CURRENT_JOB_ID
-} from "../actions/types";
+import { FETCH_JOBS_START, FETCH_JOBS, DELETE_JOB } from "../actions/types";
 
 const initialState = {
   jobsList: [],
@@ -24,11 +19,6 @@ export default function(state = initialState, action) {
         ...state,
         jobsList: action.payload,
         loading: false
-      };
-    case UPDATE_CURRENT_JOB_ID:
-      return {
-        ...state,
-        currentJobId: action.payload
       };
     default:
       return state;
