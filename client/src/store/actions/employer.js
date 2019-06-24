@@ -52,7 +52,7 @@ export const deleteJobs = id =>
   async function(dispatch) {
     dispatch(startFetch());
     try {
-      const res = await axios.post("/api/delete-job", { id });
+      const res = await axios.post("/api/jobs/delete", { id });
       return dispatch({ type: DELETE_JOB, payload: res.data });
     } catch (e) {
       return console.log(e);
@@ -62,4 +62,14 @@ export const deleteJobs = id =>
 export const updateCurrentJobId = id =>
   function(dispatch) {
     return dispatch({ type: UPDATE_CURRENT_JOB_ID, payload: id });
+  };
+
+export const updateJobPost = (values, id) =>
+  async function(dispatch) {
+    try {
+      const res = await axios.post("/api/jobs/update", { values, id });
+      return dispatch({ type: FETCH_USER, payload: res.data });
+    } catch (e) {
+      return console.log(e);
+    }
   };
