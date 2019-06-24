@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "../JobPostForm/JobPostForm.module.css";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { reduxForm, Field } from "redux-form";
 import JobField from "../JobField/JobField";
@@ -7,13 +8,15 @@ import { Link } from "react-router-dom";
 //import validateEmails from "../../../utils/validateEmails";
 import formFields from "../formFields";
 import RegBtn from "../../UI/Btns/RegBtn/RegBtn";
+import { updateJobPost } from "../../../store/actions";
 
 // NOTE: there's a bug because if page gets reloaded on this component
 // state will be lost causing error in mapStateToProps
 // TODO: save edited job into local storage
 const JobPostUpdate = props => {
-  function handleJobPostUpdate() {
-    console.log("hi");
+  async function handleJobPostUpdate(formValues) {
+    await props.updateJobPost(formValues, props.currentJobId);
+    props.history.push("/job-postings");
   }
   function renderFields() {
     return formFields.map(({ name, label }) => {
@@ -61,20 +64,24 @@ const mapStateToProps = ({ jobs }) => {
   const job = jobs.jobsList.filter(job => job._id === jobs.currentJobId);
   const values = {
     name: job[0].name,
-    title: job[0].subject,
+    title: job[0].title,
     description: job[0].description,
-    skills: job[0].skills,
-    tags: job[0].tags
+    skills: job[0].skills.join(", "),
+    tags: job[0].tags.join(", ")
   };
   return {
-    initialValues: values
+    initialValues: values,
+    currentJobId: jobs.currentJobId
   };
 };
 
-export default connect(mapStateToProps)(
+export default connect(
+  mapStateToProps,
+  { updateJobPost }
+)(
   reduxForm({
     validate,
     form: "jobFormUpdate",
-    destroyOnUnmount: false
+    destroyOnUnmount: true
   })(JobPostUpdate)
 );
