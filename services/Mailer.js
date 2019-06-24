@@ -2,11 +2,11 @@ const sgMail = require("@sendgrid/mail");
 const keys = require("../config/keys");
 
 class Mailer {
-  constructor({ subject }, applicants, content) {
+  constructor({ title }, applicants, content) {
     this.message = {
       to: this.formatAddresses(applicants),
       from: "no-reply@recruiterra.com",
-      subject: subject,
+      subject: title,
       html: content,
       trackingSettings: {
         clickTracking: { enable: true }
