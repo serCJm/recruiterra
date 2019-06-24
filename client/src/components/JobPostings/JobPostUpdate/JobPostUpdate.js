@@ -12,7 +12,7 @@ import { updateJobPost } from "../../../store/actions";
 
 // NOTE: there's a bug because if page gets reloaded on this component
 // state will be lost causing error in mapStateToProps
-// TODO: save edited job into local storage
+// TODO: save edited job into local storage - DONE
 const JobPostUpdate = props => {
   async function handleJobPostUpdate(formValues) {
     await props.updateJobPost(formValues, props.currentJobId);
@@ -61,17 +61,11 @@ function validate(values) {
 }
 
 const mapStateToProps = ({ jobs }) => {
-  const job = jobs.jobsList.filter(job => job._id === jobs.currentJobId);
-  const values = {
-    name: job[0].name,
-    title: job[0].title,
-    description: job[0].description,
-    skills: job[0].skills.join(", "),
-    tags: job[0].tags.join(", ")
-  };
+  //const job = jobs.jobsList.filter(job => job._id === jobs.currentJobId);
+  const values = localStorage.getItem("jobValues");
   return {
-    initialValues: values,
-    currentJobId: jobs.currentJobId
+    initialValues: JSON.parse(values),
+    currentJobId: localStorage.getItem("currentJobId")
   };
 };
 
