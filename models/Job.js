@@ -4,7 +4,7 @@ const ApplicantSchema = require("./Applicant");
 
 const jobSchema = new Schema({
   name: String,
-  subject: String,
+  title: String,
   description: String,
   skills: [String],
   tags: [String],
