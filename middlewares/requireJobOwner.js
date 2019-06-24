@@ -6,7 +6,7 @@ module.exports = async function requireJobOwner(req, res, next) {
     if (req.user.id !== job._user.toString()) {
       return res.status(401).send({ error: "You do not own this job." });
     }
-    next();
+    return next();
   } catch (e) {
     return res.status(500).send({ error: "Something went wrong." });
   }
