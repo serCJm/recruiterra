@@ -13,7 +13,10 @@ import Footer from "./Footer/Footer";
 import SignUp from "./SignUp/SignUp";
 import LogIn from "./LogIn/LogIn";
 
-import EmployerRoutes from "./Routes/EmployerRoutes";
+import Dashboard from "./Dashboard/Employer/Dashboard";
+import JobPostNew from "./JobPostings/JobPostNew/JobPostNew";
+import JobPostUpdate from "./JobPostings/JobPostUpdate/JobPostUpdate";
+import JobSeekerDashboard from "./Dashboard/JobSeeker/Dashboard";
 
 const App = props => {
   const [activeLink, setActiveLink] = useState({ id: null, ratio: 0 });
@@ -56,7 +59,14 @@ const App = props => {
               </Route>
               <Route exact path="/sign-up" component={SignUp} />
               <Route exact path="/log-in" component={LogIn} />
-              <EmployerRoutes />
+              <Route exact path="/job-postings" component={Dashboard} />
+              <Route path="/job-postings/new" component={JobPostNew} />
+              <Route
+                exact
+                path="/job-postings/update"
+                render={props => <JobPostUpdate {...props} />}
+              />
+              <Route exact path="/my-resumes" component={JobSeekerDashboard} />
               />
             </Switch>
           </main>
