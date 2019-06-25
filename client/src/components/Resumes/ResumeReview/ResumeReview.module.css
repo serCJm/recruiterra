@@ -1,0 +1,19 @@
+.container {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.label {
+  text-align: left;
+  color: var(--primary-color-darken);
+}
+
+.label:first-child {
+  margin-top: 2rem;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

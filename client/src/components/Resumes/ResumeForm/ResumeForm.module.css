@@ -1,0 +1,27 @@
+.btnContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formContainer {
+  grid-column: content;
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  padding: 0 2rem;
+  min-width: 18rem;
+  max-width: 50rem;
+}
+
+.title {
+  margin-bottom: 0;
+  text-align: center;
+  color: var(--dark-color);
+}
+
+@media only screen and (max-height: 800px) {
+  .title {
+    margin-top: 4rem;
+  }
+}
