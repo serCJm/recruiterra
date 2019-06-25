@@ -9,6 +9,7 @@ import LandingNav from "./LandingNav/LandingNav";
 import DrawerToggle from "./DrawerToggle/DrawerToggle";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import EmployerNav from "./EmployerNav/EmployerNav";
+import JobSeekerNav from "./JobSeekerNav/JobSeekerNav";
 
 const Navigation = props => {
   const [isMobileOpen, setMobileOpen] = useState(false);
@@ -26,30 +27,42 @@ const Navigation = props => {
   if (props.transparent) linkStyle = classes.linkLanding;
 
   function renderContent() {
-    switch (props.auth) {
-      case null:
-        return;
-      case false:
-        return (
-          <LandingNav
-            containerClass={classes.linkContainer}
-            linkClass={linkStyle}
-            isLanding={props.isLanding}
-            transparent={props.transparent}
-          />
-        );
-      default:
-        return (
-          <EmployerNav
-            credits={props.auth.credits}
-            handleUserLogout={handleUserLogout}
-          />
-        );
+    if (props.auth == null) {
+      return;
+    } else if (props.auth === false) {
+      return (
+        <LandingNav
+          containerClass={classes.linkContainer}
+          linkClass={linkStyle}
+          isLanding={props.isLanding}
+          transparent={props.transparent}
+        />
+      );
+    } else if (props.auth && props.auth.usertype === "employer") {
+      return (
+        <EmployerNav
+          credits={props.auth.credits}
+          handleUserLogout={handleUserLogout}
+        />
+      );
+    } else if (props.auth && props.auth.usertype === "job seeker") {
+      return <JobSeekerNav handleUserLogout={handleUserLogout} />;
+    }
+  }
+  function renderHomeLink() {
+    if (props.auth) {
+      if (props.auth.usertype === "employer") {
+        return "/job-postings";
+      } else {
+        return "/my-resumes";
+      }
+    } else {
+      return "/";
     }
   }
   return (
     <nav className={classes.navigation}>
-      <Link to={props.auth ? "/job-postings" : "/"} className={classes.logo}>
+      <Link to={renderHomeLink()} className={classes.logo}>
         Recruiterra
       </Link>
       <div className={classes.mobileOnly}>
