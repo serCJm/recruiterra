@@ -21,7 +21,7 @@ export const handleStripeToken = token =>
 
 export const submitJobPost = values =>
   async function(dispatch) {
-    const res = await axios.post("/api/job", values);
+    const res = await axios.post("/api/jobs/create", values);
     dispatch({ type: FETCH_USER, payload: res.data });
   };
 
@@ -35,7 +35,7 @@ export const fetchJobs = () =>
   async function(dispatch) {
     dispatch(startFetch());
     try {
-      const res = await axios.get("/api/job-postings");
+      const res = await axios.get("/api/jobs/job-postings");
       return dispatch({ type: FETCH_JOBS, payload: res.data });
     } catch (e) {
       return console.log(e);

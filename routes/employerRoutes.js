@@ -14,7 +14,7 @@ const Job = mongoose.model("jobs");
 
 module.exports = function employerRoutes(app) {
   app.get(
-    "/api/job-postings",
+    "/api/jobs/job-postings",
     requireLogin,
     requireEmployerRole,
     async (req, res) => {
@@ -61,7 +61,7 @@ module.exports = function employerRoutes(app) {
   });
 
   app.post(
-    "/api/job",
+    "/api/jobs/create",
     requireLogin,
     requireEmployerRole,
     requireCredits,
