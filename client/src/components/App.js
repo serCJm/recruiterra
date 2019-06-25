@@ -8,12 +8,12 @@ import { ActiveNavLink, LandingLinkRatios } from "./context";
 
 import Header from "./Header/Header";
 import Landing from "./Landing/Landing";
-import Dashboard from "./Dashboard/Employer/Dashboard";
-import JobPostNew from "./JobPostings/JobPostNew/JobPostNew";
+
 import Footer from "./Footer/Footer";
 import SignUp from "./SignUp/SignUp";
 import LogIn from "./LogIn/LogIn";
-import JobPostUpdate from "./JobPostings/JobPostUpdate/JobPostUpdate";
+
+import EmployerRoutes from "./Routes/EmployerRoutes";
 
 const App = props => {
   const [activeLink, setActiveLink] = useState({ id: null, ratio: 0 });
@@ -56,13 +56,7 @@ const App = props => {
               </Route>
               <Route exact path="/sign-up" component={SignUp} />
               <Route exact path="/log-in" component={LogIn} />
-              <Route exact path="/job-postings" component={Dashboard} />
-              <Route path="/job-postings/new" component={JobPostNew} />
-              <Route
-                exact
-                path="/job-postings/update"
-                render={props => <JobPostUpdate {...props} />}
-              />
+              <EmployerRoutes />
               />
             </Switch>
           </main>
