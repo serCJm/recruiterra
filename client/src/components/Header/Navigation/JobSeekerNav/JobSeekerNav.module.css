@@ -1,0 +1,21 @@
+.navItemContainer {
+  margin: 0 1rem;
+  color: var(--text-light);
+}
+
+.creditsContainer {
+  composes: navItemContainer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  composes: link from "../Navigation.module.css";
+}
+
+.linkBtn {
+  composes: link from "../Navigation.module.css";
+  border: none;
+  background: transparent;
+}
