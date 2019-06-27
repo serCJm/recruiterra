@@ -3,8 +3,7 @@ export default [
     name: "name",
     label: "Resume Name"
   },
-  { name: "title", label: "Title" },
-  { name: "yourName", label: "Your Name" },
+  { name: "yourName", label: "Your Full Name" },
   { name: "summary", label: "Summary" },
   {
     name: "education",
