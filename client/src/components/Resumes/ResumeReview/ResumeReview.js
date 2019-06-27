@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import * as actions from "../../../store/actions";
 import RegBtn from "../../UI/Btns/RegBtn/RegBtn";
 
-const ResumeReview = ({ onCancel, formValues, submitJobPost, history }) => {
+const ResumeReview = ({ onCancel, formValues, submitResumePost, history }) => {
   function renderPostReview() {
     return formFields.map(({ label, name }) => (
       <div key={name}>
@@ -18,7 +18,7 @@ const ResumeReview = ({ onCancel, formValues, submitJobPost, history }) => {
 
   async function handleSubmitJobPost(e) {
     e.preventDefault();
-    await submitJobPost(formValues);
+    await submitResumePost(formValues);
     history.push("/my-resumes");
   }
 
