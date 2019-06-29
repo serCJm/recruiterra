@@ -72,8 +72,14 @@ module.exports = function employerRoutes(app) {
         name,
         title,
         description,
-        skills: skills.split(",").map(skill => skill.trim()),
-        tags: tags.split(",").map(tag => tag.trim()),
+        skills: skills
+          .split(/[,;]+/)
+          .map(skill => skill.trim())
+          .filter(Boolean),
+        tags: tags
+          .split(/[,;]+/)
+          .map(tag => tag.trim())
+          .filter(Boolean),
         applicants: [{ email: "nassdropp@gmail.com", responded: false }],
         _user: req.user.id,
         lastUpdated: Date.now()
