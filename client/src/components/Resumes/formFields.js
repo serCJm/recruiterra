@@ -1,13 +1,13 @@
 export default [
   {
-    name: "name",
+    name: "resumeName",
     label: "Resume Name"
   },
-  { name: "yourName", label: "Your Full Name" },
+  { name: "fullName", label: "Your Full Name" },
   { name: "summary", label: "Summary" },
   {
     name: "education",
-    label: "Education"
+    label: "ex. place1 2019-2020; place2 2020-2021; etc"
   },
   {
     name: "skills",
@@ -15,7 +15,7 @@ export default [
   },
   {
     name: "experience",
-    label: "Experience"
+    label: "ex. place1 2019-2020; place2 2020-2021; etc"
   },
   {
     name: "tags",
