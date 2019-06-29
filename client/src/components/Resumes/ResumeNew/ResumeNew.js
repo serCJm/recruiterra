@@ -12,7 +12,7 @@ const ResumeNew = () => {
     if (showResumeReview) {
       return (
         <>
-          <h2 className={classes.title}>Please review your job post</h2>
+          <h2 className={classes.title}>Please review your resume</h2>
           <ResumeReview
             onCancel={() =>
               setResumeReview(prevShowJobPostReview => !prevShowJobPostReview)
