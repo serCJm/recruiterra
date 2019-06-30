@@ -10,6 +10,7 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 mongoose.set("debug", true);
 require("./models/User");
 require("./models/Job");
+require("./models/Resume");
 
 require("./services/passport");
 
