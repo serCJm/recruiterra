@@ -39,6 +39,18 @@ module.exports = function jobSeekerRoutes(app) {
       }
     }
   );
+  app.get(
+    "/api/resumes/resume-list",
+    requireLogin,
+    requireJobSeekerRole,
+    async (req, res) => {
+      const resumes = await Resume.find({ _user: req.user.id });
+      // .select({
+      //   applicants: 0
+      // });
+      res.send(resumes);
+    }
+  );
 };
 
 // HELPERS
