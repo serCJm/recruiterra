@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchResumes } from "../../../../store/actions";
 import Spinner from "../../../UI/Spinner/Spinner";
-import JobItem from "../JobItem/JobItem";
+import ResumeItem from "../ResumeItem/ResumeItem";
 
 const ResumeList = props => {
   useEffect(() => {
@@ -22,11 +22,10 @@ const ResumeList = props => {
         </p>
       );
     }
-    console.log(props.resumes);
-    return null;
-    // return props.resumes
-    //   .reverse()
-    //   .map(resume => <JobItem key={resume._id} job={resume} />);
+
+    return props.resumes
+      .reverse()
+      .map(resume => <ResumeItem key={resume._id} resume={resume} />);
   }
   return <section className={classes.container}>{renderJobList()}</section>;
 };
