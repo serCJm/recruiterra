@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Card from "../../../UI/Card/Card";
 import ReadMoreLess from "../../../UI/ReadMoreLess/ReadMoreLess";
 import DotsBtn from "../../../UI/Btns/DotsBtn/DotsBtn";
-import OptionsMenu from "../../../UI/OptionsMenu/OptionsMenu";
+import ResumeItemOptions from "../ResumeItemOptions/ResumeItemOptions";
 
 const ResumeItem = ({ resume }) => {
   const [showMenu, setShowMenu] = useState("closed");
@@ -21,7 +21,7 @@ const ResumeItem = ({ resume }) => {
   return (
     <Card>
       <DotsBtn onClick={handleMenu} />
-      <OptionsMenu status={showMenu} job={resume} />
+      <ResumeItemOptions status={showMenu} resume={resume} />
       <h2 className={classes.name}>{resume.name}</h2>
       <p className={classes.title}>{resume.fullName}</p>
       <ReadMoreLess text={resume.summary} length={15} />
