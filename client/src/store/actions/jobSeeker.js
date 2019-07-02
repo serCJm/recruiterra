@@ -39,3 +39,13 @@ export const deleteResumes = resumeId =>
       return console.log(e);
     }
   };
+
+export const updateResumes = (values, resumeId) =>
+  async function(dispatch) {
+    try {
+      const res = await axios.post("/api/resumes/update", { values, resumeId });
+      return dispatch({ type: FETCH_USER, payload: res.data });
+    } catch (e) {
+      return console.log(e);
+    }
+  };
