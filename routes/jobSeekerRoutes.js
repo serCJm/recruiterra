@@ -51,6 +51,18 @@ module.exports = function jobSeekerRoutes(app) {
       res.send(resumes);
     }
   );
+
+  app.post(
+    "/api/resumes/delete",
+    requireLogin,
+    requireJobSeekerRole,
+    // requireJobOwner,
+    async (req, res) => {
+      await Resume.deleteOne({ _id: req.body.resumeId });
+      const resumes = await Resume.find({ _user: req.user.id });
+      res.send(resumes);
+    }
+  );
 };
 
 // HELPERS
