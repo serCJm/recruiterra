@@ -22,7 +22,7 @@ const ResumeItem = ({ resume }) => {
     <Card>
       <DotsBtn onClick={handleMenu} />
       <ResumeItemOptions status={showMenu} resume={resume} />
-      <h2 className={classes.name}>{resume.name}</h2>
+      <h2 className={classes.name}>{resume.resumeName}</h2>
       <p className={classes.title}>{resume.fullName}</p>
       <ReadMoreLess text={resume.summary} length={15} />
       <p>Posted on: {new Date(resume.lastUpdated).toLocaleDateString()}</p>
