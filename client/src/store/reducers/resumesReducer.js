@@ -1,4 +1,8 @@
-import { FETCH_RESUMES, FETCH_RESUMES_START } from "../actions/types";
+import {
+  FETCH_RESUMES,
+  FETCH_RESUMES_START,
+  DELETE_RESUMES
+} from "../actions/types";
 
 const initialState = {
   resumesList: [],
@@ -11,6 +15,12 @@ export default function resumesReducer(state = initialState, action) {
       return { ...state, loading: true };
     case FETCH_RESUMES:
       return { ...state, resumesList: action.payload, loading: false };
+    case DELETE_RESUMES:
+      return {
+        ...state,
+        resumesList: action.payload,
+        loading: false
+      };
     default:
       return state;
   }
