@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin");
 const requireJobSeekerRole = require("../middlewares/requireJobSeekerRole");
+const requireResumeOwner = require("../middlewares/requireResumeOwner");
 
 const Resume = mongoose.model("resumes");
 
@@ -56,11 +57,51 @@ module.exports = function jobSeekerRoutes(app) {
     "/api/resumes/delete",
     requireLogin,
     requireJobSeekerRole,
-    // requireJobOwner,
+    requireResumeOwner,
     async (req, res) => {
       await Resume.deleteOne({ _id: req.body.resumeId });
       const resumes = await Resume.find({ _user: req.user.id });
       res.send(resumes);
+    }
+  );
+
+  app.post(
+    "/api/resumes/update",
+    requireLogin,
+    requireJobSeekerRole,
+    requireResumeOwner,
+    async (req, res) => {
+      const {
+        resumeName,
+        fullName,
+        summary,
+        education,
+        skills,
+        experience,
+        tags
+      } = req.body.values;
+      const updatedValues = {
+        resumeName,
+        fullName,
+        summary,
+        education: splitAndTrim(education),
+        skills: splitAndTrim(skills),
+        experience: splitAndTrim(experience),
+        tags: splitAndTrim(tags),
+        lastUpdated: Date.now()
+      };
+      try {
+        await Resume.findOneAndUpdate(
+          { _id: req.body.resumeId },
+          updatedValues,
+          {
+            new: true
+          }
+        );
+        res.send(req.user);
+      } catch (e) {
+        console.log(e);
+      }
     }
   );
 };
