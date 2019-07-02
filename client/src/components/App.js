@@ -18,6 +18,7 @@ import JobPostNew from "./JobPostings/JobPostNew/JobPostNew";
 import JobPostUpdate from "./JobPostings/JobPostUpdate/JobPostUpdate";
 import JobSeekerDashboard from "./Dashboard/JobSeeker/Dashboard";
 import ResumeNew from "./Resumes/ResumeNew/ResumeNew";
+import ResumeUpdate from "./Resumes/ResumeUpdate/ResumeUpdate";
 
 const App = props => {
   const [activeLink, setActiveLink] = useState({ id: null, ratio: 0 });
@@ -69,6 +70,11 @@ const App = props => {
               />
               <Route exact path="/my-resumes" component={JobSeekerDashboard} />
               <Route path="/resumes/new" component={ResumeNew} />
+              <Route
+                exact
+                path="/resumes/update"
+                render={props => <ResumeUpdate {...props} />}
+              />
               />
             </Switch>
           </main>
