@@ -1,5 +1,10 @@
 import axios from "axios";
-import { FETCH_USER, FETCH_RESUMES, FETCH_RESUMES_START } from "./types";
+import {
+  FETCH_USER,
+  FETCH_RESUMES,
+  FETCH_RESUMES_START,
+  DELETE_RESUMES
+} from "./types";
 
 export const submitResumePost = values =>
   async function(dispatch) {
@@ -19,6 +24,17 @@ export const fetchResumes = () =>
     try {
       const res = await axios.get("/api/resumes/resume-list");
       return dispatch({ type: FETCH_RESUMES, payload: res.data });
+    } catch (e) {
+      return console.log(e);
+    }
+  };
+
+export const deleteResumes = resumeId =>
+  async function(dispatch) {
+    dispatch(startFetch());
+    try {
+      const res = await axios.post("/api/resumes/delete", { resumeId });
+      return dispatch({ type: DELETE_RESUMES, payload: res.data });
     } catch (e) {
       return console.log(e);
     }
