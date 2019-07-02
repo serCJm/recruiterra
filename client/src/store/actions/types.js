@@ -6,3 +6,4 @@ export const DELETE_JOB = "delete_job";
 // RESUMES
 export const FETCH_RESUMES = "fetch_resumes";
 export const FETCH_RESUMES_START = "fetch_resumes_start";
+export const DELETE_RESUMES = "delete_resumes";
