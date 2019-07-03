@@ -10,7 +10,8 @@ const resumeSchema = new Schema({
   experience: [String],
   tags: [String],
   _user: { type: Schema.Types.ObjectId, ref: "User" },
-  lastUpdated: Date
+  lastUpdated: Date,
+  status: { type: Boolean, default: true }
 });
 
 mongoose.model("resumes", resumeSchema);
