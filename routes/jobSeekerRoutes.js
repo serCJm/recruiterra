@@ -11,6 +11,7 @@ module.exports = function jobSeekerRoutes(app) {
     requireLogin,
     requireJobSeekerRole,
     async (req, res) => {
+      await Resume.updateMany({ _user: req.user.id }, { status: false });
       const {
         resumeName,
         fullName,
@@ -71,6 +72,7 @@ module.exports = function jobSeekerRoutes(app) {
     requireJobSeekerRole,
     requireResumeOwner,
     async (req, res) => {
+      await Resume.updateMany({ _user: req.user.id }, { status: false });
       const {
         resumeName,
         fullName,
@@ -88,7 +90,8 @@ module.exports = function jobSeekerRoutes(app) {
         skills: splitAndTrim(skills),
         experience: splitAndTrim(experience),
         tags: splitAndTrim(tags),
-        lastUpdated: Date.now()
+        lastUpdated: Date.now(),
+        status: true
       };
       try {
         await Resume.findOneAndUpdate(
