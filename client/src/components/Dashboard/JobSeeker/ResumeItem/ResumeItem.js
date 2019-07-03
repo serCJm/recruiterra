@@ -5,6 +5,8 @@ import Card from "../../../UI/Card/Card";
 import ReadMoreLess from "../../../UI/ReadMoreLess/ReadMoreLess";
 import DotsBtn from "../../../UI/Btns/DotsBtn/DotsBtn";
 import ResumeItemOptions from "../ResumeItemOptions/ResumeItemOptions";
+import JobField from "../../../JobPostings/JobField/JobField";
+import StatusBtn from "../StatusBtn/StatusBtn";
 
 const ResumeItem = ({ resume }) => {
   const [showMenu, setShowMenu] = useState("closed");
@@ -20,6 +22,7 @@ const ResumeItem = ({ resume }) => {
 
   return (
     <Card>
+      <StatusBtn status={resume.status} />
       <DotsBtn onClick={handleMenu} />
       <ResumeItemOptions status={showMenu} resume={resume} />
       <h2 className={classes.name}>{resume.resumeName}</h2>

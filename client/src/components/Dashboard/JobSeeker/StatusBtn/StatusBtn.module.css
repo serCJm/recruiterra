@@ -1,0 +1,18 @@
+.btn {
+  margin-bottom: 1rem;
+  padding-left: 0;
+  border: none;
+  background: transparent;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.active {
+  composes: btn;
+  color: var(--success-color);
+}
+
+.inactive {
+  composes: btn;
+  color: #808080;
+}
