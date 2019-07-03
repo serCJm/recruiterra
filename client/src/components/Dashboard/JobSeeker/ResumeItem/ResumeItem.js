@@ -22,7 +22,7 @@ const ResumeItem = ({ resume }) => {
 
   return (
     <Card>
-      <StatusBtn status={resume.status} />
+      <StatusBtn status={resume.status} id={resume._id} />
       <DotsBtn onClick={handleMenu} />
       <ResumeItemOptions status={showMenu} resume={resume} />
       <h2 className={classes.name}>{resume.resumeName}</h2>
