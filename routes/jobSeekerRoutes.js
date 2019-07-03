@@ -11,7 +11,6 @@ module.exports = function jobSeekerRoutes(app) {
     requireLogin,
     requireJobSeekerRole,
     async (req, res) => {
-      await Resume.updateMany({ _user: req.user.id }, { status: false });
       const {
         resumeName,
         fullName,
@@ -34,6 +33,7 @@ module.exports = function jobSeekerRoutes(app) {
         lastUpdated: Date.now()
       });
       try {
+        await Resume.updateMany({ _user: req.user.id }, { status: false });
         await resume.save();
         res.send(req.user);
       } catch (err) {
@@ -72,7 +72,6 @@ module.exports = function jobSeekerRoutes(app) {
     requireJobSeekerRole,
     requireResumeOwner,
     async (req, res) => {
-      await Resume.updateMany({ _user: req.user.id }, { status: false });
       const {
         resumeName,
         fullName,
@@ -94,6 +93,7 @@ module.exports = function jobSeekerRoutes(app) {
         status: true
       };
       try {
+        await Resume.updateMany({ _user: req.user.id }, { status: false });
         await Resume.findOneAndUpdate(
           { _id: req.body.resumeId },
           updatedValues,
@@ -102,6 +102,26 @@ module.exports = function jobSeekerRoutes(app) {
           }
         );
         res.send(req.user);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  );
+
+  app.post(
+    "/api/resumes/update-status",
+    requireLogin,
+    requireJobSeekerRole,
+    requireResumeOwner,
+    async (req, res) => {
+      try {
+        await Resume.updateMany({ _user: req.user.id }, { status: false });
+        await Resume.findByIdAndUpdate(req.body.resumeId, { status: true });
+        const resumes = await Resume.find({ _user: req.user.id });
+        // .select({
+        //   applicants: 0
+        // });
+        res.send(resumes);
       } catch (e) {
         console.log(e);
       }
