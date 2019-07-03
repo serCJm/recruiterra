@@ -1,12 +1,20 @@
 import React from "react";
 import classes from "./StatusBtn.module.css";
+import { connect } from "react-redux";
+import { updateStatus } from "../../../../store/actions";
 
-const StatusBtn = ({ status }) => {
+const StatusBtn = ({ status, updateStatus, id }) => {
   return (
-    <button className={status ? classes.active : classes.inactive}>
+    <button
+      onClick={() => updateStatus(id)}
+      className={status ? classes.active : classes.inactive}
+    >
       {status ? "active" : "inactive"}
     </button>
   );
 };
 
-export default StatusBtn;
+export default connect(
+  null,
+  { updateStatus }
+)(StatusBtn);

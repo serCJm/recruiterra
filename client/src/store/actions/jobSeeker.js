@@ -49,3 +49,14 @@ export const updateResumes = (values, resumeId) =>
       return console.log(e);
     }
   };
+
+export const updateStatus = resumeId =>
+  async function(dispatch) {
+    dispatch(startFetch());
+    try {
+      const res = await axios.post("/api/resumes/update-status", { resumeId });
+      return dispatch({ type: FETCH_RESUMES, payload: res.data });
+    } catch (e) {
+      return console.log(e);
+    }
+  };
