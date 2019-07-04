@@ -3,7 +3,7 @@ import classes from "./ResumeForm.module.css";
 import { reduxForm, Field } from "redux-form";
 import ResumeField from "../ResumeField/ResumeField";
 import { Link } from "react-router-dom";
-//import validateEmails from "../../../utils/validateEmails";
+import { validateEmail } from "../../../utils/validateEmails";
 import formFields from "../formFields";
 import RegBtn from "../../UI/Btns/RegBtn/RegBtn";
 
@@ -44,6 +44,7 @@ function validate(values) {
       errors[name] = `You must provide a ${name.replace(/s+$/, "")}`;
     }
   });
+  errors.email = validateEmail(values.email || "");
 
   return errors;
 }
