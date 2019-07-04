@@ -22,6 +22,7 @@ const ResumeItemOptions = ({ status, resume, deleteResumes, history }) => {
       JSON.stringify({
         resumeName: resume.resumeName,
         fullName: resume.fullName,
+        email: resume.email,
         summary: resume.summary,
         education: resume.education.join(", "),
         skills: resume.skills.join(", "),
