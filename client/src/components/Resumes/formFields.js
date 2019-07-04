@@ -4,6 +4,7 @@ export default [
     label: "Resume Name"
   },
   { name: "fullName", label: "Your Full Name" },
+  { name: "email", label: "Your Email" },
   { name: "summary", label: "Summary" },
   {
     name: "education",
