@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const resumeSchema = new Schema({
   resumeName: String,
+  email: String,
   fullName: String,
   summary: String,
   education: [String],

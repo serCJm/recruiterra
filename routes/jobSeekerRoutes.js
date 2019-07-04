@@ -14,6 +14,7 @@ module.exports = function jobSeekerRoutes(app) {
       const {
         resumeName,
         fullName,
+        email,
         summary,
         education,
         skills,
@@ -24,6 +25,7 @@ module.exports = function jobSeekerRoutes(app) {
       const resume = new Resume({
         resumeName,
         fullName,
+        email,
         summary,
         education: splitAndTrim(education),
         skills: splitAndTrim(skills),
@@ -75,6 +77,7 @@ module.exports = function jobSeekerRoutes(app) {
       const {
         resumeName,
         fullName,
+        email,
         summary,
         education,
         skills,
@@ -84,6 +87,7 @@ module.exports = function jobSeekerRoutes(app) {
       const updatedValues = {
         resumeName,
         fullName,
+        email,
         summary,
         education: splitAndTrim(education),
         skills: splitAndTrim(skills),
@@ -118,9 +122,6 @@ module.exports = function jobSeekerRoutes(app) {
         await Resume.updateMany({ _user: req.user.id }, { status: false });
         await Resume.findByIdAndUpdate(req.body.resumeId, { status: true });
         const resumes = await Resume.find({ _user: req.user.id });
-        // .select({
-        //   applicants: 0
-        // });
         res.send(resumes);
       } catch (e) {
         console.log(e);
