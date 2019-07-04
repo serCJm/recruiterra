@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-export default function validateEmails(emails) {
+export function validateEmails(emails) {
   const invalidEmails = emails
     .split(",")
     .map(email => email.trim())
@@ -11,5 +11,12 @@ export default function validateEmails(emails) {
     return `These emails are invalid: ${invalidEmails}`;
   }
 
+  return;
+}
+
+export function validateEmail(email) {
+  if (re.test(email.trim()) === false) {
+    return `These emails is invalid: ${email}`;
+  }
   return;
 }
