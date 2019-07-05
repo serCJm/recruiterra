@@ -8,7 +8,7 @@ export default [
   { name: "summary", label: "Summary" },
   {
     name: "education",
-    label: "ex. place1 2019-2020; place2 2020-2021; etc"
+    label: "education ex. place1 2019-2020; place2 2020-2021; etc"
   },
   {
     name: "skills",
@@ -16,10 +16,10 @@ export default [
   },
   {
     name: "experience",
-    label: "ex. place1 2019-2020; place2 2020-2021; etc"
+    label: "experience ex. place1 2019-2020; place2 2020-2021; etc"
   },
   {
-    name: "tags",
+    name: "tag",
     label: "Tags"
   }
 ];

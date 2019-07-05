@@ -27,7 +27,7 @@ const ResumeItemOptions = ({ status, resume, deleteResumes, history }) => {
         education: resume.education.join(", "),
         skills: resume.skills.join(", "),
         experience: resume.experience.join(", "),
-        tags: resume.tags.join(", ")
+        tag: resume.tag.join(", ")
       })
     );
     localStorage.setItem("currentResumeId", resume._id);

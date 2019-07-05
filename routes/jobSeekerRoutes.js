@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin");
 const requireJobSeekerRole = require("../middlewares/requireJobSeekerRole");
 const requireResumeOwner = require("../middlewares/requireResumeOwner");
+const splitAndTrim = require("../services/helpers/splitAndTrim");
 
 const Resume = mongoose.model("resumes");
 
@@ -19,7 +20,7 @@ module.exports = function jobSeekerRoutes(app) {
         education,
         skills,
         experience,
-        tags
+        tag
       } = req.body;
 
       const resume = new Resume({
@@ -30,7 +31,7 @@ module.exports = function jobSeekerRoutes(app) {
         education: splitAndTrim(education),
         skills: splitAndTrim(skills),
         experience: splitAndTrim(experience),
-        tags: splitAndTrim(tags),
+        tag: splitAndTrim(tag),
         _user: req.user.id,
         lastUpdated: Date.now()
       });
@@ -82,7 +83,7 @@ module.exports = function jobSeekerRoutes(app) {
         education,
         skills,
         experience,
-        tags
+        tag
       } = req.body.values;
       const updatedValues = {
         resumeName,
@@ -92,7 +93,7 @@ module.exports = function jobSeekerRoutes(app) {
         education: splitAndTrim(education),
         skills: splitAndTrim(skills),
         experience: splitAndTrim(experience),
-        tags: splitAndTrim(tags),
+        tag: splitAndTrim(tag),
         lastUpdated: Date.now(),
         status: true
       };
@@ -129,11 +130,3 @@ module.exports = function jobSeekerRoutes(app) {
     }
   );
 };
-
-// HELPERS
-function splitAndTrim(arrOfStrgs) {
-  return arrOfStrgs
-    .split(/[,;]+/)
-    .map(string => string.trim())
-    .filter(Boolean);
-}

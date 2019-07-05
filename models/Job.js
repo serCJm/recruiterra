@@ -7,7 +7,7 @@ const jobSchema = new Schema({
   title: String,
   description: String,
   skills: [String],
-  tags: [String],
+  tag: [String],
   applicants: [ApplicantSchema],
   _user: { type: Schema.Types.ObjectId, ref: "User" },
   lastUpdated: Date,

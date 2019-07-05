@@ -9,8 +9,18 @@ const requireEmployerRole = require("../middlewares/requireEmployerRole");
 const requireJobOwner = require("../middlewares/requireJobOwner");
 const Mailer = require("../services/Mailer");
 const jobPostTemplate = require("../services/emailTemplates/jobPostTemplate");
+const splitAndTrim = require("../services/helpers/splitAndTrim");
 
 const Job = mongoose.model("jobs");
+const Resume = mongoose.model("resumes");
+
+Resume.on("index", function(err) {
+  if (err) {
+    console.error("User index error: %s", err);
+  } else {
+    console.info("User indexing complete");
+  }
+});
 
 module.exports = function employerRoutes(app) {
   app.get(
@@ -66,20 +76,29 @@ module.exports = function employerRoutes(app) {
     requireEmployerRole,
     requireCredits,
     async (req, res) => {
-      const { name, title, description, skills, tags } = req.body;
+      let { name, title, description, skills, tag } = req.body;
+      skills = splitAndTrim(skills);
+      tag = splitAndTrim(tag);
+
+      let matches;
+
+      matches = await Resume.find(
+        {
+          $text: {
+            $search: skills.concat(tag, splitAndTrim(description)).join(" ")
+          }
+        },
+        { score: { $meta: "textScore" } }
+      ).sort({ score: { $meta: "textScore" } });
+
+      console.log(matches);
 
       const job = new Job({
         name,
         title,
         description,
-        skills: skills
-          .split(/[,;]+/)
-          .map(skill => skill.trim())
-          .filter(Boolean),
-        tags: tags
-          .split(/[,;]+/)
-          .map(tag => tag.trim())
-          .filter(Boolean),
+        skills,
+        tag,
         applicants: [{ email: "nassdropp@gmail.com", responded: false }],
         _user: req.user.id,
         lastUpdated: Date.now()
@@ -119,13 +138,13 @@ module.exports = function employerRoutes(app) {
     requireEmployerRole,
     requireJobOwner,
     async (req, res) => {
-      const { name, title, description, skills, tags } = req.body.values;
+      const { name, title, description, skills, tag } = req.body.values;
       const updatedValues = {
         name,
         title,
         description,
         skills: skills.split(",").map(skill => skill.trim()),
-        tags: tags.split(",").map(tag => tag.trim()),
+        tag: tag.split(",").map(tag => tag.trim()),
         lastUpdated: Date.now()
       };
       try {

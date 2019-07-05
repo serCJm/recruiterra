@@ -25,7 +25,7 @@ const JobItemOptions = ({ status, job, deleteJobs, history }) => {
         title: job.title,
         description: job.description,
         skills: job.skills.join(", "),
-        tags: job.tags.join(", ")
+        tag: job.tag.join(", ")
       })
     );
     localStorage.setItem("currentJobId", job._id);
