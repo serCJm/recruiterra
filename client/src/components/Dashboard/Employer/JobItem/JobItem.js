@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Card from "../../../UI/Card/Card";
 import ReadMoreLess from "../../../UI/ReadMoreLess/ReadMoreLess";
 import DotsBtn from "../../../UI/Btns/DotsBtn/DotsBtn";
-import OptionsMenu from "../../../UI/OptionsMenu/OptionsMenu";
+import JobItemOptions from "../JobItemOptions/JobItemOptions";
 
 const JobItem = ({ job }) => {
   const [showMenu, setShowMenu] = useState("closed");
@@ -21,7 +21,7 @@ const JobItem = ({ job }) => {
   return (
     <Card>
       <DotsBtn onClick={handleMenu} />
-      <OptionsMenu status={showMenu} job={job} />
+      <JobItemOptions status={showMenu} job={job} />
       <h2 className={classes.name}>{job.name}</h2>
       <p className={classes.title}>{job.title}</p>
       <ReadMoreLess text={job.description} length={15} />
