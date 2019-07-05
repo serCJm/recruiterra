@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
+mongoose.set("useCreateIndex", true);
 // DEV DB DEBUG
 mongoose.set("debug", true);
 require("./models/User");
