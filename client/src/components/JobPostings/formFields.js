@@ -10,7 +10,7 @@ export default [
     label: "Skills"
   },
   {
-    name: "tag",
+    name: "tags",
     label: "Tags"
   }
 ];

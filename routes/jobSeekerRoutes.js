@@ -20,7 +20,7 @@ module.exports = function jobSeekerRoutes(app) {
         education,
         skills,
         experience,
-        tag
+        tags
       } = req.body;
 
       const resume = new Resume({
@@ -31,7 +31,7 @@ module.exports = function jobSeekerRoutes(app) {
         education: splitAndTrim(education),
         skills: splitAndTrim(skills),
         experience: splitAndTrim(experience),
-        tag: splitAndTrim(tag),
+        tags: splitAndTrim(tags),
         _user: req.user.id,
         lastUpdated: Date.now()
       });
@@ -83,7 +83,7 @@ module.exports = function jobSeekerRoutes(app) {
         education,
         skills,
         experience,
-        tag
+        tags
       } = req.body.values;
       const updatedValues = {
         resumeName,
@@ -93,7 +93,7 @@ module.exports = function jobSeekerRoutes(app) {
         education: splitAndTrim(education),
         skills: splitAndTrim(skills),
         experience: splitAndTrim(experience),
-        tag: splitAndTrim(tag),
+        tags: splitAndTrim(tags),
         lastUpdated: Date.now(),
         status: true
       };

@@ -76,16 +76,16 @@ module.exports = function employerRoutes(app) {
     requireEmployerRole,
     requireCredits,
     async (req, res) => {
-      let { name, title, description, skills, tag } = req.body;
+      let { name, title, description, skills, tags } = req.body;
       skills = splitAndTrim(skills);
-      tag = splitAndTrim(tag);
+      tags = splitAndTrim(tags);
 
       let matches;
 
       matches = await Resume.find(
         {
           $text: {
-            $search: skills.concat(tag, splitAndTrim(description)).join(" ")
+            $search: skills.concat(tags, splitAndTrim(description)).join(" ")
           }
         },
         { score: { $meta: "textScore" } }
@@ -98,7 +98,7 @@ module.exports = function employerRoutes(app) {
         title,
         description,
         skills,
-        tag,
+        tags,
         applicants: [{ email: "nassdropp@gmail.com", responded: false }],
         _user: req.user.id,
         lastUpdated: Date.now()
@@ -138,13 +138,13 @@ module.exports = function employerRoutes(app) {
     requireEmployerRole,
     requireJobOwner,
     async (req, res) => {
-      const { name, title, description, skills, tag } = req.body.values;
+      const { name, title, description, skills, tags } = req.body.values;
       const updatedValues = {
         name,
         title,
         description,
         skills: skills.split(",").map(skill => skill.trim()),
-        tag: tag.split(",").map(tag => tag.trim()),
+        tags: tags.split(",").map(tag => tag.trim()),
         lastUpdated: Date.now()
       };
       try {

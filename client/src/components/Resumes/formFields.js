@@ -19,7 +19,7 @@ export default [
     label: "experience ex. place1 2019-2020; place2 2020-2021; etc"
   },
   {
-    name: "tag",
+    name: "tags",
     label: "Tags"
   }
 ];
