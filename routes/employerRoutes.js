@@ -81,17 +81,26 @@ module.exports = function employerRoutes(app) {
       tags = splitAndTrim(tags);
 
       let matches;
+      try {
+        matches = await Resume.find(
+          {
+            $text: {
+              $search: skills.concat(tags, splitAndTrim(description)).join(" ")
+            }
+          },
+          { score: { $meta: "textScore" } }
+        )
+          .sort({ score: { $meta: "textScore" } })
+          .select("email");
+      } catch (e) {
+        console.log(e);
+      }
 
-      matches = await Resume.find(
-        {
-          $text: {
-            $search: skills.concat(tags, splitAndTrim(description)).join(" ")
-          }
-        },
-        { score: { $meta: "textScore" } }
-      ).sort({ score: { $meta: "textScore" } });
-
-      console.log(matches);
+      const applicants = matches.reduce((acc, curVal) => {
+        applicant = { email: curVal.email };
+        acc.push(applicant);
+        return acc;
+      }, []);
 
       const job = new Job({
         name,
@@ -99,11 +108,11 @@ module.exports = function employerRoutes(app) {
         description,
         skills,
         tags,
-        applicants: [{ email: "nassdropp@gmail.com", responded: false }],
+        applicants,
         _user: req.user.id,
         lastUpdated: Date.now()
       });
-      const applicants = [{ email: "nassdropp@gmail.com", responded: false }];
+
       const mailer = new Mailer(job, applicants, jobPostTemplate(job));
       try {
         await mailer.send();
