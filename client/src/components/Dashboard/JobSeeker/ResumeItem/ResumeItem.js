@@ -5,7 +5,6 @@ import Card from "../../../UI/Card/Card";
 import ReadMoreLess from "../../../UI/ReadMoreLess/ReadMoreLess";
 import DotsBtn from "../../../UI/Btns/DotsBtn/DotsBtn";
 import ResumeItemOptions from "../ResumeItemOptions/ResumeItemOptions";
-import JobField from "../../../JobPostings/JobField/JobField";
 import StatusBtn from "../StatusBtn/StatusBtn";
 
 const ResumeItem = ({ resume }) => {
