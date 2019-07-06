@@ -15,4 +15,6 @@ const resumeSchema = new Schema({
   status: { type: Boolean, default: true }
 });
 
+resumeSchema.index({ summary: "text", skills: "text", tags: "text" });
+
 mongoose.model("resumes", resumeSchema);
