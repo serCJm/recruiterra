@@ -41,6 +41,7 @@ module.exports = function employerRoutes(app) {
 
   app.post("/api/jobs/webhooks", (req, res) => {
     const p = new Path("/api/jobs/:jobId/:choice");
+
     _.chain(req.body)
       .map(({ url, email }) => {
         const match = p.test(new URL(url).pathname);
@@ -50,16 +51,14 @@ module.exports = function employerRoutes(app) {
       })
       .compact()
       .uniqBy("email", "jobId")
-      .each(({ jobId, email }) => {
+      .each(({ jobId, email, choice }) => {
         Job.updateOne(
           {
             _id: jobId,
-            applicants: {
-              $elemMatch: { email: email, responded: false }
-            }
+            "applicants.email": email
           },
           {
-            $set: { "applicants.$.responded": true },
+            $set: { "applicants.$.apply": choice === "apply" },
             lastApplicant: new Date()
           }
         )
@@ -84,6 +83,7 @@ module.exports = function employerRoutes(app) {
       try {
         matches = await Resume.find(
           {
+            status: true,
             $text: {
               $search: skills.concat(tags, splitAndTrim(description)).join(" ")
             }
