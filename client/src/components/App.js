@@ -21,6 +21,7 @@ import ResumeNew from "./Resumes/ResumeNew/ResumeNew";
 import ResumeUpdate from "./Resumes/ResumeUpdate/ResumeUpdate";
 
 import EmailClickResponse from "./EmailClickResponse/EmailClickResponse";
+import ApplicantsList from "./Dashboard/Employer/ApplicantsList/ApplicantsList";
 
 const App = props => {
   const [activeLink, setActiveLink] = useState({ id: null, ratio: 0 });
@@ -63,6 +64,7 @@ const App = props => {
               </Route>
               <Route exact path="/sign-up" component={SignUp} />
               <Route exact path="/log-in" component={LogIn} />
+              {/* Employer Routes */}
               <Route exact path="/job-postings" component={Dashboard} />
               <Route path="/job-postings/new" component={JobPostNew} />
               <Route
@@ -70,6 +72,11 @@ const App = props => {
                 path="/job-postings/update"
                 render={props => <JobPostUpdate {...props} />}
               />
+              <Route
+                path="/job-postings/applicants"
+                component={ApplicantsList}
+              />
+              {/* Job Seeker Routes */}
               <Route exact path="/my-resumes" component={JobSeekerDashboard} />
               <Route path="/resumes/new" component={ResumeNew} />
               <Route
