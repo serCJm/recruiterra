@@ -1,0 +1,5 @@
+.container {
+  grid-column: content;
+  padding: 2rem;
+  margin: 0 auto;
+}
