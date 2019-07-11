@@ -36,7 +36,7 @@ module.exports = function employerRoutes(app) {
   );
 
   app.get("/api/jobs/:jobId/:choice", (req, res) => {
-    res.send("Thank you for clicking");
+    res.redirect(`/jobs/emailresponse/${req.params.choice}`);
   });
 
   app.post("/api/jobs/webhooks", (req, res) => {
