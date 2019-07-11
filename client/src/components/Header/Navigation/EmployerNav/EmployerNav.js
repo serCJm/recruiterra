@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./EmployerNav.module.css";
+import { Link } from "react-router-dom";
 import Payments from "../../../Payments/Payments";
 
 const EmployerNav = ({ credits, handleUserLogout }) => {
@@ -17,6 +18,11 @@ const EmployerNav = ({ credits, handleUserLogout }) => {
       </li>
       <li className={classes.navItemContainer}>
         <Payments />
+      </li>
+      <li className={classes.navItemContainer}>
+        <Link to="/job-postings/applicants" className={classes.linkBtn}>
+          Applicants
+        </Link>
       </li>
       <li className={classes.navItemContainer}>
         <button className={classes.linkBtn} onClick={handleUserLogout}>
