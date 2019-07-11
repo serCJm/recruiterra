@@ -1,0 +1,19 @@
+.container {
+  grid-column: content;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column-gap: 1rem;
+  justify-items: center;
+  grid-template-rows: auto 1fr;
+}
+
+.container > article {
+  width: 100%;
+  position: relative;
+  overflow-y: hidden;
+}
+
+.emptyText {
+  color: #999;
+}
