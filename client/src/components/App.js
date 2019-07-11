@@ -20,6 +20,8 @@ import JobSeekerDashboard from "./Dashboard/JobSeeker/Dashboard";
 import ResumeNew from "./Resumes/ResumeNew/ResumeNew";
 import ResumeUpdate from "./Resumes/ResumeUpdate/ResumeUpdate";
 
+import EmailClickResponse from "./EmailClickResponse/EmailClickResponse";
+
 const App = props => {
   const [activeLink, setActiveLink] = useState({ id: null, ratio: 0 });
   const [ratios, setActiveRatio] = useState({
@@ -75,6 +77,10 @@ const App = props => {
                 path="/resumes/update"
                 render={props => <ResumeUpdate {...props} />}
               />
+              <Route
+                exact
+                path="/jobs/emailresponse/:choice"
+                component={EmailClickResponse}
               />
             </Switch>
           </main>
