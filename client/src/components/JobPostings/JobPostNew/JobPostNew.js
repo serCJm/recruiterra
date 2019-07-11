@@ -4,6 +4,7 @@ import { reduxForm } from "redux-form";
 import { withRouter } from "react-router-dom";
 import JobPostForm from "../JobPostForm/JobPostForm";
 import JobPostReview from "../JobPostReview/JobPostReview";
+import PlaceholderTitle from "../../UI/PlaceholderTitle/PlaceholderTitle";
 
 const JobPostNew = () => {
   const [showJobPostReview, setJobPostReview] = useState(false);
@@ -12,7 +13,7 @@ const JobPostNew = () => {
     if (showJobPostReview) {
       return (
         <>
-          <h2 className={classes.title}>Please review your job post</h2>
+          <PlaceholderTitle>Please review your job post</PlaceholderTitle>
           <JobPostReview
             onCancel={() =>
               setJobPostReview(prevShowJobPostReview => !prevShowJobPostReview)
@@ -23,9 +24,9 @@ const JobPostNew = () => {
     }
     return (
       <>
-        <h2 className={classes.title}>
+        <PlaceholderTitle>
           Please Enter Your Job Post Information Below
-        </h2>
+        </PlaceholderTitle>
         <JobPostForm
           onJobPostSubmit={() =>
             setJobPostReview(prevShowJobPostReview => !prevShowJobPostReview)

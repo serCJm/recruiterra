@@ -4,6 +4,7 @@ import { reduxForm } from "redux-form";
 import { withRouter } from "react-router-dom";
 import ResumeForm from "../ResumeForm/ResumeForm";
 import ResumeReview from "../ResumeReview/ResumeReview";
+import PlaceholderTitle from "../../UI/PlaceholderTitle/PlaceholderTitle";
 
 const ResumeNew = () => {
   const [showResumeReview, setResumeReview] = useState(false);
@@ -12,7 +13,7 @@ const ResumeNew = () => {
     if (showResumeReview) {
       return (
         <>
-          <h2 className={classes.title}>Please review your resume</h2>
+          <PlaceholderTitle>Please review your resume</PlaceholderTitle>
           <ResumeReview
             onCancel={() =>
               setResumeReview(prevShowJobPostReview => !prevShowJobPostReview)
@@ -23,9 +24,9 @@ const ResumeNew = () => {
     }
     return (
       <>
-        <h2 className={classes.title}>
+        <PlaceholderTitle>
           Please Enter Your Resume Information Below
-        </h2>
+        </PlaceholderTitle>
         <ResumeForm
           onResumePostSubmit={() =>
             setResumeReview(prevShowJobPostReview => !prevShowJobPostReview)

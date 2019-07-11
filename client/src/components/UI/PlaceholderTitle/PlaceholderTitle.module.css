@@ -1,0 +1,11 @@
+.title {
+  margin-bottom: 0;
+  text-align: center;
+  color: var(--dark-color);
+}
+
+@media only screen and (max-height: 800px) {
+  .title {
+    margin-top: 4rem;
+  }
+}
