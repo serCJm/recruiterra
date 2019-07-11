@@ -1,7 +1,13 @@
-import { FETCH_JOBS_START, FETCH_JOBS, DELETE_JOB } from "../actions/types";
+import {
+  FETCH_JOBS_START,
+  FETCH_JOBS,
+  DELETE_JOB,
+  FETCH_APPLICANTS
+} from "../actions/types";
 
 const initialState = {
   jobsList: [],
+  applicantsList: [],
   loading: false
 };
 
@@ -18,6 +24,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         jobsList: action.payload,
+        loading: false
+      };
+    case FETCH_APPLICANTS:
+      return {
+        ...state,
+        applicantsList: action.payload,
         loading: false
       };
     default:

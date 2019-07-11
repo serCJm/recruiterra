@@ -1,5 +1,11 @@
 import axios from "axios";
-import { FETCH_USER, FETCH_JOBS_START, FETCH_JOBS, DELETE_JOB } from "./types";
+import {
+  FETCH_USER,
+  FETCH_JOBS_START,
+  FETCH_JOBS,
+  DELETE_JOB,
+  FETCH_APPLICANTS
+} from "./types";
 
 export const fetchUser = () =>
   async function(dispatch) {
@@ -58,6 +64,17 @@ export const updateJobPost = (values, id) =>
     try {
       const res = await axios.post("/api/jobs/update", { values, id });
       return dispatch({ type: FETCH_USER, payload: res.data });
+    } catch (e) {
+      return console.log(e);
+    }
+  };
+
+export const fetchApplicants = () =>
+  async function(dispatch) {
+    dispatch(startFetch());
+    try {
+      const res = await axios.get("/api/jobs/applicants");
+      return dispatch({ type: FETCH_APPLICANTS, payload: res.data });
     } catch (e) {
       return console.log(e);
     }
