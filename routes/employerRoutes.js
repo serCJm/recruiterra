@@ -14,13 +14,13 @@ const splitAndTrim = require("../services/helpers/splitAndTrim");
 const Job = mongoose.model("jobs");
 const Resume = mongoose.model("resumes");
 
-Resume.on("index", function(err) {
-  if (err) {
-    console.error("User index error: %s", err);
-  } else {
-    console.info("User indexing complete");
-  }
-});
+// Resume.on("index", function(err) {
+//   if (err) {
+//     console.error("User index error: %s", err);
+//   } else {
+//     console.info("User indexing complete");
+//   }
+// });
 
 module.exports = function employerRoutes(app) {
   app.get(
@@ -161,6 +161,42 @@ module.exports = function employerRoutes(app) {
           new: true
         });
         res.send(req.user);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  );
+
+  app.get(
+    "/api/jobs/applicants",
+    requireLogin,
+    requireEmployerRole,
+    async (req, res) => {
+      try {
+        const resumes = await Job.aggregate([
+          { $match: { _user: mongoose.Types.ObjectId(req.user.id) } },
+          { $unwind: "$applicants" },
+          { $match: { "applicants.apply": true } },
+          {
+            $group: { _id: "$_id", applicants: { $push: "$applicants.email" } }
+          },
+          {
+            $lookup: {
+              from: "resumes",
+              let: { emails: "$applicants" },
+              pipeline: [
+                {
+                  $match: {
+                    $expr: { $and: [{ status: true }, { email: "$$emails" }] }
+                  }
+                }
+              ],
+              as: "applicantsList"
+            }
+          },
+          { $project: { _id: 0 } }
+        ]);
+        res.send(resumes[0].applicantsList);
       } catch (e) {
         console.log(e);
       }
