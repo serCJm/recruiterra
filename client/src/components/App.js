@@ -22,7 +22,6 @@ import ResumeUpdate from "./Resumes/ResumeUpdate/ResumeUpdate";
 
 import EmailClickResponse from "./EmailClickResponse/EmailClickResponse";
 import ApplicantsList from "./Dashboard/Employer/ApplicantsList/ApplicantsList";
-import ApplicantsItem from "./Dashboard/Employer/ApplicantsList/ApplicantsItem/ApplicantsItem";
 import ApplicantsReview from "./Dashboard/Employer/ApplicantsList/ApplicantsReview/ApplicantsReview";
 
 const App = props => {

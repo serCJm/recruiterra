@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./JobSeekerNav.module.css";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 const JobSeekerNav = ({ handleUserLogout }) => {
   return (
