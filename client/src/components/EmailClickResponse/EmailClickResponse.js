@@ -4,7 +4,6 @@ import classes from "./EmailClickResponse.module.css";
 
 const EmailClickResponse = props => {
   const message = props.match.params.choice;
-  console.log(message);
   return (
     <section className={classes.container}>
       <PlaceholderTitle>

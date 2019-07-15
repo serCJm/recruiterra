@@ -17,7 +17,6 @@ const JobItemOptions = ({ status, job, deleteJobs, history }) => {
   }
 
   function handleUpdateJob() {
-    console.log(job);
     localStorage.setItem(
       "jobValues",
       JSON.stringify({
