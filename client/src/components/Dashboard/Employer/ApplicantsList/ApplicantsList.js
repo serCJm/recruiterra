@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchApplicants } from "../../../../store/actions";
 import Spinner from "../../../UI/Spinner/Spinner";
-import JobItem from "../JobItem/JobItem";
+import ApplicantsItem from "./ApplicantsItem/ApplicantsItem";
 
 const ApplicantsList = props => {
   useEffect(() => {
@@ -24,7 +24,7 @@ const ApplicantsList = props => {
     }
     return props.applicants
       .reverse()
-      .map(job => <JobItem key={job._id} job={job} />);
+      .map(resume => <ApplicantsItem key={resume._id} resume={resume} />);
   }
   return (
     <section className={classes.container}>{renderApplicantsList()}</section>
