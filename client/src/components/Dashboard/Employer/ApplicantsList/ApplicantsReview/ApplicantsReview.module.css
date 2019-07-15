@@ -1,0 +1,30 @@
+.container {
+  grid-column: content;
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  padding: 0 2rem 5rem;
+  min-width: 18rem;
+  max-width: 50rem;
+}
+
+.label {
+  text-align: left;
+  color: var(--primary-color-darken);
+  margin-top: 2rem;
+}
+
+.text {
+  text-align: center;
+}
+
+.textBold {
+  composes: text;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
