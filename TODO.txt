@@ -1,0 +1,7 @@
+// TODO: add lazy loading of react routes
+// TODO: protect react routes
+// TODO: handle 404s on server and client
+// TODO: axios error display on client side
+
+// TODO: feature to invite candidates from applicants list
+// TODO: feature to see job invites in job seeker dashboard
