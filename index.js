@@ -4,11 +4,14 @@ const passport = require("passport");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
+const helmet = require("helmet");
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 mongoose.set("useCreateIndex", true);
 // DEV DB DEBUG
-mongoose.set("debug", true);
+if (process.env.NODE_ENV === "production") {
+  mongoose.set("debug", true);
+}
 require("./models/User");
 require("./models/Job");
 require("./models/Resume");
@@ -16,12 +19,15 @@ require("./models/Resume");
 require("./services/passport");
 
 const app = express();
-
+app.use(helmet());
+// NOTE: remember to remove secure and change domain for development
 app.use(bodyParser.json());
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey]
+    keys: [keys.cookieKey],
+    secure: true,
+    domain: "https://protected-escarpment-75476.herokuapp.com"
   })
 );
 app.use(passport.initialize());
