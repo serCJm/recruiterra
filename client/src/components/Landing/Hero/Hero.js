@@ -5,11 +5,8 @@ const Hero = () => {
   const [heroClass, setHeroClass] = useState(classes.heroJPEG);
   /* global Modernizr */
 
-  console.log(Modernizr);
-
   useEffect(() => {
     if (Modernizr.webp) {
-      console.log(Modernizr);
       setHeroClass(classes.heroWebP);
     } else if (Modernizr.jpeg2000) {
       setHeroClass(classes.heroJP2);
