@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 const helmet = require("helmet");
+const compression = require("compression");
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
 mongoose.set("useCreateIndex", true);
@@ -19,6 +20,7 @@ require("./models/Resume");
 require("./services/passport");
 
 const app = express();
+app.use(compression());
 app.use(helmet());
 // NOTE: remember to remove secure and change domain for development
 app.use(bodyParser.json());
