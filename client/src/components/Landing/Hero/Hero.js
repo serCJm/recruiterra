@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import classes from "./Hero.module.css";
 
 const Hero = () => {
-  const [heroClass, setHeroClass] = useState(classes.heroNoWebP);
+  const [heroClass, setHeroClass] = useState(classes.heroJPEG);
   /* global Modernizr */
 
   console.log(Modernizr);
@@ -11,6 +11,8 @@ const Hero = () => {
     if (Modernizr.webp) {
       console.log(Modernizr);
       setHeroClass(classes.heroWebP);
+    } else if (Modernizr.jpeg2000) {
+      setHeroClass(classes.heroJP2);
     }
   }, []);
   return (

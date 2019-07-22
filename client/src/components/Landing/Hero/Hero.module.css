@@ -15,7 +15,7 @@
   text-align: center;
 }
 
-.heroNoWebP {
+.heroJPEG {
   composes: hero;
   background: radial-gradient(
       ellipse farthest-corner at center,
@@ -23,6 +23,7 @@
       rgba(0, 0, 0, 0.4) 100%
     ),
     url("../../../images/hero-bg-employees.jpg") center;
+  background-size: cover;
 }
 
 .heroWebP {
@@ -33,6 +34,17 @@
       rgba(0, 0, 0, 0.4) 100%
     ),
     url("../../../images/hero-bg-employees.webp") center;
+  background-size: cover;
+}
+
+.heroJP2 {
+  composes: hero;
+  background: radial-gradient(
+      ellipse farthest-corner at center,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(0, 0, 0, 0.4) 100%
+    ),
+    url("../../../images/hero-bg-employees.jp2") center;
   background-size: cover;
 }
 
