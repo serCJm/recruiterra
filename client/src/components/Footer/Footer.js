@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import classes from "./Footer.module.css";
 import SectionWithInterOb from "../UI/SectionWithInterOb/SectionWithInterOb";
 
 const Footer = ({ style, location }) => {
+  const [footerBgClass, setfooterBgClass] = useState(classes.location);
+
+  /* global Modernizr */
+  useEffect(() => {
+    if (Modernizr.webp) {
+      setfooterBgClass(classes.locationWebP);
+    } else if (Modernizr.jpeg2000) {
+      setfooterBgClass(classes.locationJP2);
+    }
+  }, []);
   return (
     <>
       {location.pathname === "/" ? (
         <footer className={style}>
-          <SectionWithInterOb id="contact" className={classes.location}>
+          <SectionWithInterOb id="contact" className={footerBgClass}>
             <address className={classes.address}>
               Recruiterra
               <br />
