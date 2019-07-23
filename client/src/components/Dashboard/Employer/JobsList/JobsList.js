@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import classes from "./JobList.module.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -7,9 +7,10 @@ import Spinner from "../../../UI/Spinner/Spinner";
 import JobItem from "../JobItem/JobItem";
 
 const JobsList = props => {
-  useEffect(() => {
-    props.fetchJobs();
-  }, []);
+  const { fetchJobs } = props;
+  const fetchJobsHandler = useCallback(() => fetchJobs(), [fetchJobs]);
+
+  useEffect(() => fetchJobsHandler(), [fetchJobsHandler]);
 
   function renderJobList() {
     if (props.loading) {

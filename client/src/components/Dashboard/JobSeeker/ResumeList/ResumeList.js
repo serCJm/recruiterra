@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import classes from "./ResumeList.module.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -7,9 +7,10 @@ import Spinner from "../../../UI/Spinner/Spinner";
 import ResumeItem from "../ResumeItem/ResumeItem";
 
 const ResumeList = props => {
-  useEffect(() => {
-    props.fetchResumes();
-  }, []);
+  const { fetchResumes } = props;
+  const fetchResumesHandler = useCallback(() => fetchResumes(), [fetchResumes]);
+
+  useEffect(() => fetchResumesHandler(), [fetchResumesHandler]);
 
   function renderJobList() {
     if (props.loading) {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import classes from "./ApplicantsList.module.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -7,9 +7,12 @@ import Spinner from "../../../UI/Spinner/Spinner";
 import ApplicantsItem from "./ApplicantsItem/ApplicantsItem";
 
 const ApplicantsList = props => {
-  useEffect(() => {
-    props.fetchApplicants();
-  }, []);
+  const { fetchApplicants } = props;
+  const fetchApplicantsHandler = useCallback(() => fetchApplicants(), [
+    fetchApplicants
+  ]);
+
+  useEffect(() => fetchApplicantsHandler(), [fetchApplicantsHandler]);
 
   function renderApplicantsList() {
     if (props.loading) {
