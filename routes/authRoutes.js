@@ -28,7 +28,6 @@ module.exports = function authRoutes(app) {
       return next();
     },
     (req, res) => {
-      console.log(req);
       if (req.user.usertype === "employer") {
         res.redirect("/job-postings");
       } else if (req.user.usertype === "job seeker") {
