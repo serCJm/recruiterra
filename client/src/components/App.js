@@ -1,30 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import * as actions from "../store/actions";
+import { fetchUser } from "../store/actions";
 import classes from "./App.module.css";
 
 import { ActiveNavLink, LandingLinkRatios } from "./context";
 
-import Header from "./Header/Header";
-import Landing from "./Landing/Landing";
+import Spinner from "./UI/Spinner/Spinner";
 
-import Footer from "./Footer/Footer";
-import SignUp from "./SignUp/SignUp";
-import LogIn from "./LogIn/LogIn";
+const Header = React.lazy(() => import("./Header/Header"));
+const Landing = React.lazy(() => import("./Landing/Landing"));
 
-import Dashboard from "./Dashboard/Employer/Dashboard";
-import JobPostNew from "./JobPostings/JobPostNew/JobPostNew";
-import JobPostUpdate from "./JobPostings/JobPostUpdate/JobPostUpdate";
-import JobSeekerDashboard from "./Dashboard/JobSeeker/Dashboard";
-import ResumeNew from "./Resumes/ResumeNew/ResumeNew";
-import ResumeUpdate from "./Resumes/ResumeUpdate/ResumeUpdate";
+const Footer = React.lazy(() => import("./Footer/Footer"));
+const SignUp = React.lazy(() => import("./SignUp/SignUp"));
+const LogIn = React.lazy(() => import("./LogIn/LogIn"));
 
-import EmailClickResponse from "./EmailClickResponse/EmailClickResponse";
-import ApplicantsList from "./Dashboard/Employer/ApplicantsList/ApplicantsList";
-import ApplicantsReview from "./Dashboard/Employer/ApplicantsList/ApplicantsReview/ApplicantsReview";
+const Dashboard = React.lazy(() => import("./Dashboard/Employer/Dashboard"));
+const JobPostNew = React.lazy(() =>
+  import("./JobPostings/JobPostNew/JobPostNew")
+);
+const JobPostUpdate = React.lazy(() =>
+  import("./JobPostings/JobPostUpdate/JobPostUpdate")
+);
+const JobSeekerDashboard = React.lazy(() =>
+  import("./Dashboard/JobSeeker/Dashboard")
+);
+const ResumeNew = React.lazy(() => import("./Resumes/ResumeNew/ResumeNew"));
+const ResumeUpdate = React.lazy(() =>
+  import("./Resumes/ResumeUpdate/ResumeUpdate")
+);
 
-const App = props => {
+const EmailClickResponse = React.lazy(() =>
+  import("./EmailClickResponse/EmailClickResponse")
+);
+const ApplicantsList = React.lazy(() =>
+  import("./Dashboard/Employer/ApplicantsList/ApplicantsList")
+);
+const ApplicantsReview = React.lazy(() =>
+  import(
+    "./Dashboard/Employer/ApplicantsList/ApplicantsReview/ApplicantsReview"
+  )
+);
+
+const App = ({ fetchUser }) => {
   const [activeLink, setActiveLink] = useState({ id: null, ratio: 0 });
   const [ratios, setActiveRatio] = useState({
     about: 0,
@@ -32,10 +50,12 @@ const App = props => {
     contact: 0
   });
 
+  const fetchUserHandler = useCallback(() => fetchUser(), [fetchUser]);
+
   // get user auth
   useEffect(() => {
-    props.fetchUser();
-  }, []);
+    fetchUserHandler();
+  }, [fetchUserHandler]);
 
   let activeNavLinkVal = {
     id: activeLink.id,
@@ -46,7 +66,7 @@ const App = props => {
   return (
     <div className={classes.layout}>
       <BrowserRouter>
-        <>
+        <Suspense fallback={<Spinner />}>
           <ActiveNavLink.Provider value={activeNavLinkVal}>
             <LandingLinkRatios.Provider value={{ ...ratios, setActiveRatio }}>
               <Header />
@@ -103,7 +123,7 @@ const App = props => {
               <Footer style={classes.footer} />
             </LandingLinkRatios.Provider>
           </ActiveNavLink.Provider>
-        </>
+        </Suspense>
       </BrowserRouter>
     </div>
   );
@@ -111,5 +131,5 @@ const App = props => {
 
 export default connect(
   null,
-  actions
+  { fetchUser }
 )(App);
