@@ -42,7 +42,7 @@ const ApplicantsReview = React.lazy(() =>
   )
 );
 
-const App = ({ fetchUser }) => {
+const App = ({ auth, fetchUser }) => {
   const [activeLink, setActiveLink] = useState({ id: null, ratio: 0 });
   const [ratios, setActiveRatio] = useState({
     about: 0,
@@ -129,7 +129,13 @@ const App = ({ fetchUser }) => {
   );
 };
 
+function mapStateToProps({ auth }) {
+  return {
+    auth
+  };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { fetchUser }
 )(App);
