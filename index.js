@@ -28,8 +28,11 @@ app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
     keys: [keys.cookieKey],
-    secure: true,
-    domain: "https://protected-escarpment-75476.herokuapp.com"
+    secure: process.env.NODE_ENV === "production" ? true : false,
+    domain:
+      process.env.NODE_ENV === "production"
+        ? "https://protected-escarpment-75476.herokuapp.com"
+        : null
   })
 );
 app.use(passport.initialize());
