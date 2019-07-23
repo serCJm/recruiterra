@@ -6,10 +6,28 @@ const DangerMsg = ({ duration, onAnimDurationEnd, children }) => {
   const [isVisible, setVisible] = useState(false);
   const [sectionClass, setSectionClass] = useState(classes.container);
 
-  let timer1;
-  let timer2;
+  function handleAnimation() {
+    setSectionClass(classes.containerAnimated);
+    let timer = setTimeout(() => {
+      setVisible(false);
+    }, 300);
+    return clearTimeout(timer);
+  }
 
   useEffect(() => {
+    let timer1;
+    let timer2;
+    function animate() {
+      if (onAnimDurationEnd) {
+        setSectionClass(classes.containerAnimated);
+        timer2 = setTimeout(() => {
+          setVisible(false);
+        }, 300);
+      } else {
+        setVisible(false);
+      }
+    }
+
     if (children) {
       setVisible(true);
     }
@@ -22,18 +40,7 @@ const DangerMsg = ({ duration, onAnimDurationEnd, children }) => {
       clearTimeout(timer1);
       clearTimeout(timer2);
     };
-  }, [children]);
-
-  function animate() {
-    if (onAnimDurationEnd) {
-      timer2 = setSectionClass(classes.containerAnimated);
-      setTimeout(() => {
-        setVisible(false);
-      }, 300);
-    } else {
-      setVisible(false);
-    }
-  }
+  }, [children, duration, onAnimDurationEnd]);
 
   return (
     <>
@@ -41,7 +48,7 @@ const DangerMsg = ({ duration, onAnimDurationEnd, children }) => {
         <section className={sectionClass}>
           <div className={classes.inner}>
             {children}
-            <button className={classes.btn} onClick={() => animate()}>
+            <button className={classes.btn} onClick={() => handleAnimation}>
               &times;
             </button>
           </div>

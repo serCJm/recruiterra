@@ -6,21 +6,21 @@ export function useIntersectObserver({
   rootMargin,
   threshold = 0
 } = {}) {
-  if (
-    "IntersectionObserver" in window &&
-    "IntersectionObserverEntry" in window &&
-    "intersectionRatio" in window.IntersectionObserverEntry.prototype
-  ) {
-    const [entry, setEntry] = useState({});
-    const [node, setNode] = useState(null);
+  const [entry, setEntry] = useState({});
+  const [node, setNode] = useState(null);
 
-    const observer = useRef(null);
+  const observer = useRef(null);
 
-    function observerCb([entry]) {
-      return setEntry(entry);
-    }
+  function observerCb([entry]) {
+    return setEntry(entry);
+  }
 
-    useEffect(() => {
+  useEffect(() => {
+    if (
+      "IntersectionObserver" in window &&
+      "IntersectionObserverEntry" in window &&
+      "intersectionRatio" in window.IntersectionObserverEntry.prototype
+    ) {
       if (observer.current) observer.current.disconnect();
       observer.current = new window.IntersectionObserver(observerCb, {
         root,
@@ -31,10 +31,10 @@ export function useIntersectObserver({
       const { current: currentObserver } = observer;
       if (node) currentObserver.observe(node);
       return () => currentObserver.disconnect();
-    }, [node, root, rootMargin, threshold]);
+    } else {
+      console.log("IntersectionObserver not supported in this browser");
+    }
+  }, [node, root, rootMargin, threshold]);
 
-    return [setNode, entry];
-  } else {
-    console.log("IntersectionObserver not supported in this browser");
-  }
+  return [setNode, entry];
 }

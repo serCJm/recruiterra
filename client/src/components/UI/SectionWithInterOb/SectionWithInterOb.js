@@ -49,7 +49,7 @@ const SectionWithInterOb = ({ children, id, className }) => {
         };
       });
     }
-  }, [observedEl.intersectionRatio]);
+  });
 
   return (
     <section ref={setSectionRef} id={id} className={className}>
