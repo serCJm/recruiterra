@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import classes from "./LandingNav.module.css";
-import { ActiveNavLink } from "../../../context";
+import { ActiveNavLink } from "../../../context/ActiveLandingLinkProvider";
 import { smoothScroll } from "../../../../utils/helpers";
 
 const contents = [

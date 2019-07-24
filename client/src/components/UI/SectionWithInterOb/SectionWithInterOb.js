@@ -1,11 +1,14 @@
 import React, { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { useIntersectObserver } from "../../../utils/hooks";
-import { ActiveNavLink, LandingLinkRatios } from "../../context";
+import {
+  ActiveNavLink,
+  LandingLinkRatios
+} from "../../context/ActiveLandingLinkProvider";
 
 const SectionWithInterOb = ({ children, id, className }) => {
   const [setSectionRef, observedEl] = useIntersectObserver({
-    threshold: new Array(101).fill(0).map((v, i) => i * 0.01)
+    threshold: new Array(11).fill(0).map((v, i) => i * 0.1)
   });
 
   const selected = useContext(ActiveNavLink);
@@ -13,13 +16,8 @@ const SectionWithInterOb = ({ children, id, className }) => {
 
   useEffect(() => {
     if (observedEl.isIntersecting) {
-      ratios.setActiveRatio(prevState => {
-        return {
-          ...prevState,
-          [observedEl.target.id]: observedEl.intersectionRatio
-        };
-      });
-      // links = [["linkid", ratio], ...] -> [slice setFunction] -> [{id: "linkid", ratio: ratio}]
+      ratios.setActiveRatio(observedEl.target.id, observedEl.intersectionRatio);
+      // links = [["linkid", ratio], ...] -> [slice out setFunction] -> [{id: "linkid", ratio: ratio}]
       const links = Object.entries(ratios)
         .slice(0, -1)
         .reduce((acc, val) => {
@@ -34,22 +32,17 @@ const SectionWithInterOb = ({ children, id, className }) => {
       const activeLink = links.reduce((acc, val) =>
         val.ratio > acc.ratio ? val : acc
       );
-      selected.setActiveLink(prevState => {
-        return {
-          ...prevState,
-          id: activeLink.id,
-          ratio: activeLink.ratio
-        };
-      });
+      selected.setActiveLink(activeLink.id, activeLink.ratio);
     } else if (observedEl.target && !observedEl.isIntersecting) {
-      ratios.setActiveRatio(prevState => {
-        return {
-          ...prevState,
-          [observedEl.target.id]: 0
-        };
-      });
+      ratios.setActiveRatio(observedEl.target.id, 0);
     }
-  });
+  }, [
+    observedEl.intersectionRatio,
+    observedEl.isIntersecting,
+    observedEl.target,
+    ratios,
+    selected
+  ]);
 
   return (
     <section ref={setSectionRef} id={id} className={className}>
