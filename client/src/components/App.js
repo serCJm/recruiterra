@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useCallback, Suspense } from "react";
+import React, { useEffect, useCallback, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUser } from "../store/actions";
 import classes from "./App.module.css";
 
-import { ActiveNavLink, LandingLinkRatios } from "./context";
+//import { ActiveNavLink, LandingLinkRatios } from "./context/context";
+import ActiveLandingLinkProvider from "./context/ActiveLandingLinkProvider";
 
 import Spinner from "./UI/Spinner/Spinner";
 
@@ -43,13 +44,6 @@ const ApplicantsReview = React.lazy(() =>
 );
 
 const App = ({ auth, fetchUser }) => {
-  const [activeLink, setActiveLink] = useState({ id: null, ratio: 0 });
-  const [ratios, setActiveRatio] = useState({
-    about: 0,
-    how: 0,
-    contact: 0
-  });
-
   const fetchUserHandler = useCallback(() => fetchUser(), [fetchUser]);
 
   // get user auth
@@ -57,31 +51,19 @@ const App = ({ auth, fetchUser }) => {
     fetchUserHandler();
   }, [fetchUserHandler]);
 
-  let activeNavLinkVal = {
-    id: activeLink.id,
-    ratio: activeLink.ratio,
-    setActiveLink
-  };
-
   return (
     <div className={classes.layout}>
-      <BrowserRouter>
-        <Suspense fallback={<Spinner />}>
-          <ActiveNavLink.Provider value={activeNavLinkVal}>
-            <LandingLinkRatios.Provider value={{ ...ratios, setActiveRatio }}>
-              <Header />
-            </LandingLinkRatios.Provider>
-          </ActiveNavLink.Provider>
+      <Suspense fallback={<Spinner />}>
+        <BrowserRouter>
+          <ActiveLandingLinkProvider>
+            <Header />
+          </ActiveLandingLinkProvider>
           <main className={classes.main}>
             <Switch>
               <Route exact path="/">
-                <ActiveNavLink.Provider value={activeNavLinkVal}>
-                  <LandingLinkRatios.Provider
-                    value={{ ...ratios, setActiveRatio }}
-                  >
-                    <Landing />
-                  </LandingLinkRatios.Provider>
-                </ActiveNavLink.Provider>
+                <ActiveLandingLinkProvider>
+                  <Landing />
+                </ActiveLandingLinkProvider>
               </Route>
               <Route exact path="/sign-up" component={SignUp} />
               <Route exact path="/log-in" component={LogIn} />
@@ -118,13 +100,11 @@ const App = ({ auth, fetchUser }) => {
               />
             </Switch>
           </main>
-          <ActiveNavLink.Provider value={activeNavLinkVal}>
-            <LandingLinkRatios.Provider value={{ ...ratios, setActiveRatio }}>
-              <Footer style={classes.footer} />
-            </LandingLinkRatios.Provider>
-          </ActiveNavLink.Provider>
-        </Suspense>
-      </BrowserRouter>
+          <ActiveLandingLinkProvider>
+            <Footer style={classes.footer} />
+          </ActiveLandingLinkProvider>
+        </BrowserRouter>
+      </Suspense>
     </div>
   );
 };
