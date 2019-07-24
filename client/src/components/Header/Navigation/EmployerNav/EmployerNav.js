@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./EmployerNav.module.css";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Payments from "../../../Payments/Payments";
 
@@ -31,6 +32,10 @@ const EmployerNav = ({ credits }) => {
       </li>
     </>
   );
+};
+
+EmployerNav.propTypes = {
+  credits: PropTypes.number
 };
 
 export default EmployerNav;
