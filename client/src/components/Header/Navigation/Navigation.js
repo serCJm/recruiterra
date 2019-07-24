@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import classes from "./Navigation.module.css";
 import { connect } from "react-redux";
-import { logoutUser } from "../../../store/actions";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import LandingNav from "./LandingNav/LandingNav";
@@ -17,12 +16,6 @@ const Navigation = props => {
   function handleMobileMenu() {
     setMobileOpen(isMobileOpen => !isMobileOpen);
   }
-
-  function handleUserLogout() {
-    props.logoutUser();
-    props.history.push("/");
-  }
-
   let linkStyle = classes.link;
   if (props.transparent) linkStyle = classes.linkLanding;
 
@@ -39,14 +32,9 @@ const Navigation = props => {
         />
       );
     } else if (props.auth && props.auth.usertype === "employer") {
-      return (
-        <EmployerNav
-          credits={props.auth.credits}
-          handleUserLogout={handleUserLogout}
-        />
-      );
+      return <EmployerNav credits={props.auth.credits} />;
     } else if (props.auth && props.auth.usertype === "job seeker") {
-      return <JobSeekerNav handleUserLogout={handleUserLogout} />;
+      return <JobSeekerNav />;
     }
   }
   function renderHomeLink() {
@@ -91,13 +79,7 @@ function mapStateToProps({ auth }) {
 
 Navigation.propTypes = {
   auth: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
-  isLanding: PropTypes.bool,
-  logoutUser: PropTypes.func
+  isLanding: PropTypes.bool
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { logoutUser }
-  )(Navigation)
-);
+export default withRouter(connect(mapStateToProps)(Navigation));
