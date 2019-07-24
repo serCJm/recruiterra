@@ -3,7 +3,7 @@ import classes from "./EmployerNav.module.css";
 import { Link } from "react-router-dom";
 import Payments from "../../../Payments/Payments";
 
-const EmployerNav = ({ credits, handleUserLogout }) => {
+const EmployerNav = ({ credits }) => {
   return (
     <>
       <li className={classes.creditsContainer}>
@@ -25,9 +25,9 @@ const EmployerNav = ({ credits, handleUserLogout }) => {
         </Link>
       </li>
       <li className={classes.navItemContainer}>
-        <button className={classes.linkBtn} onClick={handleUserLogout}>
+        <a className={classes.linkBtn} href={"/api/logout"}>
           Logout
-        </button>
+        </a>
       </li>
     </>
   );

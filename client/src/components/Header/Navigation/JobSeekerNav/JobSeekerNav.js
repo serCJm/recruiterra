@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./JobSeekerNav.module.css";
 //import { Link } from "react-router-dom";
 
-const JobSeekerNav = ({ handleUserLogout }) => {
+const JobSeekerNav = () => {
   return (
     <>
       {/* <li className={classes.creditsContainer}>
@@ -11,9 +11,9 @@ const JobSeekerNav = ({ handleUserLogout }) => {
         </Link>
       </li> */}
       <li className={classes.navItemContainer}>
-        <button className={classes.linkBtn} onClick={handleUserLogout}>
+        <a className={classes.linkBtn} href={"/api/logout"}>
           Logout
-        </button>
+        </a>
       </li>
     </>
   );
