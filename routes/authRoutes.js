@@ -38,7 +38,8 @@ module.exports = function authRoutes(app) {
 
   app.get("/api/logout", (req, res) => {
     req.logout();
-    res.send(req.user);
+    req.session = null;
+    res.redirect("/");
   });
 
   app.get("/api/current_user", (req, res) => {
