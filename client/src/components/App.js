@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { fetchUser } from "../store/actions";
 import classes from "./App.module.css";
 
-//import { ActiveNavLink, LandingLinkRatios } from "./context/context";
 import ActiveLandingLinkProvider from "./context/ActiveLandingLinkProvider";
 
 import Spinner from "./UI/Spinner/Spinner";
