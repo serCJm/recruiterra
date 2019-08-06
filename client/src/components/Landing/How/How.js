@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import classes from "./How.module.css";
 import HowEmployers from "./HowEmployers/HowEmployers";
 import HowJobSeekers from "./HowJobSeekers/HowJobSeekers";
@@ -14,12 +14,17 @@ const How = () => {
   const [activeContent, setActiveContent] = useState("employers");
   const [exitAnimation, setExitAnimation] = useState(false);
 
+  const containerRef = useRef(null);
+
   function handleTabSwitch(tabName) {
     setActiveTab(tabName);
     setExitAnimation(true);
+    containerRef.current.style.minHeight =
+      containerRef.current.offsetHeight + "px";
     setTimeout(() => {
       setActiveContent(tabName);
       setExitAnimation(false);
+      setTimeout(() => (containerRef.current.style.minHeight = null), 100);
     }, childAnimationTime);
   }
   return (
@@ -29,7 +34,7 @@ const How = () => {
           How Recruiterra Makes Job Process Easy
         </h2>
       </section>
-      <section className={classes.container}>
+      <section className={classes.container} ref={containerRef}>
         <Tabs
           tabContent={tabs}
           activeTab={activeTab}
