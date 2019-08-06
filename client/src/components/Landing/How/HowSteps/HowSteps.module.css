@@ -14,10 +14,12 @@
 .wrapperIn {
   composes: wrapper;
   animation: fadeIn 0.5s ease-in;
+  animation-fill-mode: forwards;
 }
 .wrapperExit {
   composes: wrapper;
   animation: fadeOut 0.5s ease-out;
+  animation-fill-mode: forwards;
 }
 
 .wrapper:nth-child(even) {
