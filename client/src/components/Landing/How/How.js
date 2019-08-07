@@ -1,9 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, Suspense } from "react";
 import classes from "./How.module.css";
 import HowEmployers from "./HowEmployers/HowEmployers";
-import HowJobSeekers from "./HowJobSeekers/HowJobSeekers";
 import SectionWithInterOb from "../../UI/SectionWithInterOb/SectionWithInterOb";
 import Tabs from "../../UI/Tabs/Tabs";
+import Spinner from "../../UI/Spinner/Spinner";
+
+const HowJobSeekers = React.lazy(() => import("./HowJobSeekers/HowJobSeekers"));
 
 const childAnimationTime = 500;
 
@@ -40,11 +42,13 @@ const How = () => {
           activeTab={activeTab}
           onClick={handleTabSwitch}
         />
-        {activeContent === "employers" ? (
-          <HowEmployers exitAnimation={exitAnimation} />
-        ) : (
-          <HowJobSeekers exitAnimation={exitAnimation} />
-        )}
+        <Suspense fallback={<Spinner />}>
+          {activeContent === "employers" ? (
+            <HowEmployers exitAnimation={exitAnimation} />
+          ) : (
+            <HowJobSeekers exitAnimation={exitAnimation} />
+          )}
+        </Suspense>
       </section>
     </SectionWithInterOb>
   );
