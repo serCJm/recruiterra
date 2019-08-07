@@ -8,8 +8,9 @@ import ActiveLandingLinkProvider from "./context/ActiveLandingLinkProvider";
 
 import Spinner from "./UI/Spinner/Spinner";
 import Header from "./Header/Header";
-import Landing from "./Landing/Landing";
 import Footer from "./Footer/Footer";
+
+const Landing = React.lazy(() => import("./Landing/Landing"));
 
 const SignUp = React.lazy(() => import("./SignUp/SignUp"));
 const LogIn = React.lazy(() => import("./LogIn/LogIn"));
