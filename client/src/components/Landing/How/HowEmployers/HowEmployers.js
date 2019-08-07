@@ -58,7 +58,7 @@ const contents = [
         />
         <source
           type="image/jp2"
-          srcSet={`${interviewSmallJP2} 1x, ${interviewSmallJP2} 2x`}
+          srcSet={`${interviewSmallJP2} 1x, ${interviewBigJP2} 2x`}
         />
         <img
           src={interviewSmall}
