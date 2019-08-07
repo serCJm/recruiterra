@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import workspaceSmall from "../../../../images/workspace-small.png";
 import workspaceBig from "../../../../images/workspace-big.png";
 import workspaceBigWebp from "../../../../images/workspace-big.webp";
+import workspaceSmallWebp from "../../../../images/workspace-small.webp";
 import workspaceBigJP2 from "../../../../images/workspace-big.jp2";
 import interviewSmall from "../../../../images/interview-small.png";
 import interviewBig from "../../../../images/interview-big.png";
 import interviewBigWebp from "../../../../images/interview-big.webp";
+import interviewSmallWebp from "../../../../images/interview-small.webp";
 import interviewBigJP2 from "../../../../images/interview-big.jp2";
 import hireSmall from "../../../../images/hire-small.png";
 import hireBig from "../../../../images/hire-big.png";
@@ -21,7 +23,10 @@ const contents = [
       "Submit your job description using our simple step-by-step form. Our system will automatically find right candidates from our database and contact them to apply. After submitting your job post, all you have to do is sip your coffee.",
     image: (
       <picture>
-        <source type="image/webp" srcSet={workspaceBigWebp} />
+        <source
+          type="image/webp"
+          srcSet={`${workspaceSmallWebp} 1x, ${workspaceBigWebp} 2x`}
+        />
         <source type="image/jp2" srcSet={workspaceBigJP2} />
         <img
           src={workspaceSmall}
