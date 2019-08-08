@@ -23,14 +23,17 @@ const How = () => {
 
   useEffect(() => {
     let timeoutId;
-    containerRef.current.style.minHeight =
-      containerRef.current.offsetHeight + "px";
-    timeoutId = setTimeout(
-      () => (containerRef.current.style.minHeight = null),
-      childAnimationTime + 100
-    );
+    if (activeTab === activeContent) {
+      timeoutId = setTimeout(
+        () => (containerRef.current.style.minHeight = null),
+        childAnimationTime + 200
+      );
+    } else {
+      containerRef.current.style.minHeight =
+        containerRef.current.offsetHeight + "px";
+    }
     return () => clearTimeout(timeoutId);
-  }, [activeTab]);
+  }, [activeTab, activeContent]);
 
   function handleTabSwitch(tabName) {
     setActiveTab(tabName);
