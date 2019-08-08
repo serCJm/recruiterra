@@ -1,4 +1,5 @@
-import React, { useState, useRef, Suspense } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
+import { useAnimatedUnmount } from "../../../utils/hooks";
 import classes from "./How.module.css";
 import HowEmployers from "./HowEmployers/HowEmployers";
 import SectionWithInterOb from "../../UI/SectionWithInterOb/SectionWithInterOb";
@@ -13,22 +14,29 @@ const tabs = ["employers", "job seekers"];
 
 const How = () => {
   const [activeTab, setActiveTab] = useState("employers");
-  const [activeContent, setActiveContent] = useState("employers");
-  const [exitAnimation, setExitAnimation] = useState(false);
+  const [shouldAnim, activeContent, dispatchNewContent] = useAnimatedUnmount(
+    "employers",
+    childAnimationTime
+  );
 
   const containerRef = useRef(null);
 
-  function handleTabSwitch(tabName) {
-    setActiveTab(tabName);
-    setExitAnimation(true);
+  useEffect(() => {
+    let timeoutId;
     containerRef.current.style.minHeight =
       containerRef.current.offsetHeight + "px";
-    setTimeout(() => {
-      setActiveContent(tabName);
-      setExitAnimation(false);
-      setTimeout(() => (containerRef.current.style.minHeight = null), 100);
-    }, childAnimationTime);
+    timeoutId = setTimeout(
+      () => (containerRef.current.style.minHeight = null),
+      childAnimationTime + 100
+    );
+    return () => clearTimeout(timeoutId);
+  }, [activeTab]);
+
+  function handleTabSwitch(tabName) {
+    setActiveTab(tabName);
+    dispatchNewContent({ type: "updateNewContent", newContent: tabName });
   }
+
   return (
     <SectionWithInterOb id="how" className={classes.howSection}>
       <section className={classes.howHero}>
@@ -44,9 +52,9 @@ const How = () => {
         />
         <Suspense fallback={<Spinner />}>
           {activeContent === "employers" ? (
-            <HowEmployers exitAnimation={exitAnimation} />
+            <HowEmployers exitAnimation={shouldAnim} />
           ) : (
-            <HowJobSeekers exitAnimation={exitAnimation} />
+            <HowJobSeekers exitAnimation={shouldAnim} />
           )}
         </Suspense>
       </section>
