@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useReducer } from "react";
 
 // taken from: https://medium.com/the-non-traditional-developer/how-to-use-an-intersectionobserver-in-a-react-hook-9fb061ac6cb5
 export function useIntersectObserver({
@@ -37,4 +37,40 @@ export function useIntersectObserver({
   }, [node, root, rootMargin, threshold]);
 
   return [setNode, entry];
+}
+
+function animateUnmountReducer(state, action) {
+  switch (action.type) {
+    case "updateActiveContent":
+      return { ...state, activeContent: action.activeContent };
+    case "updateNewContent":
+      return { ...state, newContent: action.newContent };
+    default:
+      throw new Error("Something went wrong with animateUnmountReducer");
+  }
+}
+
+export function useAnimatedUnmount(initialContent, delayTime) {
+  const [shouldAnim, setShouldAnim] = useState(false);
+  const [state, dispatch] = useReducer(animateUnmountReducer, {
+    activeContent: initialContent,
+    newContent: initialContent
+  });
+
+  useEffect(() => {
+    let timeoutId;
+
+    if (state.activeContent !== state.newContent) {
+      setShouldAnim(true);
+      timeoutId = setTimeout(() => {
+        dispatch({
+          type: "updateActiveContent",
+          activeContent: state.newContent
+        });
+        setShouldAnim(false);
+      }, delayTime);
+    }
+    return () => clearTimeout(timeoutId);
+  }, [shouldAnim, state.activeContent, state.newContent, delayTime]);
+  return [shouldAnim, state.activeContent, dispatch];
 }
