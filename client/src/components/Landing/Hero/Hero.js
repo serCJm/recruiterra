@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Hero.module.css";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [heroClass, setHeroClass] = useState(classes.heroJPEG);
@@ -15,7 +16,9 @@ const Hero = () => {
   return (
     <section className={heroClass}>
       <h1>Post Jobs And Apply For Positions Easily With Recruiterra</h1>
-      <button className={classes.btn}>Get Started</button>
+      <Link to="/sign-up" className={classes.btn}>
+        Get Started
+      </Link>
     </section>
   );
 };
