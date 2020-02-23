@@ -66,14 +66,14 @@ git clone https://github.com/serCJm/recruiterra.git
 
 ```
 module.exports = {
-  googleClientID:
-  googleClientSecret:
-  mongoURI:
-  cookieKey:
-  stripePublishableKey:
-  stripeSecretKey:
-  sendGridKey:
-  templateRedirectDomain:
+  googleClientID: 'YOUR-GOOGLE-CLIENT-ID'
+  googleClientSecret: 'YOUR-GOOGLE-CLIENT-SECRET'
+  mongoURI: 'YOUR-MONGO-URI'
+  cookieKey: 'YOUR-COOKIE-KEY'
+  stripePublishableKey: 'YOUR-STRIPE-PUB-KEY'
+  stripeSecretKey: 'YOUR-STRIPE-SECRET-KEY'
+  sendGridKey: 'YOUR-SENDGRID-KEY'
+  templateRedirectDomain: 'http://localhost:YOUR-PORT'
 };
 ```
 
