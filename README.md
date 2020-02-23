@@ -60,11 +60,9 @@ Heroku - for deployment
 git clone https://github.com/serCJm/recruiterra.git
 ```
 
-2. Delete the node_modules and package-lock.json from the server directory and run a fresh npm install
+2. Change into the client directory and delete the package-lock.json and run a fresh npm install
 
-3. Change into the client directory and delete the package-lock.json and run a fresh npm install
-
-4. Add your dev.js file with all of your keys to the config/ directory
+3. Add your dev.js file with all of your keys to the config/ directory
 
 ```
 module.exports = {
