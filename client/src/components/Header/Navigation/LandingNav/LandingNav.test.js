@@ -2,31 +2,36 @@ import React from "react";
 import { shallow } from "enzyme";
 import LandingNav from "./LandingNav";
 import { NavLink } from "react-router-dom";
+import { findByTestAttr } from "../../../../utils/helpers";
 
 jest.mock("react", () => ({
 	...jest.requireActual("react"),
 	useContext: jest.fn().mockReturnValue({ id: "about", ratio: 0 })
 }));
 
+const setUp = (props = {}) => {
+	return shallow(<LandingNav></LandingNav>);
+};
+
 describe("<LandingNav />", () => {
-	let wrapper;
+	let component;
 	beforeEach(() => {
-		wrapper = shallow(<LandingNav></LandingNav>);
+		component = setUp();
 	});
 	it("should render three 'in page jump links'", () => {
-		expect(wrapper.find("a")).toHaveLength(3);
+		expect(findByTestAttr(component, "anchor")).toHaveLength(3);
 	});
 
 	it("should render two <NavLink /> components", () => {
-		expect(wrapper.find(NavLink)).toHaveLength(2);
+		expect(component.find(NavLink)).toHaveLength(2);
 	});
 
 	it("should have an active class", () => {
-		let wrapper = shallow(<LandingNav></LandingNav>);
-		wrapper.setProps({
+		let component = shallow(<LandingNav></LandingNav>);
+		component.setProps({
 			transparent: false,
 			isLanding: true
 		});
-		expect(wrapper.find(".active")).toHaveLength(1);
+		expect(component.find(".active")).toHaveLength(1);
 	});
 });
