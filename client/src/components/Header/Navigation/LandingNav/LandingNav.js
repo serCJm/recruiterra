@@ -54,6 +54,7 @@ const LandingNav = ({ containerClass, linkClass, isLanding, transparent }) => {
 							: linkClass
 					}
 					onClick={item.onClick}
+					data-test="anchor"
 				>
 					{item.text}
 				</a>
