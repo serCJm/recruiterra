@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import classes from "./ResumeList.module.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -7,41 +7,42 @@ import Spinner from "../../../UI/Spinner/Spinner";
 import ResumeItem from "../ResumeItem/ResumeItem";
 
 const ResumeList = props => {
-  const { fetchResumes } = props;
-  const fetchResumesHandler = useCallback(() => fetchResumes(), [fetchResumes]);
+	const { fetchResumes } = props;
 
-  useEffect(() => fetchResumesHandler(), [fetchResumesHandler]);
+	useEffect(() => {
+		async function fetchResumesHandler() {
+			await fetchResumes();
+		}
+		fetchResumesHandler();
+	}, [fetchResumes]);
 
-  function renderJobList() {
-    if (props.loading) {
-      return <Spinner />;
-    } else if (props.resumes.length === 0) {
-      return (
-        <p className={classes.emptyText}>
-          You don't have any job resumes. Please create one by clicking on the
-          add button.
-        </p>
-      );
-    }
+	function renderJobList() {
+		if (props.loading) {
+			return <Spinner />;
+		} else if (props.resumes.length === 0) {
+			return (
+				<p className={classes.emptyText}>
+					You don't have any job resumes. Please create one by clicking on the
+					add button.
+				</p>
+			);
+		}
 
-    return props.resumes
-      .reverse()
-      .map(resume => <ResumeItem key={resume._id} resume={resume} />);
-  }
-  return <section className={classes.container}>{renderJobList()}</section>;
+		return props.resumes
+			.reverse()
+			.map(resume => <ResumeItem key={resume._id} resume={resume} />);
+	}
+	return <section className={classes.container}>{renderJobList()}</section>;
 };
 
 function mapStateToProps({ resumes }) {
-  return { resumes: resumes.resumesList, loading: resumes.loading };
+	return { resumes: resumes.resumesList, loading: resumes.loading };
 }
 
 ResumeList.propTypes = {
-  fetchJobs: PropTypes.func,
-  loading: PropTypes.bool,
-  jobs: PropTypes.array
+	fetchJobs: PropTypes.func,
+	loading: PropTypes.bool,
+	jobs: PropTypes.array
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchResumes }
-)(ResumeList);
+export default connect(mapStateToProps, { fetchResumes })(ResumeList);
