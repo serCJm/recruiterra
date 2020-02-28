@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 import classes from "./ApplicantsList.module.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
