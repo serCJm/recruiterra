@@ -1,3 +1,7 @@
+import { createStore, applyMiddleware } from "redux";
+import reducers from "../store/reducers";
+import reduxThunk from "redux-thunk";
+
 export function smoothScroll(element, duration = 1000) {
 	const target = element.target.getAttribute("href");
 	const targetPosition = document.querySelector(target).offsetTop;
@@ -31,4 +35,8 @@ export function smoothScroll(element, duration = 1000) {
 export function findByTestAttr(component, attr) {
 	const wrapper = component.find(`[data-test="${attr}"]`);
 	return wrapper;
+}
+
+export function testStoreFactory(initialState = {}) {
+	return createStore(reducers, initialState, applyMiddleware(reduxThunk));
 }
