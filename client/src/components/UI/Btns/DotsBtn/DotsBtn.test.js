@@ -1,8 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import DotsBtn from "./DotsBtn";
-import { findByTestAttr } from "../../../../utils/helpers";
-import { checkPropTypes } from "prop-types";
+import { findByTestAttr, checkProps } from "../../../../utils/helpers";
 
 const setUp = (props = {}) => {
 	return shallow(<DotsBtn {...props} />);
@@ -23,12 +22,6 @@ describe("<DotsBtn/>", () => {
 	});
 	it("should not throw a warning with expected props", () => {
 		const expectedProps = { onClick: jest.fn() };
-		const propError = checkPropTypes(
-			DotsBtn.propTypes,
-			expectedProps,
-			"prop",
-			DotsBtn.name
-		);
-		expect(propError).toBe(undefined);
+		checkProps(DotsBtn, expectedProps);
 	});
 });
