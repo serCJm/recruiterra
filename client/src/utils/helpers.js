@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import reducers from "../store/reducers";
 import reduxThunk from "redux-thunk";
+import { checkPropTypes } from "prop-types";
 
 export function smoothScroll(element, duration = 1000) {
 	const target = element.target.getAttribute("href");
@@ -39,4 +40,14 @@ export function findByTestAttr(component, attr) {
 
 export function testStoreFactory(initialState = {}) {
 	return createStore(reducers, initialState, applyMiddleware(reduxThunk));
+}
+
+export function checkProps(component, expectedProps) {
+	const propError = checkPropTypes(
+		component.propTypes,
+		expectedProps,
+		"prop",
+		component.name
+	);
+	expect(propError).toBe(undefined);
 }
