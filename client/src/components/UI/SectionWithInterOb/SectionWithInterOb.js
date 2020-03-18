@@ -56,7 +56,12 @@ const SectionWithInterOb = ({ children, id, className }) => {
 	]);
 
 	return (
-		<section ref={setSectionRef} id={id} className={className}>
+		<section
+			ref={setSectionRef}
+			id={id}
+			className={className}
+			data-test="section-int-ob"
+		>
 			{children}
 		</section>
 	);
