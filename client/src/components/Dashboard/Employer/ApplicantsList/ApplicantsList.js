@@ -18,10 +18,10 @@ const ApplicantsList = props => {
 
 	function renderApplicantsList() {
 		if (props.loading) {
-			return <Spinner />;
+			return <Spinner data-test="spinner" />;
 		} else if (props.applicants.length === 0) {
 			return (
-				<p className={classes.emptyText}>
+				<p className={classes.emptyText} data-test="message">
 					You don't have any applicants. Please create a job post and wait for
 					job seekers to apply.
 				</p>
@@ -29,7 +29,13 @@ const ApplicantsList = props => {
 		}
 		return props.applicants
 			.reverse()
-			.map(resume => <ApplicantsItem key={resume._id} resume={resume} />);
+			.map(resume => (
+				<ApplicantsItem
+					key={resume._id}
+					resume={resume}
+					data-test="applicants-item"
+				/>
+			));
 	}
 	return (
 		<section className={classes.container}>{renderApplicantsList()}</section>
