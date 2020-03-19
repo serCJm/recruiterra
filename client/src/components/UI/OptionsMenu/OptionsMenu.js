@@ -11,16 +11,12 @@ const OptionsMenu = ({ status, onClickDelete, onClickUpdate }) => {
 			}
 			data-test="options-menu"
 		>
-			<RegBtn
-				btnStyle="danger"
-				onClick={() => onClickDelete()}
-				data-test="danger-btn"
-			>
+			<RegBtn btnStyle="danger" onClick={onClickDelete} data-test="danger-btn">
 				Delete
 			</RegBtn>
 			<RegBtn
 				btnStyle="success"
-				onClick={() => onClickUpdate()}
+				onClick={onClickUpdate}
 				data-test="success-btn"
 			>
 				Edit
@@ -32,7 +28,7 @@ const OptionsMenu = ({ status, onClickDelete, onClickUpdate }) => {
 OptionsMenu.propTypes = {
 	status: PropTypes.string,
 	onClickDelete: PropTypes.func,
-	onClickDelete: PropTypes.func
+	onClickUpdate: PropTypes.func
 };
 
 export default OptionsMenu;
