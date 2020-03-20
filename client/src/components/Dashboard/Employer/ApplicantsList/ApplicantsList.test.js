@@ -1,6 +1,6 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
-import ApplicantsList from "./ApplicantsList";
+import { shallow } from "enzyme";
+import ApplicantsList, { ApplicantsListUnconnected } from "./ApplicantsList";
 import { testStoreFactory, findByTestAttr } from "../../../../utils/helpers";
 
 const setup = (initialState = {}) => {
@@ -59,19 +59,16 @@ describe("<ApplicantsList/>", () => {
 		const wrapper = findByTestAttr(component, "applicants-item");
 		expect(wrapper).toHaveLength(2);
 	});
-	// it("should fetch applicants list", async () => {
-	// 	const mock = jest.fn();
-	// 	const store = testStoreFactory({
-	// 		jobs: {
-	// 			loading: false,
-	// 			applicantsList: []
-	// 		}
-	// 	});
+	it("should fetch applicants list", () => {
+		React.useEffect = jest
+			.spyOn(React, "useEffect")
+			.mockImplementation(f => f());
+		const mock = jest.fn();
+		const props = { loading: false, applicants: [], fetchApplicants: mock };
 
-	// 	component = mount(
-	// 		<ApplicantsList store={store} fetchApplicants={mock}></ApplicantsList>
-	// 	);
-	// 	component.setProps({});
-	// 	await expect(mock).toHaveBeenCalled();
-	// });
+		component = shallow(
+			<ApplicantsListUnconnected {...props}></ApplicantsListUnconnected>
+		);
+		expect(mock).toHaveBeenCalled();
+	});
 });

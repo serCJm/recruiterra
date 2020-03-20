@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import classes from "./ApplicantsList.module.css";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -6,10 +6,10 @@ import { fetchApplicants } from "../../../../store/actions";
 import Spinner from "../../../UI/Spinner/Spinner";
 import ApplicantsItem from "./ApplicantsItem/ApplicantsItem";
 
-const ApplicantsList = props => {
+export const ApplicantsListUnconnected = props => {
 	const { fetchApplicants } = props;
 
-	useEffect(() => {
+	React.useEffect(() => {
 		async function fetchApplicantsHandler() {
 			await fetchApplicants();
 		}
@@ -46,10 +46,12 @@ function mapStateToProps({ jobs }) {
 	return { applicants: jobs.applicantsList, loading: jobs.loading };
 }
 
-ApplicantsList.propTypes = {
+ApplicantsListUnconnected.propTypes = {
 	fetchApplicants: PropTypes.func,
 	loading: PropTypes.bool,
 	applicantsList: PropTypes.array
 };
 
-export default connect(mapStateToProps, { fetchApplicants })(ApplicantsList);
+export default connect(mapStateToProps, { fetchApplicants })(
+	ApplicantsListUnconnected
+);
