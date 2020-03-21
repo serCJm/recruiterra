@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import JobsList from "./JobsList/JobsList";
 
 const Dashboard = () => {
-  return (
-    <>
-      <JobsList />
-      <Link to="/job-postings/new" className={classes.btn}>
-        Add
-      </Link>
-    </>
-  );
+	return (
+		<>
+			<JobsList data-test="jobs-list" />
+			<Link to="/job-postings/new" className={classes.btn} data-test="link">
+				Add
+			</Link>
+		</>
+	);
 };
 
 export default Dashboard;
