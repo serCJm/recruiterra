@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import reducers from "../store/reducers";
 import reduxThunk from "redux-thunk";
-import { checkPropTypes } from "prop-types";
+import checkPropTypes from "check-prop-types";
 
 export function smoothScroll(element, duration = 1000) {
 	const target = element.target.getAttribute("href");
