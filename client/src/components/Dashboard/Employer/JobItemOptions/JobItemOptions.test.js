@@ -30,7 +30,7 @@ describe("<JobItemOptions/>", () => {
 		expect(wrapper).toHaveLength(1);
 	});
 	it("should NOT throw a warning", () => {
-		checkProps(component, {
+		checkProps(JobItemOptionsUnconnected, {
 			status: "open",
 			job: {},
 			deleteJobs: jest.fn(),
