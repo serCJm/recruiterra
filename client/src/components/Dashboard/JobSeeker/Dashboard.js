@@ -5,14 +5,14 @@ import ResumeList from "./ResumeList/ResumeList";
 // import JobsList from "./JobsList/JobsList";
 
 const Dashboard = () => {
-  return (
-    <>
-      <ResumeList />
-      <Link to="/resumes/new" className={classes.btn}>
-        Add
-      </Link>
-    </>
-  );
+	return (
+		<>
+			<ResumeList data-test="resume-list" />
+			<Link to="/resumes/new" className={classes.btn} data-test="link">
+				Add
+			</Link>
+		</>
+	);
 };
 
 export default Dashboard;
