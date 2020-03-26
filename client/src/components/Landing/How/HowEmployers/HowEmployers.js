@@ -21,89 +21,95 @@ import hireBigJP2 from "../../../../images/hire-big.jp2";
 import HowSteps from "../HowSteps/HowSteps";
 
 const contents = [
-  {
-    title: "Post A Job",
-    description:
-      "Submit your job description using our simple step-by-step form. Our system will automatically find right candidates from our database and contact them to apply. After submitting your job post, all you have to do is sip your coffee.",
-    image: (
-      <picture>
-        <source
-          type="image/webp"
-          srcSet={`${workspaceSmallWebp} 1x, ${workspaceBigWebp} 2x`}
-        />
-        <source
-          type="image/jp2"
-          srcSet={`${workspaceSmallJP2} 1x, ${workspaceBigJP2} 2x`}
-        />
-        <img
-          src={workspaceSmall}
-          srcSet={`${workspaceSmall} 1x,
+	{
+		title: "Post A Job",
+		description:
+			"Submit your job description using our simple step-by-step form. Our system will automatically find right candidates from our database and contact them to apply. After submitting your job post, all you have to do is sip your coffee.",
+		image: (
+			<picture>
+				<source
+					type="image/webp"
+					srcSet={`${workspaceSmallWebp} 1x, ${workspaceBigWebp} 2x`}
+				/>
+				<source
+					type="image/jp2"
+					srcSet={`${workspaceSmallJP2} 1x, ${workspaceBigJP2} 2x`}
+				/>
+				<img
+					src={workspaceSmall}
+					srcSet={`${workspaceSmall} 1x,
         ${workspaceBig} 2x`}
-          alt="workspace"
-          // sizes='(min-width: 960px) 960px,
-          //        100vw'
-        />
-      </picture>
-    )
-  },
-  {
-    title: "Screen Candidates",
-    description:
-      "Candidates who matched your criteria will be notified to apply for your position. For your matches, you will be able to access resume and references to easily screen for the right hire.",
-    image: (
-      <picture>
-        <source
-          type="image/webp"
-          srcSet={`${interviewSmallWebp} 1x, ${interviewBigWebp} 2x`}
-        />
-        <source
-          type="image/jp2"
-          srcSet={`${interviewSmallJP2} 1x, ${interviewBigJP2} 2x`}
-        />
-        <img
-          src={interviewSmall}
-          srcSet={`${interviewSmall} 1x,
+					alt="workspace"
+					// sizes='(min-width: 960px) 960px,
+					//        100vw'
+				/>
+			</picture>
+		)
+	},
+	{
+		title: "Screen Candidates",
+		description:
+			"Candidates who matched your criteria will be notified to apply for your position. For your matches, you will be able to access resume and references to easily screen for the right hire.",
+		image: (
+			<picture>
+				<source
+					type="image/webp"
+					srcSet={`${interviewSmallWebp} 1x, ${interviewBigWebp} 2x`}
+				/>
+				<source
+					type="image/jp2"
+					srcSet={`${interviewSmallJP2} 1x, ${interviewBigJP2} 2x`}
+				/>
+				<img
+					src={interviewSmall}
+					srcSet={`${interviewSmall} 1x,
         ${interviewBig} 2x`}
-          alt="inverview"
-          // sizes='(min-width: 960px) 960px,
-          //        100vw'
-        />
-      </picture>
-    )
-  },
-  {
-    title: "Hire",
-    description:
-      "Once you are confident that a particular candiatate is the right fit for you, you mark a hire with one click. All other candidates will automatically be notifed with a rejection.",
-    image: (
-      <picture>
-        <source
-          type="image/webp"
-          srcSet={`${hireSmallWebp} 1x, ${hireBigWebp} 2x`}
-        />
-        <source
-          type="image/jp2"
-          srcSet={`${hireSmallJP2} 1x, ${hireBigJP2} 2x`}
-        />
-        <img
-          src={hireSmall}
-          srcSet={`${hireSmall} 1x,
+					alt="inverview"
+					// sizes='(min-width: 960px) 960px,
+					//        100vw'
+				/>
+			</picture>
+		)
+	},
+	{
+		title: "Hire",
+		description:
+			"Once you are confident that a particular candiatate is the right fit for you, you mark a hire with one click. All other candidates will automatically be notifed with a rejection.",
+		image: (
+			<picture>
+				<source
+					type="image/webp"
+					srcSet={`${hireSmallWebp} 1x, ${hireBigWebp} 2x`}
+				/>
+				<source
+					type="image/jp2"
+					srcSet={`${hireSmallJP2} 1x, ${hireBigJP2} 2x`}
+				/>
+				<img
+					src={hireSmall}
+					srcSet={`${hireSmall} 1x,
         ${hireBig} 2x`}
-          alt="hire"
-          // sizes='(min-width: 960px) 960px,
-          //        100vw'
-        />
-      </picture>
-    )
-  }
+					alt="hire"
+					// sizes='(min-width: 960px) 960px,
+					//        100vw'
+				/>
+			</picture>
+		)
+	}
 ];
 
 const HowEmployers = ({ exitAnimation }) => {
-  return <HowSteps contents={contents} exitAnimation={exitAnimation} />;
+	return (
+		<HowSteps
+			contents={contents}
+			exitAnimation={exitAnimation}
+			data-test="how-employers"
+		/>
+	);
 };
 
 HowEmployers.propTypes = {
-  exitAnimation: PropTypes.bool
+	exitAnimation: PropTypes.bool
 };
 
 export default HowEmployers;
