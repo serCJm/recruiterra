@@ -20,7 +20,7 @@ import hireBigWebp from "../../../../images/hire-big.webp";
 import hireBigJP2 from "../../../../images/hire-big.jp2";
 import HowSteps from "../HowSteps/HowSteps";
 
-const contents = [
+export const contents = [
 	{
 		title: "Post A Job",
 		description:
