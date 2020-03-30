@@ -38,7 +38,7 @@ export const FooterUnconnected = ({ style, location }) => {
 					</SectionWithInterOb>
 					<section className={classes.footer} data-test="copyright">
 						<div className={classes.footerContainer}>
-							<p>Copyright © 2019 by Recruiterra.</p>
+							<p>Copyright © 2020 by Recruiterra.</p>
 							<p>All Right Reserved.</p>
 						</div>
 					</section>
