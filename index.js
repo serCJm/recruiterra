@@ -9,7 +9,8 @@ const compression = require("compression");
 
 mongoose.connect(keys.mongoURI, {
 	useNewUrlParser: true,
-	useUnifiedTopology: true
+	useUnifiedTopology: true,
+	useFindAndModify: false
 });
 mongoose.set("useCreateIndex", true);
 // DEV DB DEBUG
