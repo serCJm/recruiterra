@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Suspense } from "react";
+import React, { useRef, Suspense } from "react";
 import { useAnimatedUnmount } from "../../../utils/hooks";
 import classes from "./How.module.css";
 import HowEmployers from "./HowEmployers/HowEmployers";
