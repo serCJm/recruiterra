@@ -77,8 +77,9 @@ const mapStateToProps = ({ jobs }) => {
 
 JobPostUpdateUnconnected.propTypes = {
 	currentJobId: PropTypes.string,
+	handleSubmit: PropTypes.func,
 	updateJobPost: PropTypes.func,
-	updateJobPost: PropTypes.func
+	history: PropTypes.object
 };
 
 export default connect(mapStateToProps, { updateJobPost })(
